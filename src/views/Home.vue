@@ -13,6 +13,8 @@ export default defineComponent({
   name: 'Home',
   components: {
     HelloWorld
+  },
+  setup() {
   }
 });
 </script>
