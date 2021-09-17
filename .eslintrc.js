@@ -1,16 +1,36 @@
 module.exports = {
   root: true,
+  parserOptions: {
+    parser: 'babel-eslint',
+    sourceType: 'module',
+    ecmaVersion: 2020,
+  },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  //------------
   env: {
-    node: true
+    browser: true,
+    node: true,
+    es6: true,
   },
   extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-essential',
-    '@vue/standard'
+    // '@vue/standard',
+    // '@vue/typescript/recommended'
   ],
-  parserOptions: {
-    parser: 'babel-eslint'
-  },
   rules: {
+    // 禁止使用 var
+    'no-var': "error",
+    "no-unused-vars": "off",
+    'no-extra-semi': 'error',
+    '@typescript-eslint/indent': ['error', 2],
+    "@typescript-eslint/no-unused-vars": ["off"],//没有使用的参数，不会报错。
+    "@typescript-eslint/no-empty-function":["off"], // 方法内部没有逻辑书写，不会报错
+    "@typescript-eslint/no-explicit-any":["off"], // ts 定义数据类型为any不报错
+    'import/extensions': 'off',
+    'linebreak-style': [0, 'error', 'windows'],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-alert': 0,

@@ -4,11 +4,11 @@ const sexEnum = {
   1: '男',
 };
 
-export enum sex {
+export enum Sex {
   FEMALE = 0,
   MALE = 1,
 }
 
-export function getSex(id: number):string{
+export function getSex(id: number):string {
   return sexEnum[id];
 }
