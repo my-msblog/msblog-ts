@@ -1,10 +1,11 @@
 /* 加载插件文件 */
-import type { App } from 'vue';
+import { createApp } from 'vue';
+
 /**
  * @description 加载所有 Plugins
- * @param   app 整个应用的实例
+ * @param  {ReturnType<typeof createApp>} app 整个应用的实例
  */
-export function loadAllPlugins(app: App) {
+export function loadAllPlugins(app: ReturnType<typeof createApp>) {
   const files = require.context('.', true, /\.ts$/);
   files.keys().forEach(key => {
     if (typeof files(key).default === 'function') {

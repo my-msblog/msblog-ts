@@ -1,22 +1,27 @@
 <template>
   <div>
-    <p>
-      If Element Plus is successfully added to this project, you'll see an
-      <code v-text="'<el-button>'" />
-      below
-    </p>
+    <Language />
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      v-model:currentPage="currentPage1"
+      :page-size="100"
+      layout="total, prev, pager, next"
+      :total="1000"
+    />
     <el-button type="primary">el-button</el-button>
   </div>
   <router-view />
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
   }
-};
+});
 </script>
 
 <style>

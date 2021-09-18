@@ -31,50 +31,44 @@ export default defineComponent({
     const tagSpacing = 4;
     const state = reactive({
       handleScroll: (e: WheelEvent) => {
-        const eventDelta = (e as any).wheelDelta || -e.deltaY * 40
-        scrollWrapper.value.scrollLeft = scrollWrapper.value.scrollLeft + eventDelta / 4
+        const eventDelta = (e as any).wheelDelta || -e.deltaY * 40;
+        scrollWrapper.value.scrollLeft = scrollWrapper.value.scrollLeft + eventDelta / 4;
       },
       moveToCurrentTag: (currentTag: HTMLElement) => {
-        const container = (scrollContainerRef.value as any).$el as HTMLElement
-        const containerWidth = container.offsetWidth
-        const tagList = proxy.$parent.$refs.tag as any[]
-        let firstTag = null
-        let lastTag = null
+        const container = (scrollContainerRef.value as any).$el as HTMLElement;
+        const containerWidth = container.offsetWidth;
+        const tagList = proxy.$parent.$refs.tag as any[];
+        let firstTag = null;
+        let lastTag = null;
 
         // find first tag and last tag
         if (tagList.length > 0) {
-          firstTag = tagList[0]
-          lastTag = tagList[tagList.length - 1]
+          firstTag = tagList[0];
+          lastTag = tagList[tagList.length - 1];
         }
 
         if (firstTag === currentTag) {
-          scrollWrapper.value.scrollLeft = 0
+          scrollWrapper.value.scrollLeft = 0;
         } else if (lastTag === currentTag) {
-          scrollWrapper.value.scrollLeft =
-            scrollWrapper.value.scrollWidth - containerWidth
+          scrollWrapper.value.scrollLeft = scrollWrapper.value.scrollWidth - containerWidth;
         } else {
           // find preTag and nextTag
-          const currentIndex = tagList.findIndex((item) => item === currentTag)
-          const prevTag = tagList[currentIndex - 1]
-          const nextTag = tagList[currentIndex + 1]
+          const currentIndex = tagList.findIndex((item) => item === currentTag);
+          const prevTag = tagList[currentIndex - 1];
+          const nextTag = tagList[currentIndex + 1];
           // the tag's offsetLeft after of nextTag
-          const afterNextTagOffsetLeft =
-            nextTag.$el.offsetLeft + nextTag.$el.offsetWidth + tagSpacing
+          const afterNextTagOffsetLeft = nextTag.$el.offsetLeft + nextTag.$el.offsetWidth + tagSpacing;
           // the tag's offsetLeft before of prevTag
-          const beforePrevTagOffsetLeft = prevTag.$el.offsetLeft - tagSpacing
+          const beforePrevTagOffsetLeft = prevTag.$el.offsetLeft - tagSpacing;
 
-          if (
-            afterNextTagOffsetLeft >
-            scrollWrapper.value.scrollLeft + containerWidth
-          ) {
-            scrollWrapper.value.scrollLeft =
-              afterNextTagOffsetLeft - containerWidth
+          if (afterNextTagOffsetLeft > scrollWrapper.value.scrollLeft + containerWidth) {
+            scrollWrapper.value.scrollLeft = afterNextTagOffsetLeft - containerWidth;
           } else if (beforePrevTagOffsetLeft < scrollWrapper.value.scrollLeft) {
-            scrollWrapper.value.scrollLeft = beforePrevTagOffsetLeft
+            scrollWrapper.value.scrollLeft = beforePrevTagOffsetLeft;
           }
         }
       }
-    })
+    });
     const emitScroll = () => {
       emit('scroll');
     };

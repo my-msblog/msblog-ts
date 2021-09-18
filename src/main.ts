@@ -4,7 +4,20 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import { loadAllPlugins } from './plugins';
+import { setupI18n } from '@/loacles';
+import { registerGlobComp } from '@/components';
 
-const app = createApp(App);
-loadAllPlugins(app);
-app.use(store).use(router).mount('#app');
+(async() =>{
+  const app = createApp(App);
+  // Multilingual configuration
+  setupI18n(app);
+  // Load plugins
+  loadAllPlugins(app);
+  // Register global components
+  registerGlobComp(app);
+  // router ready https://next.router.vuejs.org/api/#isready
+  app.use(router);
+  await router.isReady();
+  app.use(store).mount('#app');
+})();
+
