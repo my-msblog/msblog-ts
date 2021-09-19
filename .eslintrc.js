@@ -44,6 +44,7 @@ module.exports = {
     'quotes': ['error', 'single'], // 使用单引号
     'dot-notation':0,
     'import/first':0,
+    "key-spacing": [0, { "beforeColon": false, "afterColon": true }],
     'vue/singleline-html-element-content-newline':0,
     'vue/html-closing-bracket-spacing': 'error',
     'vue/mustache-interpolation-spacing': 'error',
