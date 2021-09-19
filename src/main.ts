@@ -4,7 +4,7 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import { loadAllPlugins } from './plugins';
-import { setupI18n } from '@/loacles';
+import { setupI18n } from '@/locales';
 import { registerGlobComp } from '@/components';
 
 (async() =>{
