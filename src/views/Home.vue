@@ -10,6 +10,7 @@ import { defineComponent } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue';
 import { getSex, Sex } from '@/constant/enums/sex';
 import { useStore } from 'vuex';
+import { text } from '@/api/text';
 
 export default defineComponent({
   name: 'Home',
@@ -21,6 +22,9 @@ export default defineComponent({
       useStore().commit('setUserId', 13123);
     }
     save();
+    text().then(res => {
+      console.log(res);
+    });
     return {
       getSex,
       Sex,

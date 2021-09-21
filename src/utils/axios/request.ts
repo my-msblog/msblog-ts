@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ElMessage } from 'element-plus';
 import store from '@/store';
 import router from '@/router';
-
+import { Delete, Get, Post, Put } from './type';
 const use = store;
 const service = axios.create({
   baseURL: '/api',
@@ -29,18 +29,17 @@ service.interceptors.response.use(
       const data = response.data;
       if (data.code !== 200) {
         ElMessage({
-          showClose: true,
           message: data.msg || 'error',
           type: 'error',
           duration: 2 * 1000,
         });
         if (data.code === 401) {
           store.commit('clearUser');
-          router.replace('/login').then();
+          //router.replace('/login').then();
         }
         return reject(data.msg || 'error');
       } else {
-        return resolve(data.data);
+        return resolve(data);
       }
     });
   }, error => {
@@ -53,24 +52,32 @@ service.interceptors.response.use(
         duration: 2 * 1000,
       });
     } else {
-      if (response.status === 401 || response.data.code === 401) {
-        ElMessage({
-          showClose: true,
-          message: response.data.data,
-          type: 'error',
-          duration: 2 * 1000,
-        });
-        router.push('/login').then();
-        store.commit('clearUser');
-      } else {
-        ElMessage({
-          showClose: true,
-          message: error.response.data.msg || 'server error',
-          type: 'error',
-          duration: 2 * 1000,
-        });
-      }
+      console.log(error);
     }
   }
 );
-export default service;
+
+const get: Get = async (opt ) => {
+  const params = opt.params;
+  const response = await service.get(opt.url, { params, ...opt.config });
+  return response.data;
+};
+const post: Post = async (option ) => {
+  const params = option.params;
+  const res = await service.post(option.url, { params, ...option.config });
+  return res.data;
+};
+const put: Put = async (option ) => {
+  const params = option.params;
+  const res = await service.post(option.url, { params, ...option.config });
+  return res.data;
+};
+const deleteRequest: Delete = async (option ) => {
+  const params = option.params;
+  const res = await service.post(option.url, { params, ...option.config });
+  return res.data;
+};
+
+const request = { get, post, put, deleteRequest };
+
+export default request;
