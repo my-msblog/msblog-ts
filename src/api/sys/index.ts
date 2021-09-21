@@ -1,9 +1,10 @@
 import request from '@/utils/axios/request';
-import { PhoneDTO } from '@/api/sys/model';
+import { MenuVO, PhoneDTO } from '@/api/model/sys-model';
 
 enum Api {
   sms = '/code/sms',
   authentication = 'api/authentication',
+  menu = '/info/menu',
 }
 
 export function getSMS(dto: PhoneDTO) {
@@ -12,9 +13,13 @@ export function getSMS(dto: PhoneDTO) {
     params: dto
   });
 }
-
 export function authentication() {
   return request.post<string>({
     url: Api.authentication,
+  });
+}
+export function getMenu() {
+  return request.post<Array<MenuVO>>({
+    url: Api.menu,
   });
 }

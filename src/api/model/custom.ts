@@ -1,3 +1,9 @@
+
+export interface IdDTO{
+  id?: number;
+  idList?: Array<number>;
+}
+
 export interface UserVO {
   id: number;
   username: string;
@@ -7,9 +13,4 @@ export interface UserVO {
   introduction: string;
   sex: number;
   createTime: string;
-}
-
-export interface CaptchaVO{
-  key: string;
-  img: string;
 }

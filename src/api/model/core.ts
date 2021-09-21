@@ -1,3 +1,9 @@
+
+export interface BaseDTO{
+  page?: number;
+  size?: number;
+}
+
 export interface PageInfo<T> {
   total: number;
   list: Array<T>;
@@ -14,7 +20,7 @@ export interface PageInfo<T> {
   hasPreviousPage: boolean;
   extPage: boolean;
   navigatePages: number;
-  navigatepageNums: Array<number>;
+  navigatepageNums: number[];
   navigateFirstPage: number;
   navigateLastPage: number;
 }
