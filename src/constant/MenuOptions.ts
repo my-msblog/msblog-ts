@@ -1,7 +1,7 @@
 export interface MenuOptions{
   path: string;
   nameZh: string;
-  component: string;
+  component: any;
   icon: string;
   children: Array<MenuOptions>;
 }

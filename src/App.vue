@@ -1,7 +1,4 @@
 <template>
-  <div>
-    <el-button type="primary">el-button</el-button>
-  </div>
   <router-view />
 </template>
 
