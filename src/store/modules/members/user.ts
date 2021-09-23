@@ -1,3 +1,5 @@
+import { UserVO } from '@/api/model/custom';
+
 interface UserState {
   user_id: number,
   username: string,
@@ -50,6 +52,16 @@ const mutations = {
   setCreateTime(state: UserState, createTime: string) {
     state.user_createTime = createTime;
     sessionStorage.setItem('createTime', createTime);
+  },
+  setUserInfo(state: UserState, params: UserVO) {
+    this.setUserId(state, params.id);
+    this.setUserPhone(state, params.phone);
+    this.setUsername(state, params.username);
+    this.setUserEmail(state, params.email);
+    this.setUserToken(state, params.token);
+    this.setUserSex(state, params.sex);
+    this.setUserIntroduction(state, params.introduction);
+    this.setCreateTime(state, params.createTime);
   },
 };
 const actions = {

@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 
 interface requestOption{
   url: string;
-  params?: any;
+  data?: any;
   config?: AxiosRequestConfig;
 }
 // 泛型接口

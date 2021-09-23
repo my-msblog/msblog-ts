@@ -3,7 +3,6 @@ import { ElMessage } from 'element-plus';
 import store from '@/store';
 import router from '@/router';
 import { Delete, Get, Post, Put } from './type';
-const use = store;
 const service = axios.create({
   baseURL: '/api',
   timeout: 5 * 1000,
@@ -12,7 +11,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // 获取后端传来的token
-    const token = use.getters.getToken;
+    const token = store.getters.getToken;
     config.headers['Content-Type'] = 'application/json;charset=UTF-8';
     config.data = JSON.stringify(config.data);
     config.headers['token'] = token;
@@ -46,35 +45,39 @@ service.interceptors.response.use(
     const response = error.response;
     if (response === undefined || error.status === 404) {
       ElMessage({
-        showClose: true,
         message: '服务器链接异常',
         type: 'error',
         duration: 2 * 1000,
       });
     } else {
+      ElMessage({
+        message: response.data.data,
+        type: 'error',
+        duration: 2 * 1000,
+      });
       console.log(error);
     }
   }
 );
 
 const get: Get = async (opt ) => {
-  const params = opt.params;
-  const response = await service.get(opt.url, { params, ...opt.config });
+  const data = opt.data;
+  const response = await service.get(opt.url, { data, ...opt.config });
   return response.data;
 };
 const post: Post = async (option ) => {
-  const params = option.params;
-  const res = await service.post(option.url, { params, ...option.config });
+  const data = option.data;
+  const res = await service.post(option.url, data, { ...option.config });
   return res.data;
 };
 const put: Put = async (option ) => {
-  const params = option.params;
-  const res = await service.post(option.url, { params, ...option.config });
+  const data = option.data;
+  const res = await service.post(option.url, data, { ...option.config });
   return res.data;
 };
 const deleteRequest: Delete = async (option ) => {
-  const params = option.params;
-  const res = await service.post(option.url, { params, ...option.config });
+  const data = option.data;
+  const res = await service.post(option.url, data, { ...option.config });
   return res.data;
 };
 

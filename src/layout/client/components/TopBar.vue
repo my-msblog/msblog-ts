@@ -59,7 +59,11 @@
             :style="data.style">
             <i class="el-icon-user-solid" />{{ $t('bar.login') }}
           </router-link>
-          <el-dropdown v-else class="drop_down" @command="handleCommand">
+          <el-dropdown
+            v-else
+            class="drop_down"
+            style="margin-left: 15px"
+            @command="handleCommand">
             <el-avatar icon="el-icon-user-solid" size="small" />
             <template #dropdown>
               <el-dropdown-menu>
@@ -71,7 +75,10 @@
           </el-dropdown>
         </div>
         <div>
-          <language class="change_text" :style="data.style" />
+          <language
+            class="change_text"
+            style="text-shadow: rgba(0, 0, 0, 0.3) 0.05rem 0.05rem 0.1rem;"
+            :style="data.style" />
         </div>
       </div>
     </div>
@@ -159,6 +166,7 @@ export default defineComponent({
     margin: auto;
     text-align: center;
     .menu-title{
+      height: 22px;
       display: flex;
       align-items: center;
       float: right;
@@ -197,10 +205,9 @@ export default defineComponent({
       font-weight: bold;
     }
     .change_text{
-      margin-top: 3px;
       margin-left: 20px;
-      text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3);
-      color: rgba(255,255,255,0.9) ;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3) !important;
     }
     .drop_down{
       margin-left: 15px !important;

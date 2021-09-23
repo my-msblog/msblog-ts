@@ -35,6 +35,8 @@ module.exports = {
     'import/extensions': 'off',
     'linebreak-style': [0, 'error', 'windows'],
     'no-alert': 0,
+    'comma-spacing': 2, // 逗号后空格
+    'semi-spacing': [0, { before: false, after: true }],// 分号后空格
     '@typescript-eslint/no-var-requires': 0,
     "array-bracket-spacing": ["error","always"],//括号内留空
     "object-curly-spacing": ["error","always"],

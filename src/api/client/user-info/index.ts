@@ -13,6 +13,6 @@ export function getRole(){
 export function userUpdate(params: UserTableChangeDTO) {
   return request.post<UserVO>({
     url: Api.userUpdate,
-    params,
+    data: params,
   });
 }

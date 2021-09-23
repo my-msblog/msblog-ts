@@ -11,7 +11,7 @@ enum Api {
 export function getSMS(dto: PhoneDTO) {
   return request.post<string>({
     url: Api.sms,
-    params: dto
+    data: dto
   });
 }
 export function authentication() {

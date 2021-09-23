@@ -3,6 +3,14 @@ export default {
     language: '中文',
     successful_logout: '成功登出',
   },
+  pages:{
+    back: '返回',
+    account: '账号',
+    password: '密码',
+    verificationCode: '验证码',
+    login: '登录',
+    register: '注册',
+  },
   bar:{
     title: 'MS BLOG',
     categories: '分类',

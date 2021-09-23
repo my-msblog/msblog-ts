@@ -19,7 +19,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .gradient_body {
   line-height: 2;
-  position: relative;
   padding: 35px 20px;
   color: #eee;
   bottom: 0;

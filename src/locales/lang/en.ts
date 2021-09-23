@@ -3,6 +3,14 @@ export default {
     language: 'English',
     successful_logout: 'Successful logout',
   },
+  pages: {
+    back: 'Back',
+    account: 'Account',
+    password: 'Password',
+    verificationCode: 'Verification Code',
+    register: 'Register',
+    logout: 'Logout',
+  },
   bar: {
     title: 'MS BLOG',
     categories: 'Categories',

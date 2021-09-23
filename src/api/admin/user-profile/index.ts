@@ -10,20 +10,20 @@ enum Api {
 export function adminUserPage(params: BaseDTO) {
   return request.post({
     url: Api.page,
-    params,
+    data: params,
   });
 }
 
 export function deletedUser(params: IdDTO) {
   return request.post({
     url: Api.delete,
-    params,
+    data: params,
   });
 }
 
 export function deleteList(idList: IdDTO) {
   return request.post({
     url: Api.deleteList,
-    params: idList,
+    data: idList,
   });
 }
