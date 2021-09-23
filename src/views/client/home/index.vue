@@ -15,11 +15,11 @@ import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
-  name: '',
+  name: 'Home',
   setup() {
     const router = useRouter();
     function toAdmin() {
-      router.replace('/admin');
+      router.push('/admin');
     }
     return { toAdmin };
   }
@@ -31,7 +31,7 @@ export default defineComponent({
   left: 0;
   right: 0;
   height: 100vh;
-  background: #fff url("https://z3.ax1x.com/2021/07/15/WmhmQA.jpg") no-repeat fixed center center;
+  background: #fff url("../../../assets/home.jpg") no-repeat fixed center center;
   text-align: center;
   color: #fff !important;
   animation: header-effect 1s;

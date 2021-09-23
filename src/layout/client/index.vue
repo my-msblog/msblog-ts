@@ -4,7 +4,7 @@
       <li v-for="(item, index) in data.bubbles" :key="index" />
     </ul>
     <el-header class="c_header" :style="data.style">
-      <top-bar class="header_main" />
+      <TopBar class="header_main" />
     </el-header>
     <el-main class="c_main">
       <el-backtop visibility-height="5" />
@@ -20,8 +20,11 @@
 
 <script lang="ts">
 import { defineComponent,reactive,onMounted } from 'vue';
+import TopBar from '@/layout/client/components/TopBar.vue';
+import Footer from '@/layout/client/components/Footer.vue';
 export default defineComponent({
   name: 'ClientLayout',
+  components: { TopBar, Footer },
   setup() {
     const data = reactive({
       style: {},
@@ -64,6 +67,7 @@ export default defineComponent({
     }
   }
   .c_main{
+    min-height: calc(100vh - 100px);
     padding: 0;
     background-position-x: initial;
     background-position-y: initial;

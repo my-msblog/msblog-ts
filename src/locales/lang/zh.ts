@@ -1,5 +1,35 @@
 export default {
   message: {
     language: '中文',
+    successful_logout: '成功登出',
+  },
+  bar:{
+    title: 'MS BLOG',
+    categories: '分类',
+    homepage: '首页',
+    tags: '标签',
+    archives: '归档',
+    about: '关于',
+    links: '链接',
+    login: '登录',
+    change_password: '修改密码',
+    personal_center: '个人中心',
+  },
+  router: {
+    dashboard: '首页',
+    undefined: '',
+    content_management: '内容管理',
+    user_management: '用户管理',
+    personal_information: '个人信息',
+    security_settings: '安全设置',
+    user_information: '用户信息',
+    role_configuration: '角色配置',
+    advertising_management: '广告管理',
+    article_management: '文章管理',
+    message_management: '留言管理',
+    log_output: '日志输出',
+    system_management: '系统管理',
+    tags_management: '标签管理',
+    article_categories: '文章分类',
   }
 };
