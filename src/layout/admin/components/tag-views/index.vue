@@ -11,7 +11,7 @@
         type="light"
         v-for="(tag, index) in tags"
         :closable="tag.name !== 'dashboard'"
-        :disable-transitions="false"
+        :disable-transitions="true"
         @close="handleClose(tag, index)"
         @click="changeMenu(tag)"
         :effect="handleEffect(tag)"
