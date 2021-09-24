@@ -1,4 +1,5 @@
 import { UserVO } from '@/api/model/custom';
+import { ActionTree, Store } from 'vuex';
 
 interface UserState {
   user_id: number,
@@ -53,19 +54,18 @@ const mutations = {
     state.user_createTime = createTime;
     sessionStorage.setItem('createTime', createTime);
   },
-  setUserInfo(state: UserState, params: UserVO) {
-    this.setUserId(state, params.id);
-    this.setUserPhone(state, params.phone);
-    this.setUsername(state, params.username);
-    this.setUserEmail(state, params.email);
-    this.setUserToken(state, params.token);
-    this.setUserSex(state, params.sex);
-    this.setUserIntroduction(state, params.introduction);
-    this.setCreateTime(state, params.createTime);
-  },
 };
-const actions = {
-
+const actions: ActionTree<UserState, any> = {
+  setUserInfo (context: any, res: UserVO) {
+    context.commit('setUserId', res.id);
+    context.commit('setUserPhone', res.phone);
+    context.commit('setUsername', res.username);
+    context.commit('setUserEmail', res.email);
+    context.commit('setUserToken', res.token);
+    context.commit('setUserSex', res.sex);
+    context.commit('setUserIntroduction', res.introduction);
+    context.commit('setCreateTime', res.createTime);
+  }
 };
 const getters = {
   getUserId(state: UserState) {
@@ -95,6 +95,7 @@ const getters = {
 };
 
 export default {
+  // namespaced: true,
   state,
   mutations,
   actions,

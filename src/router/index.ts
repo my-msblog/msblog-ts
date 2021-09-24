@@ -32,6 +32,12 @@ router.beforeEach(async (to, from, next) => {
       next({ path: 'login', query: { redirect: to.fullPath } });
     }
   }else {
+    // 解决刷新空白，跳转admin主页
+    if (to.path.includes('/admin/')) {
+      await asyncRouters(router);
+      next({ path: 'admin' });
+      return;
+    }
     next();
   }
 });

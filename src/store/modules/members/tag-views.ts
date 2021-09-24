@@ -1,8 +1,5 @@
-interface TabOption {
-  label: string;
-  name: string;
-  path: string;
-}
+import { TabOption } from '@/constant/StoreOption';
+
 const state = {
   currentMenu: null,
   tabsList: [

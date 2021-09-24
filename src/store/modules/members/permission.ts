@@ -1,9 +1,9 @@
-import { MenuOptions } from '@/constant/MenuOptions';
+import { MenuOptions } from '@/constant/StoreOption';
 interface PermissionState {
   permission_menu: Array<MenuOptions>;
 }
 const state: PermissionState = {
-  permission_menu: []
+  permission_menu: [] as Array<MenuOptions>
 };
 
 const actions = {

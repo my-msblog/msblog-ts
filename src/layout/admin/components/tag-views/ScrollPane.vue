@@ -21,7 +21,7 @@ import {
 } from 'vue';
 export default defineComponent({
   name: 'ScrollPane',
-  emits: ['scroll'],
+  emits: [ 'scroll' ],
   setup(_, { emit }) {
     const scrollContainerRef = ref(null);
     const scrollWrapper = computed(() => {

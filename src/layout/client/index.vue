@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,reactive,onMounted } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import TopBar from '@/layout/client/components/TopBar.vue';
 import Footer from '@/layout/client/components/Footer.vue';
 export default defineComponent({
@@ -52,7 +52,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .container{
   .c_header{
     background: rgba(255,255,255,0);

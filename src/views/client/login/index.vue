@@ -106,7 +106,7 @@ export default defineComponent({
     const handleLogin = function () {
       data.form.key = store.getters.getCodeKey;
       loginByPwd(data.form).then((res) => {
-        store.commit('setUsername', res);
+        store.dispatch('setUserInfo', res);
         ElMessage({
           message: t('message.login_success'),
           type: 'success',

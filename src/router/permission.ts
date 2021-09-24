@@ -1,7 +1,7 @@
 import { getMenu } from '@/api/sys';
 import { Router } from 'vue-router';
 import { MenuVO } from '@/api/model/sys-model';
-import { MenuOptions } from '@/constant/MenuOptions';
+import { MenuOptions } from '@/constant/StoreOption';
 import AdminLayout from '@/layout/admin/index.vue';
 import store from '@/store';
 

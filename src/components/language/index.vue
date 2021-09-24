@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown style="margin-left: 20px; color: rgba(255,255,255,0.9)" @command="change">
+  <el-dropdown class="ll_down" style="" @command="change">
     <span class="el-dropdown-link">
       {{ $t('message.language') }}<i class="el-icon-arrow-down el-icon--right" />
     </span>
@@ -38,6 +38,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-
+<style lang="scss">
+.ll_down{
+  margin-left: 15px;
+  color: rgba(255,255,255,0.9);
+}
 </style>
