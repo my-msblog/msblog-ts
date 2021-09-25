@@ -1,5 +1,5 @@
 import { UserVO } from '@/api/model/custom';
-import { ActionTree, Store } from 'vuex';
+import { ActionTree, GetterTree, Store } from 'vuex';
 
 interface UserState {
   user_id: number,
@@ -67,7 +67,7 @@ const actions: ActionTree<UserState, any> = {
     context.commit('setCreateTime', res.createTime);
   }
 };
-const getters = {
+const getters: GetterTree<UserState, any> = {
   getUserId(state: UserState) {
     return state.user_id !== 0 ? state.user_id : sessionStorage.getItem('userId');
   },
