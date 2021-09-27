@@ -1,15 +1,11 @@
+import { module } from './module';
 export default {
   message: {
     language: '中文',
     successful_logout: '成功登出',
   },
   pages:{
-    back: '返回',
-    account: '账号',
-    password: '密码',
-    verificationCode: '验证码',
-    login: '登录',
-    register: '注册',
+    ...module.pages.zh,
   },
   bar:{
     title: 'MS BLOG',
@@ -24,20 +20,12 @@ export default {
     personal_center: '个人中心',
   },
   router: {
-    dashboard: '首页',
-    undefined: '',
-    content_management: '内容管理',
-    user_management: '用户管理',
-    personal_information: '个人信息',
-    security_settings: '安全设置',
-    user_information: '用户信息',
-    role_configuration: '角色配置',
-    advertising_management: '广告管理',
-    article_management: '文章管理',
-    message_management: '留言管理',
-    log_output: '日志输出',
-    system_management: '系统管理',
-    tags_management: '标签管理',
-    article_categories: '文章分类',
-  }
+    ...module.route.zh,
+  },
+  sex: {
+    male: '男',
+    female: '女'
+  },
+  role: module.role.zh
+
 };

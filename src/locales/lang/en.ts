@@ -1,15 +1,11 @@
+import { module } from './module';
 export default {
   message: {
     language: 'English',
     successful_logout: 'Successful logout',
   },
   pages: {
-    back: 'Back',
-    account: 'Account',
-    password: 'Password',
-    verificationCode: 'Verification Code',
-    register: 'Register',
-    logout: 'Logout',
+    ...module.pages.en,
   },
   bar: {
     title: 'MS BLOG',
@@ -24,19 +20,13 @@ export default {
     personal_center: 'Personal center',
   },
   router: {
-    dashboard: 'Dashboard',
-    content_management: 'Content Management',
-    user_management: 'User Management',
-    personal_information: 'Personal Information',
-    security_settings: 'Security Settings',
-    user_information: 'User Information',
-    role_configuration: 'Role Configuration',
-    advertising_management: 'Advertising Management',
-    article_management: 'Article Management',
-    message_management: 'Message Management',
-    log_output: 'Log output',
-    system_management: 'System Management',
-    tags_management: 'Tags Management',
-    article_categories: 'Article Categories',
+    ...module.route.en,
+  },
+  sex: {
+    male: 'Male',
+    female: 'Female'
+  },
+  role: {
+    ...module.role.en,
   }
 };
