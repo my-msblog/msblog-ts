@@ -86,23 +86,118 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { FormData } from './data';
+import {
+  defineComponent,
+  PropType,
+  reactive,
+  ref,
+} from 'vue';
+import { defaultProp, FormData, rules } from './data';
+import { useI18n } from 'vue-i18n';
+import { useStore } from 'vuex';
+import { ElMessage, ElMessageBox } from 'element-plus';
+import { userUpdate } from '@/api/client/user-info';
+import { getSMS } from '@/api/sys';
+
 export default defineComponent({
   name: 'UserEditForm',
   props: {
     dialogFormVisible: { type: Boolean, default: false },
     title: { type: String, default: '' },
     formData: {
-      type: Object as PropType<FormData>
+      type: Object as PropType<FormData>,
+      default: defaultProp()
     },
   },
-  setup() {
-    return {};
+  emits: [ 'closeForm' ],
+  setup(props, { emit }) {
+    const { t } = useI18n();
+    const store = useStore();
+    const formRef = ref();
+    const data = reactive({
+      rules: rules,
+      show: true,
+      count: 0,
+      formData: props.formData,
+      sexOptions: [{
+        label: 1,
+        value: '男'
+      }, {
+        label: 0,
+        value: '女'
+      }],
+    });
+    function handleConfirm() {
+      ElMessageBox.confirm('是否修改信息?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }).then(() => {
+        console.log(data.formData);
+        userUpdate(data.formData).then((res) => {
+          store.commit('setUserId', res.id);
+          store.commit('setUserPhone', res.phone);
+          store.commit('setUsername', res.username);
+          store.commit('setUserEmail', res.email);
+          store.commit('setUserSex', res.sex);
+          store.commit('setUserIntroduction', res.introduction);
+          store.commit('setCreateTime', res.createTime);
+          close();
+          ElMessage.success({
+            message: t('message.modified_successfully'),
+            duration: 2 * 1000,
+            type: 'success'
+          });
+        }).catch();
+      });
+    }
+    function close() {
+      emit('closeForm');
+      formRef.value.resetFields();
+    }
+    const getCode = function() {
+      const param = {
+        phone: data.formData.phone
+      };
+      if (param.phone) {
+        getSMS(param).then(() => {
+          ElMessage({
+            message: t('message.sms_send_success'),
+            duration: 2 * 1000,
+          });
+          data.count = 60;
+          data.show = false;
+          const timer = setInterval(() => {
+            if (data.count > 0 && data.count <= 60) {
+              data.count--;
+            } else {
+              clearInterval(timer);
+              data.show = true;
+            }
+          }, 1000);
+        }).catch();
+      } else {
+        ElMessage.error({
+          type: 'error',
+          message: t('message.input_phone'),
+          duration: 2 * 1000,
+        });
+      }
+    };
+    return {
+      data,
+      formRef,
+      handleConfirm,
+      close,
+      getCode,
+      props,
+    };
   }
 });
 </script>
 
 <style lang="scss" scoped>
-
+.el-row{
+  height: auto;
+}
 </style>

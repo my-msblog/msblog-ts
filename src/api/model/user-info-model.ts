@@ -6,4 +6,5 @@ export interface UserTableChangeDTO{
   email?: string;
   introduction?: string;
   sex: number;
+  code?: string;
 }

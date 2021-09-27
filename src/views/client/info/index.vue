@@ -28,7 +28,9 @@
         </el-col>
         <el-col :span="18" class="text_el-col name-font" />
         <el-col :span="2" class="text_el-col name-font">
-          <el-button type="text" icon="el-icon-edit" @click="data.dialogFormVisible = true">{{ $t('message.edit') }}</el-button>
+          <el-button type="text" icon="el-icon-edit" @click="data.dialogFormVisible = true">
+            {{ $t('message.edit') }}
+          </el-button>
         </el-col>
       </el-row>
       <!-- 分割线 -->
@@ -49,7 +51,7 @@
         </el-col>
         <el-col :span="18" class="text_el-col name-font">
           <p class="name-p">
-            {{ use.store.getters.getEmail }}
+            {{ store.getters.getEmail }}
           </p>
         </el-col>
       </el-row>
@@ -59,7 +61,7 @@
         </el-col>
         <el-col :span="18" class="text_el-col name-font">
           <p class="name-p">
-            {{ use.store.getters.getUserCreateTime }}
+            {{ store.getters.getUserCreateTime }}
           </p>
         </el-col>
       </el-row>
@@ -69,13 +71,13 @@
         </el-col>
         <el-col :span="18" class="text_el-col name-font">
           <p class="name-p">
-            {{ use.store.getters.getUserIntroduction }}
+            {{ store.getters.getUserIntroduction }}
           </p>
         </el-col>
       </el-row>
     </el-card>
     <user-edit-form
-      :title="use.t('message.edit_info')"
+      :title="t('message.edit_info')"
       v-model="data.dialogFormVisible"
       :form-data="data.formData"
       @close-form="data.dialogFormVisible = false" />
@@ -90,11 +92,13 @@ import { useStore } from 'vuex';
 import UserEditForm from './user-edit-form/index.vue';
 import { Role } from '@/constant/enums/role';
 import * as sex from '@/constant/enums/sex';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'UserInfo',
   components: { UserEditForm },
   setup() {
+    const { t } =useI18n();
     const store = useStore();
     const data = reactive({
       dialogFormVisible: false,
@@ -119,6 +123,7 @@ export default defineComponent({
       loadUserInfo();
     });
     return {
+      t,
       data,
       sex,
       store,
@@ -128,5 +133,74 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
+.ui_banner{
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  background: #fff url('https://z3.ax1x.com/2021/07/20/WNTxpT.jpg') no-repeat fixed center center;
+  .ui_title{
+    color: #fff;
+    display:block;
+    justify-content: center;
+    margin-top: 350px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+.user_info_m{
+  max-width: 1200px;
+  margin: 48px auto 28px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 4px rgb(7 17 27 / 6%);
+  transition: all 0.3s;
+  .el-row{
+    height: auto;
+  }
+  .name-p{
+    margin-top: 8px;
+  }
+  .text_el-col{
+    text-align: left;
+  }
+  .name-font{
+    font-family: 'PingFang SC';
+    font-size: 18px;
+  }
+}
+.user_info_o{
+  max-width: 1200px;
+  margin: 0 auto 28px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 6px rgb(7 17 27 / 6%);
+  transition: all 0.3s;
+  .text_el-col{
+    text-align: left;
+  }
+  .el-divider{
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+  .title_info{
+    font-family: 'PingFang SC';
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .left_title{
+    text-align: left;
+    margin-left: 20px;
+  }
+}
+.user_info_o:hover{
+  box-shadow:0 5px 8px 6px rgb(6 16 26 / 12%);
+}
+.user_info_m:hover{
+  box-shadow:0 5px 8px 4px rgb(6 16 26 / 12%);
+}
+.el-card__body {
+  padding: 0px;
+}
 </style>
