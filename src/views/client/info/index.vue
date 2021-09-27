@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="ui_banner">
-      <p class="ui_title">{{ $t('message.personal_center') }}</p>
+      <p class="ui_title">{{ $t('pages.personal_center') }}</p>
     </div>
     <el-card class="user_info_m">
       <el-row :gutter="20">
@@ -24,12 +24,12 @@
     <el-card class="user_info_o">
       <el-row :gutter="20">
         <el-col :span="4">
-          <p class="title_info">{{ $t('message.user_info') }} </p>
+          <p class="title_info">{{ $t('pages.user_info') }} </p>
         </el-col>
         <el-col :span="18" class="text_el-col name-font" />
         <el-col :span="2" class="text_el-col name-font">
           <el-button type="text" icon="el-icon-edit" @click="data.dialogFormVisible = true">
-            {{ $t('message.edit') }}
+            {{ $t('pages.edit') }}
           </el-button>
         </el-col>
       </el-row>
@@ -37,7 +37,7 @@
       <el-divider />
       <el-row :gutter="20">
         <el-col :span="4">
-          <p  class="left_title"> {{ $t('message.phone') }}: </p>
+          <p  class="left_title"> {{ $t('pages.phone') }}: </p>
         </el-col>
         <el-col :span="18" class="text_el-col name-font">
           <p class="name-p">
@@ -47,7 +47,7 @@
       </el-row>
       <el-row :gutter="20">
         <el-col :span="4">
-          <p  class="left_title"> {{ $t('message.email') }}: </p>
+          <p  class="left_title"> {{ $t('pages.email') }}: </p>
         </el-col>
         <el-col :span="18" class="text_el-col name-font">
           <p class="name-p">
@@ -57,7 +57,7 @@
       </el-row>
       <el-row :gutter="20">
         <el-col :span="4">
-          <p class="left_title"> {{ $t('message.registration_time') }}: </p>
+          <p class="left_title"> {{ $t('pages.registration_time') }}: </p>
         </el-col>
         <el-col :span="18" class="text_el-col name-font">
           <p class="name-p">
@@ -67,7 +67,7 @@
       </el-row>
       <el-row :gutter="20">
         <el-col :span="4">
-          <p class="left_title"> {{ $t('message.introduction') }}: </p>
+          <p class="left_title"> {{ $t('pages.introduction') }}: </p>
         </el-col>
         <el-col :span="18" class="text_el-col name-font">
           <p class="name-p">
@@ -105,7 +105,7 @@ export default defineComponent({
       formData: {
         id: store.getters.getUserId,
         username: store.getters.getUsername,
-        sex: store.getters.getUserSex,
+        sex: Number(store.getters.getUserSex),
         email: store.getters.getEmail,
         phone: store.getters.getPhone,
         code: '',

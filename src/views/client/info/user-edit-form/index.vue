@@ -8,16 +8,16 @@
       <div>
         <el-row :gutter="14">
           <el-col :span="24">
-            <el-form-item label="用户名：" prop="username">
+            <el-form-item :label="t('pages.username')+':'" prop="username">
               <el-input
                 v-model="data.formData.username"
-                placeholder="请输入用户名"
+                :placeholder="t('message.enter_username')"
                 clearable
                 :style="{width: '100%'}" />
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="性别：">
+            <el-form-item :label="t('pages.sex')+':'">
               <el-radio-group v-model="data.formData.sex" size="medium">
                 <el-radio
                   v-for="(item, index) in data.sexOptions"
@@ -27,19 +27,19 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="邮箱：" prop="email">
+            <el-form-item :label="t('pages.email')+':'" prop="email">
               <el-input
                 v-model="data.formData.email"
-                placeholder="请输入邮箱"
+                :placeholder="t('message.enter_email')"
                 clearable
                 :style="{width: '100%'}" />
             </el-form-item>
           </el-col>
           <el-col :span="10">
-            <el-form-item label="手机号：" prop="phone">
+            <el-form-item :label="t('pages.phone')" prop="phone">
               <el-input
                 v-model="data.formData.phone"
-                placeholder="请输入手机号"
+                :placeholder="t('message.input_phone')"
                 clearable
                 :style="{width: '100%'}" />
             </el-form-item>
@@ -48,7 +48,7 @@
             <el-form-item label-width="0" prop="code">
               <el-input
                 v-model="data.formData.code"
-                placeholder="验证码"
+                :placeholder="t('message.captcha')"
                 clearable
                 :style="{width: '100%'}" />
             </el-form-item>
@@ -60,17 +60,17 @@
                 size="medium"
                 @click="getCode"
                 :disabled="!data.show">
-                <span v-show="data.show">获取验证码</span>
+                <span v-show="data.show">{{ t('message.get_captcha') }}</span>
                 <span v-show="!data.show" class="count"> {{ data.count }} s</span>
               </el-button>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="个人介绍：" prop="introduction">
+            <el-form-item :label="t('pages.introduction')" prop="introduction">
               <el-input
                 v-model="data.formData.introduction"
                 type="textarea"
-                placeholder="简单的介绍下自己吧"
+                :placeholder="t('pages.introduce_yourself_briefly')"
                 :autosize="{minRows: 4, maxRows: 4}"
                 :style="{width: '100%'}" />
             </el-form-item>
@@ -79,8 +79,8 @@
       </div>
     </el-form>
     <div>
-      <el-button @click="close">取消</el-button>
-      <el-button type="primary" @click="handleConfirm">确定</el-button>
+      <el-button @click="close">{{ $t('message.cancel') }}</el-button>
+      <el-button type="primary" @click="handleConfirm">{{ t('message.confirm') }}</el-button>
     </div>
   </el-dialog>
 </template>
@@ -98,6 +98,7 @@ import { useStore } from 'vuex';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { userUpdate } from '@/api/client/user-info';
 import { getSMS } from '@/api/sys';
+import { PhoneDTO } from '@/api/model/sys-model';
 
 export default defineComponent({
   name: 'UserEditForm',
@@ -121,27 +122,24 @@ export default defineComponent({
       formData: props.formData,
       sexOptions: [{
         label: 1,
-        value: '男'
+        value: t('sex.male')
       }, {
         label: 0,
-        value: '女'
+        value: t('sex.female')
       }],
     });
     function handleConfirm() {
-      ElMessageBox.confirm('是否修改信息?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      ElMessageBox.confirm(t('message.whether_to_modify_information'), t('message,tips'), {
+        confirmButtonText: t('message.confirm'),
+        cancelButtonText: t('message.cancel'),
         type: 'warning',
       }).then(() => {
-        console.log(data.formData);
         userUpdate(data.formData).then((res) => {
-          store.commit('setUserId', res.id);
           store.commit('setUserPhone', res.phone);
           store.commit('setUsername', res.username);
           store.commit('setUserEmail', res.email);
           store.commit('setUserSex', res.sex);
           store.commit('setUserIntroduction', res.introduction);
-          store.commit('setCreateTime', res.createTime);
           close();
           ElMessage.success({
             message: t('message.modified_successfully'),
@@ -156,7 +154,7 @@ export default defineComponent({
       formRef.value.resetFields();
     }
     const getCode = function() {
-      const param = {
+      const param: PhoneDTO = {
         phone: data.formData.phone
       };
       if (param.phone) {
@@ -164,6 +162,7 @@ export default defineComponent({
           ElMessage({
             message: t('message.sms_send_success'),
             duration: 2 * 1000,
+            type: 'success'
           });
           data.count = 60;
           data.show = false;
@@ -185,6 +184,7 @@ export default defineComponent({
       }
     };
     return {
+      t,
       data,
       formRef,
       handleConfirm,

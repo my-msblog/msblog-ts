@@ -3,6 +3,18 @@ export default {
   message: {
     language: 'English',
     successful_logout: 'Successful logout',
+    enter_email: 'Please enter your email',
+    enter_username: 'Please enter your username',
+    input_phone: 'Please enter the correct cell phone number ',
+    sms_send_success: 'Captcha sent successfully',
+    modified_successfully: 'Modified successfully',
+    whether_to_modify_information: 'Whether to modify information?',
+    tips: 'Tips',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    get_captcha: 'Get Captcha',
+    captcha: 'Captcha',
+    introduce_yourself_briefly: 'Introduce yourself briefly'
   },
   pages: {
     ...module.pages.en,
