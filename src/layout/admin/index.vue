@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header class="top">
-      <admin-header />
+      <AdminHeader />
     </el-header>
     <el-container :class="{'folded':data.folded}">
       <el-aside class="ly_left">

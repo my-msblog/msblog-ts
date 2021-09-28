@@ -77,21 +77,20 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.el-breadcrumb__inner,
-.el-breadcrumb__inner a {
-  font-weight: 400 !important;
+<style lang="scss" >
+.el-menu{
+  border-right: 0;
 }
-
-.app-breadcrumb.el-breadcrumb {
-  display: inline-block;
-  font-size: 14px;
-  line-height: 50px;
-  margin-left: 8px;
-
-  .no-redirect {
-    color: #97a8be;
-    cursor: text;
-  }
+.data.collapse .el-menu span {
+  display: none;
+}
+/* 解决el-submenu外层嵌套div导致无法正常折叠菜单，并且<style>中不能加 scoped，否则还会显示 >*/
+/*隐藏文字*/
+.el-menu--collapse  .el-submenu__title span{
+  display: none;
+}
+/*隐藏 > */
+.el-menu--collapse  .el-submenu__title .el-submenu__icon-arrow{
+  display: none;
 }
 </style>

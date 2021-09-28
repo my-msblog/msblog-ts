@@ -3,6 +3,7 @@ export default {
   message: {
     language: '中文',
     successful_logout: '成功登出',
+    login_success: '登录成功',
     input_phone: '请输入手机号',
     enter_email: '请输入邮箱',
     enter_username: '请输入用户名',
@@ -30,6 +31,7 @@ export default {
     login: '登录',
     change_password: '修改密码',
     personal_center: '个人中心',
+    sign_out: '登出',
   },
   router: {
     ...module.route.zh,

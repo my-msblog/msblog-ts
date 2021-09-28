@@ -3,6 +3,7 @@ export default {
   message: {
     language: 'English',
     successful_logout: 'Successful logout',
+    login_success: 'Login success',
     enter_email: 'Please enter your email',
     enter_username: 'Please enter your username',
     input_phone: 'Please enter the correct cell phone number ',
@@ -30,6 +31,7 @@ export default {
     login: 'Sign In',
     change_password: 'Change password',
     personal_center: 'Personal center',
+    sign_out: 'Sign Out',
   },
   router: {
     ...module.route.en,

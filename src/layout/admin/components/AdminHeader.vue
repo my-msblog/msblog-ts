@@ -2,7 +2,7 @@
   <div>
     <div class="left_logo">
       <img src="@/assets/icon2.png" class="icon_logo" alt="">
-      <div class="logo_text">{{ $t('message.title') }}</div>
+      <div class="logo_text">{{ $t('bar.title') }}</div>
     </div>
     <div class="ah_right">
       <el-row

@@ -76,8 +76,8 @@
         </el-col>
       </el-row>
     </el-card>
-    <user-edit-form
-      :title="t('message.edit_info')"
+    <UserEditForm
+      :title="t('page.edit_info')"
       v-model="data.dialogFormVisible"
       :form-data="data.formData"
       @close-form="data.dialogFormVisible = false" />
@@ -137,7 +137,7 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   text-align: center;
-  background: #fff url('https://z3.ax1x.com/2021/07/20/WNTxpT.jpg') no-repeat fixed center center;
+  background: #fff url('~@/assets/background/info.jpeg') no-repeat fixed center center;
   .ui_title{
     color: #fff;
     display:block;

@@ -69,6 +69,7 @@ export default defineComponent({
   .c_main{
     min-height: calc(100vh - 100px);
     padding: 0;
+    text-align: center;
     background-position-x: initial;
     background-position-y: initial;
     background-size: initial;
