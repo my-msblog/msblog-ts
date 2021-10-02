@@ -1,5 +1,5 @@
 import request from '@/utils/axios/request';
-import { CaptchaVO, LoginDTO } from '@/api/model/login-model';
+import { CaptchaVO, LoginDTO } from '@/api/model/client/login-model';
 import { UserVO } from '@/api/model/custom';
 
 enum Api {

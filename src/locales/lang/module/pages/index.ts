@@ -18,6 +18,11 @@ export default {
     registration_time: '注册时间',
     introduction: '简介',
     user_info: '用户信息',
+    add_user: '添加用户',
+    deselect: '取消选择',
+    batch_delete: '批量删除',
+    No: '序号',
+    operation_success: '操作成功',
   },
   en: {
     back: 'Back',
@@ -38,5 +43,10 @@ export default {
     registration_time: 'Registration Time',
     introduction: 'Introduction',
     user_info: 'User Info',
+    add_user: 'ADD USER',
+    deselect: 'Deselect',
+    batch_delete: 'Batch delete',
+    No: 'No.',
+    operation_success: 'Operation success',
   }
 };

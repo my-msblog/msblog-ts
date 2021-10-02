@@ -1,3 +1,6 @@
+export function nullData<T> (): Array<T>{
+  return [];
+}
 
 export interface functionType{
   (): functionTypeBase<void>;

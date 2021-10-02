@@ -15,7 +15,8 @@ export default {
     cancel: '取消',
     get_captcha: '获取验证码',
     captcha: '验证码',
-    introduce_yourself_briefly: '简单的介绍下自己吧'
+    introduce_yourself_briefly: '简单的介绍下自己吧',
+    no_data_selected: '未选中任何数据',
   },
   pages:{
     ...module.pages.zh,

@@ -22,6 +22,8 @@ module.exports = {
       warnings: true,
       errors: true
     },
+    public: '127.0.0.1:5477',
+    disableHostCheck: true,
     host: 'localhost',
     port: 5477, // 启动端口
     open: true, // 启动后是否自动打开网页

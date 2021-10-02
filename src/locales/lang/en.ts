@@ -15,7 +15,8 @@ export default {
     cancel: 'Cancel',
     get_captcha: 'Get Captcha',
     captcha: 'Captcha',
-    introduce_yourself_briefly: 'Introduce yourself briefly'
+    introduce_yourself_briefly: 'Introduce yourself briefly',
+    no_data_selected: 'No data selected',
   },
   pages: {
     ...module.pages.en,
