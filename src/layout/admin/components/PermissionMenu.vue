@@ -2,7 +2,7 @@
   <div>
     <el-menu router mode="vertical" :collapse="isCollapse">
       <div v-for="(item,i) in menu" :key="i">
-        <el-submenu v-if="item.children.length !== 0" :index="(i).toString()" style="text-align: left;">
+        <el-sub-menu v-if="item.children.length !== 0" :index="(i).toString()" style="text-align: left;">
           <template #title>
             <i :class="item.icon" />
             <span>
@@ -17,7 +17,7 @@
             <i :class="child.icon" />
             {{ $t('router.'+child.nameZh) }}
           </el-menu-item>
-        </el-submenu>
+        </el-sub-menu>
         <el-menu-item
           v-else
           :index="(i).toString()"
@@ -86,11 +86,11 @@ export default defineComponent({
 }
 /* 解决el-submenu外层嵌套div导致无法正常折叠菜单，并且<style>中不能加 scoped，否则还会显示 >*/
 /*隐藏文字*/
-.el-menu--collapse  .el-submenu__title span{
+.el-menu--collapse  .el-sub-menu__title span{
   display: none;
 }
 /*隐藏 > */
-.el-menu--collapse  .el-submenu__title .el-submenu__icon-arrow{
+.el-menu--collapse  .el-sub-menu__title .el-sub-menu__icon-arrow{
   display: none;
 }
 </style>
