@@ -44,6 +44,8 @@ export default defineComponent({
       adminUserPage(data.pagination).then((res) => {
         data.tableData = res.list;
         data.currentPage = res.pages;
+        console.log(res);
+        console.log(data.currentPage);
         data.tableData.forEach(item => {
           // tem.sex = sex.getSex(item.sex);
           item.role = Role[item.role];

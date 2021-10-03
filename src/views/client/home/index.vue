@@ -21,6 +21,7 @@ export default defineComponent({
     function toAdmin() {
       router.push('/admin');
     }
+
     return { toAdmin };
   }
 });
