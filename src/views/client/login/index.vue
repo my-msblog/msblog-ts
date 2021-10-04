@@ -119,8 +119,6 @@ export default defineComponent({
       getArithmeticCode().then((res) => {
         data.imgSrc = res.img;
         store.commit('setCodeKey', res.key);
-      }).catch((err) => {
-        console.error(err);
       });
     };
     const toRegister = function () {
@@ -169,7 +167,7 @@ export default defineComponent({
   }
 }
 .login_title {
-  margin: 0px auto 40px auto;
+  margin: 0 auto 40px auto;
   text-align: center;
   color: #505458;
 }

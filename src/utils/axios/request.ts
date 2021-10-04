@@ -43,20 +43,11 @@ service.interceptors.response.use(
     });
   }, error => {
     const response = error.response;
-    if (response === undefined || error.status === 404) {
-      ElMessage({
-        message: '服务器链接异常',
-        type: 'error',
-        duration: 2 * 1000,
-      });
-    } else {
-      ElMessage({
-        message: response.data.data,
-        type: 'error',
-        duration: 2 * 1000,
-      });
-      console.log(error);
-    }
+    ElMessage({
+      message: response.data,
+      type: 'error',
+      duration: 2 * 1000,
+    });
   }
 );
 

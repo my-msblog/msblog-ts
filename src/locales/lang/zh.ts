@@ -17,6 +17,7 @@ export default {
     captcha: '验证码',
     introduce_yourself_briefly: '简单的介绍下自己吧',
     no_data_selected: '未选中任何数据',
+    operation_success: '操作成功',
   },
   pages:{
     ...module.pages.zh,

@@ -5,12 +5,16 @@
       stripe
       ref="tableRef"
       @selection-change="handleSelectChange">
-      <el-table-column type="selection" width="55" />
-      <el-table-column type="index" width="50" :label="$t('pages.No')" />
-      <el-table-column property="id" label="id" />
+      <el-table-column type="selection" width="35" />
+      <el-table-column
+        type="index"
+        width="50"
+        :label="$t('pages.No')"
+        align="center" />
+      <el-table-column property="id" label="id" width="170" />
       <el-table-column property="username" :label="$t('pages.username')" />
       <el-table-column
-        :property="getSex(sex)"
+        property="sex"
         :label="$t('pages.sex')"
         width="60"
         align="center"
@@ -51,10 +55,10 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-sizes="[5,10]"
-        :page-size="5"
+        :page-size="pageSize"
         :pager-count="5"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="100"
+        :total="total"
       />
     </div>
   </el-card>
@@ -69,19 +73,21 @@ import {
 } from 'vue';
 import { ElMessage } from 'element-plus';
 import { deleteList } from '@/api/admin/user-profile';
-import { UserProfileVO } from '@/api/model/admin/user-profile-model';
 import { nullData } from '@/constant/Type';
 import { useI18n } from 'vue-i18n';
-import { getSex } from '@/constant/enums/sex';
+import { UserProfileBO } from './data';
 
 export default defineComponent({
   name: 'UserForm',
   props: {
     tableData: {
-      type: Object as PropType<Array<UserProfileVO>>,
-      default: nullData<UserProfileVO>(),
+      type: Object as PropType<Array<UserProfileBO>>,
+      default: nullData<UserProfileBO>(),
+      request: true,
     },
-    currentPage: { type: Number, default: 1 }
+    currentPage: { type: Number, default: 1 },
+    pageSize: { type: Number, default: 5 },
+    total: Number,
   },
   emits: [
     'sizeChange',
@@ -135,7 +141,7 @@ export default defineComponent({
         });
       }
     };
-    const handleSelectChange = function (select: Array<UserProfileVO>) {
+    const handleSelectChange = function (select: Array<UserProfileBO>) {
       data.selection.idList = [];
       select.forEach(element => {
         data.selection.idList.push(element.id);
@@ -151,7 +157,6 @@ export default defineComponent({
       handleDeselect,
       handleDeleteList,
       handleSelectChange,
-      getSex,
     };
   }
 });

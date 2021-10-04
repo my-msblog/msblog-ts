@@ -17,6 +17,7 @@ export default {
     captcha: 'Captcha',
     introduce_yourself_briefly: 'Introduce yourself briefly',
     no_data_selected: 'No data selected',
+    operation_success: 'Operation success',
   },
   pages: {
     ...module.pages.en,

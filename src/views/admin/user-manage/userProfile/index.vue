@@ -4,6 +4,8 @@
     <UserTable
       :tableData="data.tableData"
       :current-page="data.currentPage"
+      :page-size="data.pageSize"
+      :total="data.total"
       @currentPage="handleCurrentPage"
       @sizeChange="handleCurrentPage"
       @edit="handleEdit"
@@ -22,6 +24,7 @@ import { Role } from '@/constant/enums/role';
 import UserTable from './user-table/index.vue';
 import { useI18n } from 'vue-i18n';
 import { BaseDTO } from '@/api/model/core';
+import * as sex from '@/constant/enums/sex';
 export default defineComponent({
   name: 'UserProfile',
   components: { UserTable },
@@ -35,6 +38,8 @@ export default defineComponent({
         page: 1,
         size: 5,
       } as BaseDTO,
+      total: { type: Number, default:10 },
+      pageSize: 5,
     });
     const handleAddUser = function () {
       data.formShow = true;
@@ -43,11 +48,11 @@ export default defineComponent({
       data.pagination = pagination;
       adminUserPage(data.pagination).then((res) => {
         data.tableData = res.list;
-        data.currentPage = res.pages;
-        console.log(res);
-        console.log(data.currentPage);
+        data.currentPage = res.pageNum;
+        data.pageSize = res.pageSize;
+        data.total = res.total;
         data.tableData.forEach(item => {
-          // tem.sex = sex.getSex(item.sex);
+          item.sex = sex.getSex(item.sex);
           item.role = Role[item.role];
         });
       });
