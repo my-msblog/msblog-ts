@@ -137,7 +137,7 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   text-align: center;
-  background: #fff url('~@/assets/background/info.jpeg') no-repeat fixed center center;
+  background: #fff url('../../../assets/background/info.jpeg') no-repeat fixed center center;
   .ui_title{
     color: #fff;
     display:block;
@@ -201,6 +201,6 @@ export default defineComponent({
   box-shadow:0 5px 8px 4px rgb(6 16 26 / 12%);
 }
 .el-card__body {
-  padding: 0px;
+  padding: 0;
 }
 </style>

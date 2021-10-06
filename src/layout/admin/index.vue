@@ -1,7 +1,7 @@
 <template>
   <el-container>
-    <el-header class="top">
-      <AdminHeader />
+    <el-header class="ly_top">
+      <AdminHeader class="admin_header" />
     </el-header>
     <el-container :class="{'folded':data.folded}">
       <el-aside class="ly_left">
@@ -61,23 +61,21 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "src/styles/constant";
-.top{
+.ly_top{
   background-color: #e4e7ed;
   margin: 0;
   padding: 0;
+  height: #{$admin_header_height};
   z-index: 999;
   position: fixed;
+  box-shadow: 0 0.5px 2px rgba(12, 12, 12, 0.51);
   width: 100%;
-  .context_header{
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    position: fixed;
+  .admin_header{
   }
 }
 .ly_main{
   padding: 0;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - #{$admin_header_height});
   margin-left: #{$admin_aside_width};
   background-color: rgb(247, 249, 251);
   margin-top: #{$admin_header_height};
@@ -104,7 +102,7 @@ export default defineComponent({
   padding: 0;
   width: #{$admin_aside_width} !important;
   top: #{$admin_header_height};
-  height: calc(100vh - 60px);
+  height: calc(100vh - #{$admin_header_height});
   background-color: #fff;
   transition: width 0.4s;
   -webkit-transition: width 0.4s;

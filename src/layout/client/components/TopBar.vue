@@ -1,5 +1,5 @@
 <template>
-  <div class="top">
+  <div class="ly_top">
     <div class="center_container">
       <div class="right_title">
         <router-link
@@ -134,7 +134,7 @@ export default defineComponent({
           router.push('/userInfo');
           break;
         case 'signOut':
-          logout().then(res => {
+          logout().then(() => {
             store.commit('clearUser');
             ElMessage.success({
               message: t('message.sign_out_success'),
@@ -159,7 +159,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.top{
+.ly_top{
   .center_container{
     width: 100%;
     height: 30px;

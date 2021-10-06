@@ -113,20 +113,19 @@ export default defineComponent({
 .left_logo{
   float: left;
   text-align: center;
-  line-height: #{$admin_header_height};
-  position: absolute;
+  align-items: center;
+  height: #{$admin_header_height};
+  display: flex;
   .icon_logo{
-    width: 45px;
-    float: left;
-    margin-top: 5px;
-    margin-left: 10px;
+    width: 40px;
+    margin-left: 20px;
     /*line-height: $admin_header_height;*/
   }
   .logo_text{
-    position:absolute;
+    margin-left: 15px;
+    text-align: center;
     font-weight: bold;
     font-size: 18px;
-    width: 245px;
     text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3);
     color: rgba(0,0,0,0.9);
   }

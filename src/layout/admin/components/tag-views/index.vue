@@ -7,11 +7,12 @@
     >
       <el-tag
         :key="tag.name"
-        size="medium"
+        size="small"
         type="light"
         v-for="(tag, index) in tags"
         :closable="tag.name !== 'dashboard'"
         :disable-transitions="true"
+        :hit="true"
         @close="handleClose(tag, index)"
         @click="changeMenu(tag)"
         :effect="handleEffect(tag)"

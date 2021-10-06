@@ -1,12 +1,12 @@
 <template>
   <el-dialog :title="title" :v-model="dialogFormVisible">
-    <el-row :gutter="14">
-      <el-form
-        ref="formRef"
-        :model="formData"
-        :rules="rules"
-        size="medium"
-        label-width="100px">
+    <el-form
+      ref="formRef"
+      :model="formData"
+      :rules="rules"
+      size="medium"
+      label-width="100px">
+      <el-row :gutter="14">
         <el-col :span="24">
           <el-form-item label="id：" prop="id">
             <el-input
@@ -73,47 +73,53 @@
             </el-select>
           </el-form-item>
         </el-col>
-      </el-form>
-    </el-row>
-    <div>
-      <el-button @click="close">取消</el-button>
-      <el-button type="primary" @click="handelConfirm">确定</el-button>
-    </div>
+      </el-row>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="handleClose">取消</el-button>
+        <el-button type="primary" @click="handelConfirm">确定</el-button>
+      </span>
+    </template>
   </el-dialog>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, PropType, reactive, ref } from 'vue';
 import { isName } from '@/utils/validate';
 import Props from '../props';
+import { UserProfileVO } from '@/api/model/admin/user-profile-model';
 export default defineComponent({
   name: 'EditForm',
   props: {
     ...Props,
+    formDataProp: Object as PropType<UserProfileVO>
   },
-  setup() {
+  emits: [ 'close' ],
+  setup(props, { emit }) {
     const data = reactive({
 
     });
     const formRef = ref();
     const formData = reactive({
-      id: 0,
-      username: '',
-      sex: 0,
-      email: '',
-      phone: '',
-      role: 3,
+      ...props.formDataProp,
     });
+    const handleClose = function () {
+      emit('close');
+    };
     return {
       data,
       isName,
       formRef,
+      handleClose,
       formData,
     };
   }
 });
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.el-row{
+  height: auto;
+}
 </style>

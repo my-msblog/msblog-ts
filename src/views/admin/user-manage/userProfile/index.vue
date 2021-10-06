@@ -13,36 +13,45 @@
       @deletedList="handleDeleteList"
       class="u_form" />
   </div>
+  <AddUser :dialog-form-visible="data.addFormShow" />
+  <EditForm
+    v-model="data.editFormShow"
+    :title="$t('pages.edit_info')"
+    @close="data.editFormShow = false"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
 import { adminUserPage, deletedUser } from '@/api/admin/user-profile';
 import { ElMessage } from 'element-plus';
-import { UserProfileVO } from '@/api/model/admin/user-profile-model';
 import { Role } from '@/constant/enums/role';
-import UserTable from './user-table/index.vue';
 import { useI18n } from 'vue-i18n';
 import { BaseDTO } from '@/api/model/core';
-import * as sex from '@/constant/enums/sex';
+import { UserProfileVO } from '@/api/model/admin/user-profile-model';
+import EditForm from './components/EditForm';
+import UserTable from './components/UserTable';
+import AddUser from './components/AddUser';
+
 export default defineComponent({
   name: 'UserProfile',
-  components: { UserTable },
+  components: { UserTable, EditForm, AddUser },
   setup() {
     const { t } = useI18n();
     const data = reactive({
-      formShow: false,
+      addFormShow: false,
+      editFormShow: false,
       tableData: [] as UserProfileVO[],
       currentPage: 1,
       pagination: {
         page: 1,
         size: 5,
       } as BaseDTO,
-      total: { type: Number, default:10 },
+      total: 10,
       pageSize: 5,
     });
     const handleAddUser = function () {
-      data.formShow = true;
+      data.addFormShow = true;
     };
     const handleUserPage = function (pagination: BaseDTO) {
       data.pagination = pagination;
@@ -52,7 +61,7 @@ export default defineComponent({
         data.pageSize = res.pageSize;
         data.total = res.total;
         data.tableData.forEach(item => {
-          item.sex = sex.getSex(item.sex);
+          //item.sex = sex.getSex(item.sex);
           item.role = Role[item.role];
         });
       });
@@ -72,12 +81,19 @@ export default defineComponent({
     const handleDeleteList = function () {
       handleUserPage(data.pagination);
     };
+    const handleEdit = function (form: UserProfileVO) {
+      console.log(form);
+      console.log(data.editFormShow);
+      data.editFormShow = true;
+      console.log(data.editFormShow);
+    };
     onMounted(() => {
       handleUserPage(data.pagination);
     });
     return {
       data,
       handleAddUser,
+      handleEdit,
       handleUserPage,
       handleCurrentPage,
       handleDelete,

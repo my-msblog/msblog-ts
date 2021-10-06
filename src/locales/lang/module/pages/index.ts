@@ -23,6 +23,8 @@ export default {
     batch_delete: '批量删除',
     No: '序号',
     operation_success: '操作成功',
+    edit_info: '编辑信息',
+
   },
   en: {
     back: 'Back',
@@ -48,5 +50,6 @@ export default {
     batch_delete: 'Batch delete',
     No: 'No.',
     operation_success: 'Operation success',
+    edit_info: 'Edit Info'
   }
 };

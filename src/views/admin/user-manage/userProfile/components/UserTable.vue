@@ -3,6 +3,7 @@
     <el-table
       :data="tableData"
       stripe
+      size="mini"
       ref="tableRef"
       @selection-change="handleSelectChange">
       <el-table-column type="selection" width="35" />
@@ -17,6 +18,7 @@
         property="sex"
         :label="$t('pages.sex')"
         width="60"
+        :formatter="setSex"
         align="center"
       />
       <el-table-column property="email" :label="$t('pages.email')" />
@@ -75,14 +77,15 @@ import { ElMessage } from 'element-plus';
 import { deleteList } from '@/api/admin/user-profile';
 import { nullData } from '@/constant/Type';
 import { useI18n } from 'vue-i18n';
-import { UserProfileBO } from './data';
+import { getSex } from '@/constant/enums/sex';
+import { UserProfileVO } from '@/api/model/admin/user-profile-model';
 
 export default defineComponent({
   name: 'UserForm',
   props: {
     tableData: {
-      type: Object as PropType<Array<UserProfileBO>>,
-      default: nullData<UserProfileBO>(),
+      type: Object as PropType<Array<UserProfileVO>>,
+      default: nullData<UserProfileVO>(),
       request: true,
     },
     currentPage: { type: Number, default: 1 },
@@ -141,11 +144,14 @@ export default defineComponent({
         });
       }
     };
-    const handleSelectChange = function (select: Array<UserProfileBO>) {
+    const handleSelectChange = function (select: Array<UserProfileVO>) {
       data.selection.idList = [];
       select.forEach(element => {
         data.selection.idList.push(element.id);
       });
+    };
+    const setSex = function (row: UserProfileVO) {
+      return getSex(row.sex);
     };
     return {
       data,
@@ -157,12 +163,16 @@ export default defineComponent({
       handleDeselect,
       handleDeleteList,
       handleSelectChange,
+      setSex,
     };
   }
 });
 </script>
 
 <style lang="scss">
+.el-card__body{
+  padding: 10px;
+}
 .form_bottom{
   overflow:hidden;
   padding: 10px 0 0;
