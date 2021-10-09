@@ -1,5 +1,5 @@
 import { ElLoading } from 'element-plus';
-import { functionType, functionTypeBase } from '@/constant/Type';
+import { functionTypeBase } from '@/constant/Type';
 
 const TIME = 1000;
 const BACKGROUND = 'rgba(0, 0, 0, 0.4)';
@@ -12,7 +12,7 @@ const ICON = 'el-icon-loading';
  * @param {string} text
  * @param {function} domain
  */
-export function openFullScreen (text: string, domain: any) {
+export function openFullScreen (text: string, domain: functionTypeBase<void>) {
   const loading = ElLoading.service({
     lock: true,
     text: text,
@@ -30,7 +30,7 @@ export function openFullScreen (text: string, domain: any) {
  * @param {function} domain
  * @param {number} time
  */
-export function openFullScreenTime(text: string, domain: functionType, time: number) {
+export function openFullScreenTime(text: string, domain: functionTypeBase<void>, time: number) {
   openFullScreenBase(text, ICON, BACKGROUND, domain, time);
 }
 
@@ -41,7 +41,7 @@ export function openFullScreenTime(text: string, domain: functionType, time: num
  * @param {string} icon
  * @param {function} domain
  */
-export function openFullScreenIcon(text: string, icon: string, domain: functionType) {
+export function openFullScreenIcon(text: string, icon: string, domain: functionTypeBase<void>) {
   openFullScreenBase(text, icon, BACKGROUND, domain, TIME);
 }
 
@@ -54,7 +54,7 @@ export function openFullScreenIcon(text: string, icon: string, domain: functionT
  * @param {function} domain 加载完成后调用的方法
  * @param {number} time 时间
  */
-export function openFullScreenBase(text: string, icon: string, bg: string, domain: functionType, time: number) {
+export function openFullScreenBase(text: string, icon: string, bg: string, domain: functionTypeBase<void>, time: number) {
   const loading = ElLoading.service({
     lock: true,
     text: text,

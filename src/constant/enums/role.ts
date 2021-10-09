@@ -10,3 +10,9 @@ export enum Role {
   CONTENT_MANAGER = '内容管理员',
   VISITOR = '访客',
 }
+
+export enum RoleString {
+  SYSTEM_ADMIN = 'SYSTEM_ADMIN',
+  CONTENT_MANAGER = 'CONTENT_MANAGER',
+  VISITOR = 'VISITOR',
+}

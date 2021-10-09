@@ -16,6 +16,7 @@
   <AddUser :dialog-form-visible="data.addFormShow" />
   <EditForm
     v-model="data.editFormShow"
+    :form-data-prop="data.editData"
     :title="$t('pages.edit_info')"
     @close="data.editFormShow = false"
   />
@@ -25,13 +26,12 @@
 import { defineComponent, onMounted, reactive } from 'vue';
 import { adminUserPage, deletedUser } from '@/api/admin/user-profile';
 import { ElMessage } from 'element-plus';
-import { Role } from '@/constant/enums/role';
 import { useI18n } from 'vue-i18n';
 import { BaseDTO } from '@/api/model/core';
 import { UserProfileVO } from '@/api/model/admin/user-profile-model';
-import EditForm from './components/EditForm';
-import UserTable from './components/UserTable';
-import AddUser from './components/AddUser';
+import EditForm from './components/EditForm.vue';
+import UserTable from './components/UserTable.vue';
+import AddUser from './components/AddUser.vue';
 
 export default defineComponent({
   name: 'UserProfile',
@@ -42,6 +42,7 @@ export default defineComponent({
       addFormShow: false,
       editFormShow: false,
       tableData: [] as UserProfileVO[],
+      editData: { } as UserProfileVO,
       currentPage: 1,
       pagination: {
         page: 1,
@@ -60,10 +61,6 @@ export default defineComponent({
         data.currentPage = res.pageNum;
         data.pageSize = res.pageSize;
         data.total = res.total;
-        data.tableData.forEach(item => {
-          //item.sex = sex.getSex(item.sex);
-          item.role = Role[item.role];
-        });
       });
     };
     const handleDelete = function (id: number) {
@@ -82,10 +79,8 @@ export default defineComponent({
       handleUserPage(data.pagination);
     };
     const handleEdit = function (form: UserProfileVO) {
-      console.log(form);
-      console.log(data.editFormShow);
       data.editFormShow = true;
-      console.log(data.editFormShow);
+      data.editData = form;
     };
     onMounted(() => {
       handleUserPage(data.pagination);

@@ -23,7 +23,7 @@
       />
       <el-table-column property="email" :label="$t('pages.email')" />
       <el-table-column property="phone" :label="$t('pages.phone')" />
-      <el-table-column property="role" :label="$t('pages.role')" />
+      <el-table-column property="role" :label="$t('pages.role')" :formatter="setRole" />
       <el-table-column
         :label="$t('pages.operation')"
         fixed="right"
@@ -75,7 +75,7 @@ import {
 } from 'vue';
 import { ElMessage } from 'element-plus';
 import { deleteList } from '@/api/admin/user-profile';
-import { nullData } from '@/constant/Type';
+import { nullArray } from '@/constant/Type';
 import { useI18n } from 'vue-i18n';
 import { getSex } from '@/constant/enums/sex';
 import { UserProfileVO } from '@/api/model/admin/user-profile-model';
@@ -85,7 +85,7 @@ export default defineComponent({
   props: {
     tableData: {
       type: Object as PropType<Array<UserProfileVO>>,
-      default: nullData<UserProfileVO>(),
+      default: nullArray<UserProfileVO>(),
       request: true,
     },
     currentPage: { type: Number, default: 1 },
@@ -153,6 +153,9 @@ export default defineComponent({
     const setSex = function (row: UserProfileVO) {
       return getSex(row.sex);
     };
+    const setRole = function (row: UserProfileVO) {
+      return t('role.' + row.role);
+    };
     return {
       data,
       handleSizeChange,
@@ -164,6 +167,7 @@ export default defineComponent({
       handleDeleteList,
       handleSelectChange,
       setSex,
+      setRole,
     };
   }
 });
