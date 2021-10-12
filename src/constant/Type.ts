@@ -1,8 +1,11 @@
 export function nullArray<T> (): Array<T>{
   return [];
 }
-export function nullData<T> (): Record<string, never>{
-  return {};
+interface obj{
+  [key: string]: any;
+}
+export function nullData ( t: obj ): obj{
+  return t;
 }
 export interface functionType{
   (): void;

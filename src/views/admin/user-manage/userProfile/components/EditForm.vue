@@ -1,9 +1,9 @@
 <template>
   <el-dialog :title="title" :v-model="dialogFormVisible">
-    {{ formData }}
+    {{ formDataProp }}
     <el-form
       ref="formRef"
-      :model="formData"
+      :model="data.formData"
       :rules="data.rule"
       inline-message
       :status-icon="true"
@@ -13,7 +13,7 @@
         <el-col :span="24">
           <el-form-item label="id：" prop="id">
             <el-input
-              v-model="formData.id"
+              v-model="data.formData.id"
               readonly
               :disabled='true'
               :style="{width: '100%'}" />
@@ -22,7 +22,7 @@
         <el-col :span="24">
           <el-form-item label="用户名：" prop="username">
             <el-input
-              v-model="formData.username"
+              v-model="data.formData.username"
               placeholder="请输入用户名"
               clearable
               :style="{width: '100%'}" />
@@ -30,7 +30,7 @@
         </el-col>
         <el-col :span="24">
           <el-form-item label="性别：" prop="sex">
-            <el-radio-group v-model="formData.sex" size="medium">
+            <el-radio-group v-model="data.formData.sex" size="medium">
               <el-radio
                 v-for="(item, index) in data.sexOptions"
                 :key="index"
@@ -43,7 +43,7 @@
         <el-col :span="24">
           <el-form-item label="邮箱：" prop="email">
             <el-input
-              v-model="formData.email"
+              v-model="data.formData.email"
               placeholder="请输入邮箱"
               clearable
               :style="{width: '100%'}" />
@@ -51,8 +51,9 @@
         </el-col>
         <el-col :span="24">
           <el-form-item label="手机号：" prop="phone">
+            {{ data.formData.phone }}
             <el-input
-              v-model="formData.phone"
+              v-model="data.formData.phone"
               placeholder="请输入手机号"
               clearable
               :style="{width: '100%'}" />
@@ -61,7 +62,7 @@
         <el-col :span="12">
           <el-form-item label="用户角色" prop="role">
             <el-select
-              v-model="formData.role"
+              v-model="data.formData.role"
               placeholder="请选择用户角色"
               clearable
               :style="{width: '100%'}">
@@ -92,12 +93,17 @@ import {
   PropType,
   reactive,
   ref,
+  computed,
+  inject,
 } from 'vue';
 import Props from '../props';
-import { UserProfileVO } from '@/api/model/admin/user-profile-model';
+import { UserProfileVO, UserProfileVOImpl } from '@/api/model/admin/user-profile-model';
 import { useI18n } from 'vue-i18n';
 import { editFormRule, sexOptions, roleOptions } from './data';
-import { nullData } from '@/constant/Type';
+import { ElMessageBox } from 'element-plus';
+import { adminChangeUser } from '@/api/admin/user-profile';
+import { UserTableChangeDTO } from '@/api/model/user-info-model';
+import { RoleId } from '@/constant/enums/role';
 
 export default defineComponent({
   name: 'EditForm',
@@ -105,26 +111,55 @@ export default defineComponent({
     ...Props,
     formDataProp: {
       type: Object as PropType<UserProfileVO>,
-      default: nullData<UserProfileVO>()
+      default: UserProfileVOImpl
     }
   },
-  emits: [ 'close' ],
+  emits: [ 'close', 'afterChange' ],
   setup(props, { emit }) {
     const { t } = useI18n();
     const propRef = toRefs(props);
+    const formRef = ref();
+    const formDataRef = propRef.formDataProp;
     const data = reactive({
       rule: editFormRule,
       sexOptions: sexOptions,
       roleOptions: roleOptions,
+      formData: {
+        id: formDataRef.value.id,
+        username: formDataRef.value.username,
+        sex: formDataRef.value.sex,
+        phone: formDataRef.value.phone,
+        email: formDataRef.value.email,
+        role: formDataRef.value.role,
+      }
     });
-    const formRef = ref();
-    const formData = reactive(propRef.formDataProp);
+
+    const formData = inject<UserProfileVO>('editData');
     const handleClose = function () {
       emit('close');
       formRef.value.clearValidate();
       formRef.value.resetFields();
     };
     const handleConfirm = function () {
+      ElMessageBox.confirm(t('message.whether_to_modify_information'), t('pages.tips'), {
+        confirmButtonText: t('message.confirm'),
+        cancelButtonText: t('message.cancel'),
+        type: 'warning',
+      }).then(() => {
+        // const params: UserTableChangeDTO = {
+        //   id: formData.id,
+        //   username: formData.username,
+        //   sex: formData.sex,
+        //   phone: formData.phone,
+        //   email: formData.email,
+        //   roleId: RoleId[formData.role],
+        //
+        // };
+        // console.log(params);
+        console.log(data.formData);
+
+        // adminChangeUser(params).then(()=>emit('afterChange'));
+      });
       handleClose();
     };
     return {

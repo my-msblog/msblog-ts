@@ -1,5 +1,5 @@
 export interface UserTableChangeDTO{
-  id?: string;
+  id?: number;
   username: string;
   pwd?: string;
   phone?: string;
@@ -7,4 +7,5 @@ export interface UserTableChangeDTO{
   introduction?: string;
   sex: number;
   code?: string;
+  roleId?: number;
 }

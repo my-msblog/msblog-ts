@@ -1,7 +1,7 @@
 import { UserTableChangeDTO } from '@/api/model/user-info-model';
 
 export interface FormData extends UserTableChangeDTO{
-  id?: string,
+  id?: number,
   username: string,
   sex: number,
   email: string,

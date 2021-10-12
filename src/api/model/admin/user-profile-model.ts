@@ -6,3 +6,20 @@ export interface UserProfileVO{
   phone: string;
   role: string;
 }
+export class UserProfileVOImpl implements UserProfileVO{
+  email: string;
+  id: number
+  phone: string
+  role: string
+  sex: number
+  username: string;
+  constructor () {
+    this.email = '';
+    this.id = 0;
+    this.phone = '';
+    this.role = '';
+    this.sex = 0;
+    this.username = '';
+  }
+
+}

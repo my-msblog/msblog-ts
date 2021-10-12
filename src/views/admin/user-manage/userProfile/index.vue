@@ -16,14 +16,15 @@
   <AddUser :dialog-form-visible="data.addFormShow" />
   <EditForm
     v-model="data.editFormShow"
-    :form-data-prop="data.editData"
+    v-model:form-data-prop="data.editData"
     :title="$t('pages.edit_info')"
     @close="data.editFormShow = false"
+    @afterChange="handleCurrentPage(data.pagination)"
   />
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from 'vue';
+import { defineComponent, onMounted, reactive, provide } from 'vue';
 import { adminUserPage, deletedUser } from '@/api/admin/user-profile';
 import { ElMessage } from 'element-plus';
 import { useI18n } from 'vue-i18n';
@@ -85,6 +86,7 @@ export default defineComponent({
     onMounted(() => {
       handleUserPage(data.pagination);
     });
+    provide('editData', data.editData);
     return {
       data,
       handleAddUser,

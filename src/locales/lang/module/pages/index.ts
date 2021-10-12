@@ -24,6 +24,7 @@ export default {
     No: '序号',
     operation_success: '操作成功',
     edit_info: '编辑信息',
+    tips: '提示',
 
   },
   en: {
@@ -50,6 +51,7 @@ export default {
     batch_delete: 'Batch delete',
     No: 'No.',
     operation_success: 'Operation success',
-    edit_info: 'Edit Info'
+    edit_info: 'Edit Info',
+    tips: 'Tips',
   }
 };

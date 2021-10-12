@@ -43,8 +43,12 @@ service.interceptors.response.use(
     });
   }, error => {
     const response = error.response;
+    let info = response.data;
+    if(response.data.msg) {
+      info = response.data.msg;
+    }
     ElMessage({
-      message: response.data,
+      message: info,
       type: 'error',
       duration: 2 * 1000,
     });
