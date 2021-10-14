@@ -103,7 +103,6 @@ import { RoleId } from '@/constant/enums/role';
 
 export default defineComponent({
   name: 'EditForm',
-  inject: ['editData'],
   props: {
     ...Props,
   },
@@ -146,8 +145,6 @@ export default defineComponent({
           email: data.formData.email,
           roleId: RoleId[data.formData.role],
         };
-        console.log(params);
-        console.log(formData);
         adminChangeUser(params).then(()=>emit('afterChange'));
       });
       handleClose();
