@@ -15,8 +15,8 @@
   </div>
   <AddUser :dialog-form-visible="data.addFormShow" />
   <EditForm
+    v-if="data.editFormShow"
     v-model="data.editFormShow"
-    v-model:form-data-prop="data.editData"
     :title="$t('pages.edit_info')"
     @close="data.editFormShow = false"
     @afterChange="handleCurrentPage(data.pagination)"
@@ -24,12 +24,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, provide } from 'vue';
+import {
+  defineComponent,
+  onMounted,
+  reactive,
+  ref,
+  provide,
+} from 'vue';
 import { adminUserPage, deletedUser } from '@/api/admin/user-profile';
 import { ElMessage } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import { BaseDTO } from '@/api/model/core';
-import { UserProfileVO } from '@/api/model/admin/user-profile-model';
+import { UserProfileVO, UserProfileVOImpl } from '@/api/model/admin/user-profile-model';
 import EditForm from './components/EditForm.vue';
 import UserTable from './components/UserTable.vue';
 import AddUser from './components/AddUser.vue';
@@ -43,7 +49,6 @@ export default defineComponent({
       addFormShow: false,
       editFormShow: false,
       tableData: [] as UserProfileVO[],
-      editData: { } as UserProfileVO,
       currentPage: 1,
       pagination: {
         page: 1,
@@ -52,6 +57,7 @@ export default defineComponent({
       total: 10,
       pageSize: 5,
     });
+    let editData = ref(new UserProfileVOImpl);
     const handleAddUser = function () {
       data.addFormShow = true;
     };
@@ -81,12 +87,12 @@ export default defineComponent({
     };
     const handleEdit = function (form: UserProfileVO) {
       data.editFormShow = true;
-      data.editData = form;
+      editData.value = form;
     };
     onMounted(() => {
       handleUserPage(data.pagination);
     });
-    provide('editData', data.editData);
+    provide('editData', editData);
     return {
       data,
       handleAddUser,

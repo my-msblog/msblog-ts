@@ -15,7 +15,7 @@ export class UserProfileVOImpl implements UserProfileVO{
   username: string;
   constructor () {
     this.email = '';
-    this.id = 0;
+    this.id = -1;
     this.phone = '';
     this.role = '';
     this.sex = 0;

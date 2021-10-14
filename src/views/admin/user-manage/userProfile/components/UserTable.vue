@@ -1,75 +1,82 @@
 <template>
-  <el-card>
-    <el-table
-      :data="tableData"
-      stripe
-      size="mini"
-      ref="tableRef"
-      @selection-change="handleSelectChange">
-      <el-table-column type="selection" width="35" />
-      <el-table-column
-        type="index"
-        width="50"
-        :label="$t('pages.No')"
-        align="center" />
-      <el-table-column property="id" label="id" width="170" />
-      <el-table-column property="username" :label="$t('pages.username')" />
-      <el-table-column
-        property="sex"
-        :label="$t('pages.sex')"
-        width="60"
-        :formatter="setSex"
-        align="center"
-      />
-      <el-table-column property="email" :label="$t('pages.email')" />
-      <el-table-column property="phone" :label="$t('pages.phone')" />
-      <el-table-column property="role" :label="$t('pages.role')" :formatter="setRole" />
-      <el-table-column
-        :label="$t('pages.operation')"
-        fixed="right"
-        align="center"
-        width="120">
-        <template #default="scope">
-          <el-button
-            @click="editUser(scope.row)"
-            type="text"
-            size="small">
-            {{ $t('pages.edit') }}
-          </el-button>
-          <el-button
-            @click="deleteUser(scope.row)"
-            type="text"
-            size="small">
-            {{ $t('pages.delete') }}
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <div class="form_bottom">
-      <div class="bot_btn">
-        <el-button size="small" @click="handleDeselect">{{ $t('pages.deselect') }}</el-button>
-        <el-button size="small" @click="handleDeleteList">{{ $t('pages.batch_delete') }}</el-button>
+  <div>
+    <el-card>
+      <el-table
+        :data="tableData"
+        stripe
+        size="mini"
+        ref="tableRef"
+        @selection-change="handleSelectChange">
+        <el-table-column type="selection" width="35" />
+        <el-table-column
+          type="index"
+          width="50"
+          :label="$t('pages.No')"
+          align="center" />
+        <el-table-column property="id" label="id" width="170" />
+        <el-table-column property="username" :label="$t('pages.username')" />
+        <el-table-column
+          property="sex"
+          :label="$t('pages.sex')"
+          width="60"
+          :formatter="setSex"
+          align="center"
+        />
+        <el-table-column property="email" :label="$t('pages.email')" />
+        <el-table-column property="phone" :label="$t('pages.phone')" />
+        <el-table-column property="role" :label="$t('pages.role')" :formatter="setRole" />
+        <el-table-column
+          :label="$t('pages.operation')"
+          fixed="right"
+          align="center"
+          width="120">
+          <template #default="scope">
+            <el-button
+              @click="editUser(scope.row)"
+              type="text"
+              size="small">
+              {{ $t('pages.edit') }}
+            </el-button>
+            <el-button
+              @click="deleteUser(scope.row)"
+              type="text"
+              size="small">
+              {{ $t('pages.delete') }}
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="form_bottom">
+        <div class="bot_btn">
+          <el-button size="small" @click="handleDeselect">{{ $t('pages.deselect') }}</el-button>
+          <el-button size="small" @click="handleDeleteList">{{ $t('pages.batch_delete') }}</el-button>
+        </div>
+        <el-pagination
+          class="bot_page"
+          background
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[5,10]"
+          :page-size="pageSize"
+          :pager-count="5"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total"
+        />
       </div>
-      <el-pagination
-        class="bot_page"
-        background
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[5,10]"
-        :page-size="pageSize"
-        :pager-count="5"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-      />
-    </div>
-  </el-card>
+    </el-card>
+    <EditForm
+      v-model="data.showEdit"
+      @close = "data.showEdit = false"
+    />
+  </div>
 </template>
 
 <script lang="ts">
 import {
   defineComponent,
   PropType,
+  provide,
   reactive,
   ref
 } from 'vue';
@@ -79,6 +86,7 @@ import { nullArray } from '@/constant/Type';
 import { useI18n } from 'vue-i18n';
 import { getSex } from '@/constant/enums/sex';
 import { UserProfileVO } from '@/api/model/admin/user-profile-model';
+import EditForm from './EditForm.vue';
 
 export default defineComponent({
   name: 'UserForm',
@@ -92,6 +100,7 @@ export default defineComponent({
     pageSize: { type: Number, default: 5 },
     total: Number,
   },
+  components: { EditForm },
   emits: [
     'sizeChange',
     'currentPage',
@@ -109,6 +118,7 @@ export default defineComponent({
       selection: {
         idList: [] as Array<number>,
       },
+      showEdit: false,
     });
     const tableRef = ref();
     const handleSizeChange = function(size: number) {
@@ -120,7 +130,9 @@ export default defineComponent({
       emit('currentPage', data.pagination);
     };
     const editUser = function (params: any) {
+      // data.showEdit = true;
       emit('edit', params);
+      // provide('editUser', params);
     };
     const deleteUser = function (params: any) {
       emit('deleted', params.id);

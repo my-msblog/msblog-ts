@@ -1,9 +1,8 @@
 <template>
   <el-dialog :title="title" :v-model="dialogFormVisible">
-    {{ formDataProp }}
     <el-form
       ref="formRef"
-      :model="data.formData"
+      :model="formData"
       :rules="data.rule"
       inline-message
       :status-icon="true"
@@ -51,7 +50,6 @@
         </el-col>
         <el-col :span="24">
           <el-form-item label="手机号：" prop="phone">
-            {{ data.formData.phone }}
             <el-input
               v-model="data.formData.phone"
               placeholder="请输入手机号"
@@ -89,12 +87,10 @@
 <script lang="ts">
 import {
   defineComponent,
-  toRefs,
-  PropType,
   reactive,
   ref,
-  computed,
   inject,
+  Ref
 } from 'vue';
 import Props from '../props';
 import { UserProfileVO, UserProfileVOImpl } from '@/api/model/admin/user-profile-model';
@@ -107,34 +103,29 @@ import { RoleId } from '@/constant/enums/role';
 
 export default defineComponent({
   name: 'EditForm',
+  inject: ['editData'],
   props: {
     ...Props,
-    formDataProp: {
-      type: Object as PropType<UserProfileVO>,
-      default: UserProfileVOImpl
-    }
   },
   emits: [ 'close', 'afterChange' ],
   setup(props, { emit }) {
     const { t } = useI18n();
-    const propRef = toRefs(props);
     const formRef = ref();
-    const formDataRef = propRef.formDataProp;
+    const formData = inject('editData', {} as Ref<UserProfileVO>).value as UserProfileVO;
     const data = reactive({
       rule: editFormRule,
       sexOptions: sexOptions,
       roleOptions: roleOptions,
       formData: {
-        id: formDataRef.value.id,
-        username: formDataRef.value.username,
-        sex: formDataRef.value.sex,
-        phone: formDataRef.value.phone,
-        email: formDataRef.value.email,
-        role: formDataRef.value.role,
-      }
+        id: formData.id,
+        username: formData.username,
+        sex: formData.sex,
+        phone: formData.phone,
+        email: formData.email,
+        role: formData.role,
+      } as UserProfileVO,
     });
 
-    const formData = inject<UserProfileVO>('editData');
     const handleClose = function () {
       emit('close');
       formRef.value.clearValidate();
@@ -146,19 +137,18 @@ export default defineComponent({
         cancelButtonText: t('message.cancel'),
         type: 'warning',
       }).then(() => {
-        // const params: UserTableChangeDTO = {
-        //   id: formData.id,
-        //   username: formData.username,
-        //   sex: formData.sex,
-        //   phone: formData.phone,
-        //   email: formData.email,
-        //   roleId: RoleId[formData.role],
-        //
-        // };
-        // console.log(params);
         console.log(data.formData);
-
-        // adminChangeUser(params).then(()=>emit('afterChange'));
+        const params: UserTableChangeDTO = {
+          id: data.formData.id,
+          username: data.formData.username,
+          sex: data.formData.sex,
+          phone: data.formData.phone,
+          email: data.formData.email,
+          roleId: RoleId[data.formData.role],
+        };
+        console.log(params);
+        console.log(formData);
+        adminChangeUser(params).then(()=>emit('afterChange'));
       });
       handleClose();
     };
