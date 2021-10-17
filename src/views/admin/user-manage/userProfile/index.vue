@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="success" size="small" @click="handleAddUser">{{ $t('message.add_user') }}</el-button>
+    <el-button type="success" size="small" @click="handleAddUser">{{ $t('pages.add_user') }}</el-button>
     <UserTable
       :tableData="data.tableData"
       :current-page="data.currentPage"
@@ -13,7 +13,11 @@
       @deletedList="handleDeleteList"
       class="u_form" />
   </div>
-  <AddUser :dialog-form-visible="data.addFormShow" />
+  <AddUser
+    v-model="data.addFormShow"
+    :title="$t('pages.add_user')"
+    @close = "data.addFormShow = false"
+  />
   <EditForm
     v-if="data.editFormShow"
     v-model="data.editFormShow"

@@ -42,6 +42,8 @@ export default {
     male: '男',
     female: '女'
   },
-  role: module.role.zh
-
+  role: module.role.zh,
+  button: {
+    ...module.button.zh,
+  }
 };

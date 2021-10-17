@@ -44,5 +44,8 @@ export default {
   },
   role: {
     ...module.role.en,
+  },
+  button: {
+    ...module.button.en,
   }
 };
