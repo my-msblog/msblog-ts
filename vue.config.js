@@ -1,14 +1,17 @@
 // vue.config.js
 const path = require('path');
+const webpack = require('webpack');
 const resolve = (dir) => path.join(__dirname, dir);
 
 module.exports = {
+  outputDir: 'dist',
+  assetsDir: 'assets',
   chainWebpack: config => {
     config.resolve.symlinks(true);
     config
       .plugin('html')
       .tap(args => {
-        args[0].title = 'msblog'; // vue html title
+        args[0].title = process.env.VUE_APP_TITLE; // vue html title
         return args;
       });
     config.resolve.alias // 添加别名
@@ -20,15 +23,14 @@ module.exports = {
   },
   devServer: {
     compress: true,
-    // public: '127.0.0.1:5477',
-    host: 'localhost',
-    hot: true,
-    port: 5477, // 启动端口
-    open: true, // 启动后是否自动打开网页
+    host: process.env.VUE_APP_HOST,
+    port: process.env.VUE_APP_PORT, // 启动端口
+    // hot: true,
+    // open: true, // 启动后是否自动打开网页
     https: false,
     proxy: {
       '/api': { // '/api' 可以自己修改
-        target: 'http://127.0.0.1:8080', // 接口域名
+        target: process.env.VUE_APP_BASE_URL, // 接口域名
         changeOrigin: true, // 是否跨域
         secure: false,
         pathRewrite: {
