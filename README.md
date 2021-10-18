@@ -4,7 +4,7 @@
 - Get the project code
 
 ```bash
-git clone https://github.com/anncwb/vue-vben-admin.git
+git clone https://github.com.cnpmjs.org/my-msblog/msblog-ts.git
 ```
 ## Project setup
 ```
