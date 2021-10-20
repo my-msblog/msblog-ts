@@ -16,6 +16,7 @@
   <AddUser
     v-model="data.addFormShow"
     :title="$t('pages.add_user')"
+    @addSuccess="handleCurrentPage(data.pagination)"
     @close = "data.addFormShow = false"
   />
   <EditForm
