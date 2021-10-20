@@ -1,8 +1,8 @@
 
 export enum RoleId {
-  SYSTEM_ADMIN_ID = 1,
-  CONTENT_MANAGER_ID = 2,
-  VISITOR_ID = 3,
+  SYSTEM_ADMIN = 1,
+  CONTENT_MANAGER = 2,
+  VISITOR = 3,
 }
 
 export enum Role {
