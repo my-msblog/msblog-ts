@@ -18,7 +18,7 @@ service.interceptors.request.use(
     return config;
   },
   error => {
-    console.error('request error', error);
+    console.error('request error:', error);
     return Promise.reject(error);
   },
 );

@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { routes as routeList } from '@/router/routes';
-import { authentication } from '@/api/sys';
 import store from '@/store';
-import { asyncRouters } from '@/router/permission';
+import { useI18n } from '@/hooks/useI18n';
+import { routes as routeList } from './routes';
+import { authentication } from '@/api/sys';
+import { asyncRouters } from './permission';
 import { ElMessage } from 'element-plus';
 
+const { t } = useI18n();
+
 const routes: Array<RouteRecordRaw> = routeList;
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes

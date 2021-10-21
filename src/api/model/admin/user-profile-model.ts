@@ -5,6 +5,7 @@ export interface UserProfileVO{
   email: string;
   phone: string;
   role: string;
+  deleted: number;
 }
 export class UserProfileVOImpl implements UserProfileVO{
   email: string;
@@ -13,6 +14,7 @@ export class UserProfileVOImpl implements UserProfileVO{
   role: string
   sex: number
   username: string;
+  deleted: number
   constructor () {
     this.email = '';
     this.id = -1;
@@ -20,6 +22,7 @@ export class UserProfileVOImpl implements UserProfileVO{
     this.role = '';
     this.sex = 0;
     this.username = '';
+    this.deleted = 0;
   }
 
 }

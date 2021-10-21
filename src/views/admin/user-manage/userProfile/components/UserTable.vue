@@ -29,8 +29,10 @@
           :label="$t('pages.operation')"
           fixed="right"
           align="center"
-          width="120">
+          width="150">
           <template #default="scope">
+            {{ Status[scope.row.deleted] }}
+            <el-switch v-model="tue" class="table_switch" />
             <el-button
               @click="editUser(scope.row)"
               type="text"
@@ -87,6 +89,7 @@ import { useI18n } from 'vue-i18n';
 import { getSex } from '@/constant/enums/sex';
 import { UserProfileVO } from '@/api/model/admin/user-profile-model';
 import EditForm from './EditForm.vue';
+import { Status } from '@/constant/enums/disable';
 
 export default defineComponent({
   name: 'UserForm',
@@ -180,12 +183,16 @@ export default defineComponent({
       handleSelectChange,
       setSex,
       setRole,
+      Status,
     };
   }
 });
 </script>
 
 <style lang="scss">
+.table_switch{
+  margin-right: 10px;
+}
 .el-card__body{
   padding: 10px;
 }
