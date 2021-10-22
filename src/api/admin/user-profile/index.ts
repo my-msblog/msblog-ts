@@ -8,7 +8,14 @@ enum Api {
   delete = '/user/remove',
   deleteList = '/user/remove/list',
   change = '/account/admin/change/user',
-  add = '/account/admin/add'
+  add = '/account/admin/add',
+  status_change = '/account/admin/status/change'
+}
+export function userStatusChange(dto: UserTableChangeDTO){
+  return request.post<string>({
+    url: Api.status_change,
+    data: dto
+  });
 }
 export function adminAdd(dto: UserTableChangeDTO){
   return request.post<string>({

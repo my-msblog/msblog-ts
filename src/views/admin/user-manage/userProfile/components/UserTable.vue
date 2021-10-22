@@ -31,8 +31,12 @@
           align="center"
           width="150">
           <template #default="scope">
-            {{ Status[scope.row.deleted] }}
-            <el-switch v-model="tue" class="table_switch" />
+            <el-switch
+              v-model="getStatusEnum[scope.row.deleted]"
+              class="table_switch"
+              active-color="#13ce66"
+              @change="handleStatusChange(scope.row)"
+            />
             <el-button
               @click="editUser(scope.row)"
               type="text"
@@ -67,10 +71,6 @@
         />
       </div>
     </el-card>
-    <EditForm
-      v-model="data.showEdit"
-      @close = "data.showEdit = false"
-    />
   </div>
 </template>
 
@@ -78,7 +78,6 @@
 import {
   defineComponent,
   PropType,
-  provide,
   reactive,
   ref
 } from 'vue';
@@ -88,8 +87,7 @@ import { nullArray } from '@/constant/Type';
 import { useI18n } from 'vue-i18n';
 import { getSex } from '@/constant/enums/sex';
 import { UserProfileVO } from '@/api/model/admin/user-profile-model';
-import EditForm from './EditForm.vue';
-import { Status } from '@/constant/enums/disable';
+import { getStatusEnum } from '@/constant/enums/disable';
 
 export default defineComponent({
   name: 'UserForm',
@@ -103,7 +101,6 @@ export default defineComponent({
     pageSize: { type: Number, default: 5 },
     total: Number,
   },
-  components: { EditForm },
   emits: [
     'sizeChange',
     'currentPage',
@@ -121,7 +118,6 @@ export default defineComponent({
       selection: {
         idList: [] as Array<number>,
       },
-      showEdit: false,
     });
     const tableRef = ref();
     const handleSizeChange = function(size: number) {
@@ -133,9 +129,7 @@ export default defineComponent({
       emit('currentPage', data.pagination);
     };
     const editUser = function (params: any) {
-      // data.showEdit = true;
       emit('edit', params);
-      // provide('editUser', params);
     };
     const deleteUser = function (params: any) {
       emit('deleted', params.id);
@@ -171,6 +165,9 @@ export default defineComponent({
     const setRole = function (row: UserProfileVO) {
       return t('role.' + row.role);
     };
+    const handleStatusChange = function (row: UserProfileVO){
+
+    };
     return {
       data,
       handleSizeChange,
@@ -183,7 +180,8 @@ export default defineComponent({
       handleSelectChange,
       setSex,
       setRole,
-      Status,
+      getStatusEnum,
+      handleStatusChange,
     };
   }
 });
