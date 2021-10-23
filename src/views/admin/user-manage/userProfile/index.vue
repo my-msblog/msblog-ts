@@ -40,7 +40,7 @@ import { adminUserPage, deletedUser } from '@/api/admin/user-profile';
 import { ElMessage } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import { BaseDTO } from '@/api/model/core';
-import { UserProfileVO, UserProfileVOImpl } from '@/api/model/admin/user-profile-model';
+import { UserProfileVO, UserProfileVOImpl } from '@/api/model/admin/user-profile';
 import EditForm from './components/EditForm.vue';
 import UserTable from './components/UserTable.vue';
 import AddUser from './components/AddUser.vue';

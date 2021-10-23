@@ -93,7 +93,7 @@ import {
   Ref
 } from 'vue';
 import Props from '../props';
-import { UserProfileVO, UserProfileVOImpl } from '@/api/model/admin/user-profile-model';
+import { UserProfileVO, UserProfileVOImpl } from '@/api/model/admin/user-profile';
 import { useI18n } from 'vue-i18n';
 import { editFormRule, sexOptions, roleOptions } from './data';
 import { ElMessageBox } from 'element-plus';

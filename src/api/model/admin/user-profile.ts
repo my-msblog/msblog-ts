@@ -7,6 +7,11 @@ export interface UserProfileVO{
   role: string;
   deleted: number;
 }
+export interface StatusDTO {
+  id: number;
+  username: string;
+  status: number;
+}
 export class UserProfileVOImpl implements UserProfileVO{
   email: string;
   id: number

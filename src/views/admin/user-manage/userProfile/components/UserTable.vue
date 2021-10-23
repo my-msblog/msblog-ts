@@ -25,6 +25,16 @@
         <el-table-column property="email" :label="$t('pages.email')" />
         <el-table-column property="phone" :label="$t('pages.phone')" />
         <el-table-column property="role" :label="$t('pages.role')" :formatter="setRole" />
+        <!-- <el-table-column property="delete" :label="$t('pages.role')">
+          <template #default="scope">
+            <el-switch
+              v-model="scope.row.deleted"
+              active-color="#13ce66"
+              inactive-color="#999"
+              :active-value="0"
+              :inactive-value="1" />
+          </template>
+        </el-table-column> -->
         <el-table-column
           :label="$t('pages.operation')"
           fixed="right"
@@ -32,9 +42,12 @@
           width="150">
           <template #default="scope">
             <el-switch
-              v-model="getStatusEnum[scope.row.deleted]"
+              v-model="scope.row.deleted"
               class="table_switch"
               active-color="#13ce66"
+              :active-value="0"
+              :inactive-value="1"
+              :validate-event="false"
               @change="handleStatusChange(scope.row)"
             />
             <el-button
@@ -82,11 +95,11 @@ import {
   ref
 } from 'vue';
 import { ElMessage } from 'element-plus';
-import { deleteList } from '@/api/admin/user-profile';
+import { deleteList, userStatusChange } from '@/api/admin/user-profile';
 import { nullArray } from '@/constant/Type';
 import { useI18n } from 'vue-i18n';
 import { getSex } from '@/constant/enums/sex';
-import { UserProfileVO } from '@/api/model/admin/user-profile-model';
+import { StatusDTO, UserProfileVO } from '@/api/model/admin/user-profile';
 import { getStatusEnum } from '@/constant/enums/disable';
 
 export default defineComponent({
@@ -106,7 +119,7 @@ export default defineComponent({
     'currentPage',
     'edit',
     'deleted',
-    'deletedList'
+    'deletedList',
   ],
   setup(prop, { emit }) {
     const { t } = useI18n();
@@ -166,7 +179,17 @@ export default defineComponent({
       return t('role.' + row.role);
     };
     const handleStatusChange = function (row: UserProfileVO){
-
+      const params: StatusDTO = {
+        id: row.id,
+        username: row.username,
+        status: row.deleted,
+      };
+      userStatusChange(params).then(()=> {
+        ElMessage.success({
+          message: t('operation_success'),
+          type: 'success'
+        });
+      });
     };
     return {
       data,
