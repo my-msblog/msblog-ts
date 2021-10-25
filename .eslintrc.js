@@ -14,6 +14,10 @@ module.exports = {
     node: true,
     es6: true,
   },
+  globals: {
+    defineProps: 'readonly',
+    withDefaults: 'readonly',
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
