@@ -4,7 +4,7 @@ import * as echarts from 'echarts';
 //
 // echarts.registerMap('china', chinaMapData)
 
-export default function (el: HTMLElement) {
+export default function (el: HTMLDivElement) {
   const echartInstance = echarts.init(el);
   const setOptions = (options: echarts.EChartsOption) => {
     echartInstance.setOption(options);

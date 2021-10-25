@@ -1,20 +1,33 @@
 <template>
   <div class="base-echart">
-    <div ref="eChartDivRef" :style="{ width: width, height: height }"></div>
+    <div ref="eChartDivRef" :style="{ width: width, height: height }" />
   </div>
 </template>
 
+
+<script lang="ts">
+export default {
+  name: 'BaseEcharts',
+};
+</script>
 <script lang="ts" setup>
-import { ref, onMounted, defineProps, withDefaults, watchEffect } from 'vue';
+import {
+  ref,
+  onMounted,
+  defineProps,
+  withDefaults,
+  watchEffect,
+  Ref
+} from 'vue';
 import { EChartsOption } from 'echarts';
 import useEchart from '@/hooks/useEchart';
 
 // 定义props
 const props = withDefaults(
   defineProps<{
-    options: EChartsOption
-    width?: string
-    height?: string
+    options: EChartsOption,
+    width?: string,
+    height?: string,
   }>(),
   {
     width: '100%',
@@ -22,13 +35,20 @@ const props = withDefaults(
   }
 );
 
-const eChartDivRef = ref<HTMLElement>();
+const eChartDivRef: Ref<HTMLDivElement | null> = ref<HTMLDivElement | null>(null);
 
 onMounted(() => {
-  const { setOptions } = useEchart(eChartDivRef.value!);
+  const { setOptions } = useEchart(eChartDivRef.value as HTMLDivElement);
 
   watchEffect(() => {
     setOptions(props.options);
   });
 });
+
 </script>
+<style lang="scss" scoped>
+.base-echart{
+  background-color:white;
+}
+</style>
+

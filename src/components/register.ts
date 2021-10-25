@@ -1,7 +1,7 @@
 import Language from './language/index.vue';
-import BaseEchart from './echats/src/index.vue';
+import BaseEcharts from './echats';
 
 export const customComp = [
   Language,
-  BaseEchart,
+  BaseEcharts,
 ];

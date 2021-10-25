@@ -1,2 +1,2 @@
-import BaseEchart from './src/index.vue';
-export default BaseEchart;
+import BaseEcharts from './src/index.vue';
+export default BaseEcharts;

@@ -1,16 +1,18 @@
 <template>
   <div>
+    <NavCards />
     <div class="pie-echart">
-      <base-echart :options="options"></base-echart>
+      <BaseEcharts :options="options" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed, PropType } from 'vue';
-import * as echarts from 'echarts';
+import NavCards from './components/NavCards.vue';
 export default defineComponent({
-  name: '',
+  name: 'Dashboard',
+  components: { NavCards },
   props: {
     title: Object as PropType<string>,
     xLabels: [] as PropType<string[]>,
@@ -20,56 +22,16 @@ export default defineComponent({
     const options = computed(() => {
       return {
         xAxis: {
-          data: props.xLabels,
-          axisLabel: {
-            inside: true,
-            color: '#fff'
-          },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          z: 10
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         },
         yAxis: {
-          axisLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          axisLabel: {
-            color: '#999'
-          }
+          type: 'value'
         },
-        dataZoom: [
-          {
-            type: 'inside'
-          }
-        ],
         series: [
           {
-            type: 'bar',
-            showBackground: true,
-            itemStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: '#83bff6' },
-                { offset: 0.5, color: '#188df0' },
-                { offset: 1, color: '#188df0' }
-              ])
-            },
-            emphasis: {
-              itemStyle: {
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                  { offset: 0, color: '#2378f7' },
-                  { offset: 0.7, color: '#2378f7' },
-                  { offset: 1, color: '#83bff6' }
-                ])
-              }
-            },
-            data: props.values
+            data: [150, 230, 224, 218, 135, 147, 260],
+            type: 'line'
           }
         ]
       };
@@ -82,5 +44,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
+.pie-echart{
+  width: 700px;
+}
 </style>
