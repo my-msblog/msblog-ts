@@ -10,6 +10,7 @@ export default {
     sms_send_success: '验证码发送成功',
     modified_successfully: '修改成功',
     whether_to_modify_information: '是否修改信息?',
+    confirm_submit: '确认提交',
     tips: '提示',
     confirm: '确定',
     cancel: '取消',

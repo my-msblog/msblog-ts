@@ -14,8 +14,6 @@ export default {
 import {
   ref,
   onMounted,
-  defineProps,
-  withDefaults,
   watchEffect,
   Ref
 } from 'vue';
@@ -48,6 +46,7 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 .base-echart{
+  margin: 0;
   background-color:white;
 }
 </style>

@@ -18,6 +18,7 @@ export default {
     introduce_yourself_briefly: 'Introduce yourself briefly',
     no_data_selected: 'No data selected',
     operation_success: 'Operation success',
+    confirm_submit:'Confirm Submit',
   },
   pages: {
     ...module.pages.en,

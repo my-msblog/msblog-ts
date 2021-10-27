@@ -131,7 +131,7 @@ export default defineComponent({
       formRef.value.resetFields();
     };
     const handleConfirm = () => {
-      ElMessageBox.confirm(t('message.whether_to_modify_information'), t('pages.tips'), {
+      ElMessageBox.confirm(t('message.confirm_submit'), t('pages.tips'), {
         confirmButtonText: t('message.confirm'),
         cancelButtonText: t('message.cancel'),
         type: 'warning',

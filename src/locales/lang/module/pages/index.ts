@@ -25,7 +25,7 @@ export default {
     operation_success: '操作成功',
     edit_info: '编辑信息',
     tips: '提示',
-
+    user_list: '用户列表',
   },
   en: {
     back: 'Back',
@@ -53,5 +53,6 @@ export default {
     operation_success: 'Operation success',
     edit_info: 'Edit Info',
     tips: 'Tips',
+    user_list: 'User List',
   }
 };

@@ -1,14 +1,22 @@
 <template>
-  <el-row>
-    <el-col  v-for="i in 3" :key="i">
-      <el-card class="box-card">
+  <el-row :gutter="20">
+    <el-col
+      v-for="(i) in 4"
+      :key="i"
+      :xs="12"
+      :sm="12" 
+      :lg="6"
+    >
+      <el-card shadow="hover">
         <template #header>
           <div class="card-header">
-            <span>Card name {{ i }}</span>
+            <span>Card name</span>
             <el-button class="button" type="text">Operation button</el-button>
           </div>
         </template>
-        <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
+        <div v-for="o in 1" :key="o" class="text item">
+          {{ 'List item ' + o }}
+        </div>
       </el-card>
     </el-col>
   </el-row>
@@ -21,8 +29,10 @@ export default {
 </script>
 
 <style scoped>
+.el-row{
+  height: auto;
+}
 .card-header {
-  display: flex;
   justify-content: space-between;
   align-items: center;
 }

@@ -12,7 +12,9 @@
         <el-col :span="5">
           <el-tooltip effect="dark" :content="$t('message.blog_home')" placement="bottom-start">
             <div @click="backHome">
-              <platform style="width: 1.3em; height: 1.3em; margin-right: 5px" />
+              <el-icon>
+                <monitor style="width: 1.3em; height: 1.3em; margin-right: 7px" />
+              </el-icon>
             </div>
           </el-tooltip>
         </el-col>
@@ -44,12 +46,12 @@ import { ElMessage } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { Platform } from '@element-plus/icons';
+import { Monitor } from '@element-plus/icons';
 import { openFullScreen } from '@/components/loading';
 
 export default defineComponent({
   name: 'AdminHeader',
-  components: { Platform },
+  components: { Monitor },
   setup() {
     const { t } = useI18n();
     const router = useRouter();

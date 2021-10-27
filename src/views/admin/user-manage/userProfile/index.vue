@@ -1,6 +1,5 @@
 <template>
   <div>
-    <el-button type="success" size="small" @click="handleAddUser">{{ $t('pages.add_user') }}</el-button>
     <UserTable
       :tableData="data.tableData"
       :current-page="data.currentPage"
@@ -13,12 +12,7 @@
       @deletedList="handleDeleteList"
       class="u_form" />
   </div>
-  <AddUser
-    v-model="data.addFormShow"
-    :title="$t('pages.add_user')"
-    @addSuccess="handleCurrentPage(data.pagination)"
-    @close = "data.addFormShow = false"
-  />
+
   <EditForm
     v-if="data.editFormShow"
     v-model="data.editFormShow"
@@ -43,15 +37,13 @@ import { BaseDTO } from '@/api/model/core';
 import { UserProfileVO, UserProfileVOImpl } from '@/api/model/admin/user-profile';
 import EditForm from './components/EditForm.vue';
 import UserTable from './components/UserTable.vue';
-import AddUser from './components/AddUser.vue';
 
 export default defineComponent({
   name: 'UserProfile',
-  components: { UserTable, EditForm, AddUser },
+  components: { UserTable, EditForm },
   setup() {
     const { t } = useI18n();
     const data = reactive({
-      addFormShow: false,
       editFormShow: false,
       tableData: [] as UserProfileVO[],
       currentPage: 1,
@@ -63,9 +55,7 @@ export default defineComponent({
       pageSize: 5,
     });
     let editData = ref(new UserProfileVOImpl);
-    const handleAddUser = function () {
-      data.addFormShow = true;
-    };
+
     const handleUserPage = function (pagination: BaseDTO) {
       data.pagination = pagination;
       adminUserPage(data.pagination).then((res) => {
@@ -100,7 +90,6 @@ export default defineComponent({
     provide('editData', editData);
     return {
       data,
-      handleAddUser,
       handleEdit,
       handleUserPage,
       handleCurrentPage,

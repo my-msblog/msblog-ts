@@ -1,9 +1,20 @@
 <template>
   <div>
     <el-card>
+      <div class="table_top">
+        <span class="u_table_title">{{ $t('pages.user_list') }}</span>
+        <div class="u_table_toolbar">
+          <el-button type="success" size="mini" @click="handleAddUser">{{ $t('pages.add_user') }}</el-button>
+          <el-divider direction="vertical" />
+          <el-icon :size="15">
+            <refresh-right />
+          </el-icon>
+        </div>
+      </div>
       <el-table
         :data="tableData"
         stripe
+        border
         size="mini"
         ref="tableRef"
         @selection-change="handleSelectChange">
@@ -25,16 +36,6 @@
         <el-table-column property="email" :label="$t('pages.email')" />
         <el-table-column property="phone" :label="$t('pages.phone')" />
         <el-table-column property="role" :label="$t('pages.role')" :formatter="setRole" />
-        <!-- <el-table-column property="delete" :label="$t('pages.role')">
-          <template #default="scope">
-            <el-switch
-              v-model="scope.row.deleted"
-              active-color="#13ce66"
-              inactive-color="#999"
-              :active-value="0"
-              :inactive-value="1" />
-          </template>
-        </el-table-column> -->
         <el-table-column
           :label="$t('pages.operation')"
           fixed="right"
@@ -84,6 +85,12 @@
         />
       </div>
     </el-card>
+    <AddUser
+      v-model="data.addFormShow"
+      :title="$t('pages.add_user')"
+      @addSuccess="handleCurrentChange(data.pagination.page)"
+      @close = "data.addFormShow = false"
+    />
   </div>
 </template>
 
@@ -95,6 +102,8 @@ import {
   ref
 } from 'vue';
 import { ElMessage } from 'element-plus';
+import { RefreshRight } from '@element-plus/icons';
+import AddUser from './AddUser.vue';
 import { deleteList, userStatusChange } from '@/api/admin/user-profile';
 import { nullArray } from '@/constant/Type';
 import { useI18n } from 'vue-i18n';
@@ -104,6 +113,7 @@ import { getStatusEnum } from '@/constant/enums/disable';
 
 export default defineComponent({
   name: 'UserForm',
+  components: { RefreshRight, AddUser },
   props: {
     tableData: {
       type: Object as PropType<Array<UserProfileVO>>,
@@ -131,6 +141,7 @@ export default defineComponent({
       selection: {
         idList: [] as Array<number>,
       },
+      addFormShow: false,
     });
     const tableRef = ref();
     const handleSizeChange = function(size: number) {
@@ -172,6 +183,9 @@ export default defineComponent({
         data.selection.idList.push(element.id);
       });
     };
+    const handleAddUser = function () {
+      data.addFormShow = true;
+    };
     const setSex = function (row: UserProfileVO) {
       return getSex(row.sex);
     };
@@ -198,6 +212,7 @@ export default defineComponent({
       editUser,
       deleteUser,
       tableRef,
+      handleAddUser,
       handleDeselect,
       handleDeleteList,
       handleSelectChange,
@@ -210,7 +225,28 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.table_top{
+  margin-bottom: 10px;
+  display: flex;
+  .u_table_title{
+    display: flex;
+    padding-left: 7px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: center;
+    color: #000000d9;
+    cursor: pointer;
+  }
+  .u_table_toolbar{
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    display: flex;
+  }
+}
+
 .table_switch{
   margin-right: 10px;
 }

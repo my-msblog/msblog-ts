@@ -2,7 +2,9 @@
   <div>
     <NavCards />
     <div class="pie-echart">
-      <BaseEcharts :options="options" />
+      <el-card>
+        <BaseEcharts :options="options" />
+      </el-card>
     </div>
   </div>
 </template>
@@ -45,6 +47,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .pie-echart{
-  width: 700px;
+  margin-top: 10px;
+  width: calc(100%);
 }
 </style>
