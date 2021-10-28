@@ -1,12 +1,12 @@
 // vue.config.js
 const path = require('path');
-const webpack = require('webpack');
 const resolve = (dir) => path.join(__dirname, dir);
 
 module.exports = {
   outputDir: 'dist',
   assetsDir: 'assets',
   chainWebpack: config => {
+    // 加载svg图片
     const svgRule = config.module.rule('svg');
     svgRule.uses.clear();
     svgRule
@@ -16,14 +16,16 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end();
+    // vue html title
     config.resolve.symlinks(true);
     config
       .plugin('html')
       .tap(args => {
-        args[0].title = process.env.VUE_APP_TITLE; // vue html title
+        args[0].title = process.env.VUE_APP_TITLE;
         return args;
       });
-    config.resolve.alias // 添加别名
+    // 添加别名
+    config.resolve.alias
       .set('@', resolve('src'))
       .set('@assets', resolve('src/assets'))
       .set('@components', resolve('src/components'))
@@ -33,17 +35,21 @@ module.exports = {
   devServer: {
     compress: true,
     host: process.env.VUE_APP_HOST,
-    port: process.env.VUE_APP_PORT, // 启动端口
-    // hot: true,
-    // open: true, // 启动后是否自动打开网页
+    // 启动端口
+    port: process.env.VUE_APP_PORT,
+    // 启动后是否自动打开网页
+    // open: true,
     https: false,
     proxy: {
-      '/api': { // '/api' 可以自己修改
-        target: process.env.VUE_APP_BASE_URL, // 接口域名
-        changeOrigin: true, // 是否跨域
+      '/api': {
+        // 接口域名
+        target: process.env.VUE_APP_BASE_URL,
+        // 是否跨域
+        changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/api': '' // 需要rewrite重写的,
+          // 需要rewrite重写的,
+          '^/api': ''
         }
       }
     }
