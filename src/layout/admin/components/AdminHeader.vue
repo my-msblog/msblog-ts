@@ -63,6 +63,7 @@ export default defineComponent({
           break;
         case 'logout':
           logout().then(() => {
+            store.commit('clearUser');
             ElMessage({
               message: t('message.successful_logout'),
               type: 'success',

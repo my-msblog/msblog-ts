@@ -134,15 +134,13 @@ export default defineComponent({
           router.push('/userInfo');
           break;
         case 'signOut':
+          store.commit('clearUser');
           logout().then(() => {
-            store.commit('clearUser');
             ElMessage.success({
               message: t('message.sign_out_success'),
               type: 'success',
               duration: 2 * 1000,
             });
-          }).catch(() => {
-            store.commit('clearUser');
           });
           router.push('/login');
           break;
