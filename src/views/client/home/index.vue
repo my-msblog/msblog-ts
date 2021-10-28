@@ -5,6 +5,7 @@
       <h3 class="titles">今天也要加油鸭</h3>
     </div>
     <el-button @click="toAdmin" style="position: sticky"> to admin</el-button>
+    <SvgIcon name="test" :size="24" color="#777" />
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     yar<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     test
@@ -17,6 +18,7 @@ import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Home',
+  components: { },
   setup() {
     const router = useRouter();
     function toAdmin() {
