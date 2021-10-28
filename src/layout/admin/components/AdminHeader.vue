@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent } from 'vue';
 import { logout } from '@/api/sys';
 import { ElMessage } from 'element-plus';
 import { useI18n } from 'vue-i18n';
@@ -56,13 +56,12 @@ export default defineComponent({
     const { t } = useI18n();
     const router = useRouter();
     const store = useStore();
-    const data = reactive({});
-    const handleCommand = function (command: string) {
+    const handleCommand = async function (command: string) {
       switch (command) {
         case 'pwd_change':
           break;
         case 'logout':
-          logout().then(() => {
+          await logout().then(() => {
             store.commit('clearUser');
             ElMessage({
               message: t('message.successful_logout'),
@@ -86,7 +85,6 @@ export default defineComponent({
       store.commit('clearUser');
     };
     return {
-      data,
       handleCommand,
       backHome,
     };
