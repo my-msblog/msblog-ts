@@ -5,36 +5,29 @@
       <div class="logo_text">{{ $t('bar.title') }}</div>
     </div>
     <div class="ah_right">
-      <el-row
-        :gutter="10"
-        justify="space-around"
-        align="middle">
-        <el-col :span="5">
-          <el-tooltip effect="dark" :content="$t('message.blog_home')" placement="bottom-start">
-            <div @click="backHome">
-              <el-icon>
-                <monitor style="width: 1.3em; height: 1.3em; margin-right: 7px" />
-              </el-icon>
-            </div>
-          </el-tooltip>
-        </el-col>
-        <el-col :span="12">
-          <Language class="ah_change" />
-        </el-col>
-        <el-col :span="7">
-          <div>
-            <el-dropdown style="" @command="handleCommand">
-              <el-avatar icon="el-icon-user-solid" size="small" />
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item command="pwd_change">{{ $t('message.change_password') }}</el-dropdown-item>
-                  <el-dropdown-item command="logout">{{ $t('message.logout') }}</el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </div>
-        </el-col>
-      </el-row>
+      <el-tooltip
+        effect="dark"
+        :content="$t('message.blog_home')"
+        placement="bottom-start"
+        style="width: 1.3em; height: 1.3em;">
+        <div @click="backHome">
+          <el-icon>
+            <monitor style="width: 1.3em; height: 1.3em; margin-right: 7px" />
+          </el-icon>
+        </div>
+      </el-tooltip>
+      <Language class="ah_change" />
+      <div>
+        <el-dropdown style="" @command="handleCommand">
+          <el-avatar icon="el-icon-user-solid" size="small" />
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="pwd_change">{{ $t('message.change_password') }}</el-dropdown-item>
+              <el-dropdown-item command="logout">{{ $t('message.logout') }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -101,15 +94,17 @@ export default defineComponent({
 }
 
 .ah_right{
-  text-align: center;
-  display: block;
+  display: flex;
   float: right;
   margin-right: 15px;
+  align-items: center;
+  height:#{$admin_header_height};
+  .ah_change{
+    color: #000 !important;
+    margin: 5px;
+  }
 }
-.ah_change{
-  color: #000 !important;
-  margin: 0 !important;
-}
+
 
 .left_logo{
   float: left;
