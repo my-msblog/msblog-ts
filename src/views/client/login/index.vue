@@ -113,6 +113,8 @@ export default defineComponent({
           duration: 2 * 1000,
         });
         router.push('/userInfo');
+      }).catch(() => {
+        handleArithmetic();
       });
     };
     const handleArithmetic = function() {

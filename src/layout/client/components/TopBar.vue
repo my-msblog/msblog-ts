@@ -125,24 +125,24 @@ export default defineComponent({
       const username = store.getters.getUsername;
       return (username === '' || username === null);
     };
-    const handleCommand = function(command: string) {
+    const handleCommand = async function(command: string) {
       switch (command) {
         case 'changePwd':
           console.log(command);
           break;
         case 'pCenter':
-          router.push('/userInfo');
+          await router.push('/userInfo');
           break;
         case 'signOut':
-          store.commit('clearUser');
-          logout().then(() => {
+          await logout().then(() => {
             ElMessage.success({
               message: t('message.sign_out_success'),
               type: 'success',
               duration: 2 * 1000,
             });
           });
-          router.push('/login');
+          await router.push('/login');
+          store.commit('clearUser');
           break;
       }
     };
