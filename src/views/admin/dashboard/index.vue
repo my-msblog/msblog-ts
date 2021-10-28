@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding: 0.5rem">
     <NavCards />
     <div class="pie-echart">
       <el-card>
