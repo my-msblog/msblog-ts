@@ -16,7 +16,7 @@
                 :style="{width: '100%'}" />
             </el-form-item>
           </el-col>
-          <el-col :span="24">
+          <el-col :span="10">
             <el-form-item :label="t('pages.sex')+':'">
               <el-radio-group v-model="data.formData.sex" size="medium">
                 <el-radio
