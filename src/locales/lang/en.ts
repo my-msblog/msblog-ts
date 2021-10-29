@@ -19,6 +19,7 @@ export default {
     no_data_selected: 'No data selected',
     operation_success: 'Operation success',
     confirm_submit:'Confirm Submit',
+    must_login: 'Please login first'
   },
   pages: {
     ...module.pages.en,
@@ -48,5 +49,6 @@ export default {
   },
   button: {
     ...module.button.en,
-  }
+  },
+  constants: module.constants.en,
 };

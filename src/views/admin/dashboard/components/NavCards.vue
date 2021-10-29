@@ -29,14 +29,66 @@
   </el-row>
 </template>
 
-<script>
-import { defineComponent, reactive } from 'vue';
-import { growCardList } from './data';
+<script lang="ts">
+import { defineComponent, reactive, PropType } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { GrowCardItem, CardValue } from './data';
+import { nullData } from '@/constant/Type';
+const defaultCardValue: CardValue = {
+  visit: 0,
+  user: 0,
+  articles: 0,
+  comments: 0,
+};
 export default defineComponent({
   name: 'NavCards',
-  setup() {
+  props: {
+    value: {
+      type: Object as PropType<CardValue>,
+      default: nullData<CardValue>(defaultCardValue)
+    },
+    total: {
+      type: Object as PropType<CardValue>,
+      default: nullData<CardValue>(defaultCardValue)
+    }
+  },
+  setup(props) {
+    const { t } = useI18n();
     const data = reactive({
-      growCardList,
+      growCardList: [
+        {
+          title: t('pages.visit_num'),
+          icon: 'visit',
+          value: props.value?.visit,
+          total: props.total?.visit,
+          color: '',
+          action: t('constants.month'),
+        },
+        {
+          title: t('pages.articles_num'),
+          icon: 'articles',
+          value: props.value?.articles,
+          total: props.total?.articles,
+          color: 'warning',
+          action: t('constants.week'),
+        },
+        {
+          title: t('pages.comments_num'),
+          icon: 'comment',
+          value: props.value?.comments,
+          total: props.total?.comments,
+          color: 'danger',
+          action: t('constants.all'),
+        },
+        {
+          title: t('pages.user_num'),
+          icon: 'user',
+          value: props.value?.user,
+          total: props.total?.user,
+          color: 'success',
+          action: t('constants.all'),
+        },
+      ] as GrowCardItem[],
     });
     return {
       data,

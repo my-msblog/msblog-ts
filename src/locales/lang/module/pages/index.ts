@@ -26,6 +26,11 @@ export default {
     edit_info: '编辑信息',
     tips: '提示',
     user_list: '用户列表',
+    flow_statistics: '人流量统计',
+    visit_num: '访问数量',
+    user_num: '用户数量',
+    articles_num: '文章数量',
+    comments_num: '评论数量',
   },
   en: {
     back: 'Back',
@@ -54,5 +59,10 @@ export default {
     edit_info: 'Edit Info',
     tips: 'Tips',
     user_list: 'User List',
+    flow_statistics: 'Footfall statistics',
+    visit_num: 'Number of visit',
+    user_num: 'Number of user',
+    articles_num: 'Number of articles',
+    comments_num: 'Number of comments',
   }
 };

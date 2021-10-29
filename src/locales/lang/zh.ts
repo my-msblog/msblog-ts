@@ -19,6 +19,7 @@ export default {
     introduce_yourself_briefly: '简单的介绍下自己吧',
     no_data_selected: '未选中任何数据',
     operation_success: '操作成功',
+    must_login: '请先登录！'
   },
   pages:{
     ...module.pages.zh,
@@ -46,5 +47,6 @@ export default {
   role: module.role.zh,
   button: {
     ...module.button.zh,
-  }
+  },
+  constants: module.constants.zh,
 };
