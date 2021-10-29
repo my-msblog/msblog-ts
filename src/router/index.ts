@@ -29,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
     }else {
       ElMessage({
         showClose: true,
-        message: 'Please login first',
+        message: t('message.must_login'),
         type: 'error',
         duration: 2 * 1000,
       });
@@ -47,7 +47,7 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to, from, next) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // eslint-disable-next-line
   // @ts-ignore
   document.querySelector('body').setAttribute('style', 'overflow: auto !important;');
   window.scrollTo(0, 0);
