@@ -1,10 +1,13 @@
 export function nullArray<T> (): Array<T>{
   return [];
 }
+export function dataArray<T> (data: Array<T>): Array<T>{
+  return data;
+}
 interface obj{
   [key: string]: any;
 }
-export function nullData ( t: obj ): obj{
+export function nullData<T> ( t: T ): T{
   return t;
 }
 export interface functionType{
