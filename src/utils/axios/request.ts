@@ -34,7 +34,7 @@ service.interceptors.response.use(
         });
         if (data.code === 401) {
           store.commit('clearUser');
-          router.push('/login').then();
+          router.replace('/login').then();
         }
         return reject(data.msg || 'error');
       } else {

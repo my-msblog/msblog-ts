@@ -21,7 +21,7 @@ import svgLoader from './plugins/svgIcon/svg-loader';
   registerGlobComp(app);
   // router ready https://next.router.vuejs.org/api/#isready
   app.use(router);
-  await router.isReady();
+  // await router.isReady();
   app.use(store).mount('#app');
 })();
 
