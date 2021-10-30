@@ -1,6 +1,8 @@
 <template>
   <div style="padding: 0.5rem">
-    <NavCards />
+    <NavCards 
+      :total="data.cardTotal"
+      :value="data.cardValue" />
     <div class="pie-echart">
       <FlowAnalysis />
     </div>
@@ -8,20 +10,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType } from 'vue';
+import { defineComponent, onMounted, PropType, reactive } from 'vue';
 import NavCards from './components/NavCards.vue';
 import FlowAnalysis from './components/FlowAnalysis.vue';
+import { CardValue } from './components/data';
+import { getStatistic } from '@/api/admin/dashboard';
 export default defineComponent({
   name: 'Dashboard',
   components: { NavCards, FlowAnalysis },
   props: {
-    title: Object as PropType<string>,
-    xLabels: [] as PropType<string[]>,
-    values: [] as PropType<any[]>,
   },
   setup(props) {
-
+    const data = reactive({
+      cardValue: {} as CardValue,
+      cardTotal: {} as CardValue,
+    });
+    const handleCard = function () {
+      getStatistic().then((res) => {
+        data.cardValue = res.value;
+        data.cardTotal = res.total;
+      });
+    };
+    onMounted(() => {
+      // handleCard();
+    });
     return {
+      data,
     };
   }
 });
