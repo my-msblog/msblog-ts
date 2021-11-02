@@ -30,7 +30,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType } from 'vue';
+import {
+  defineComponent,
+  reactive,
+  PropType,
+  watchEffect, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { GrowCardItem, CardValue } from './data';
 import { nullData } from '@/constant/Type';
@@ -59,8 +63,8 @@ export default defineComponent({
         {
           title: t('pages.visit_num'),
           icon: 'visit',
-          value: props.value?.visit,
-          total: props.total?.visit,
+          value: props.value.visit,
+          total: props.total.visit,
           color: '',
           action: t('constants.month'),
         },
@@ -78,7 +82,7 @@ export default defineComponent({
           value: props.value?.comments,
           total: props.total?.comments,
           color: 'danger',
-          action: t('constants.all'),
+          action: t('constants.week'),
         },
         {
           title: t('pages.user_num'),
@@ -90,8 +94,21 @@ export default defineComponent({
         },
       ] as GrowCardItem[],
     });
+    watchEffect(()=>{
+      const propContent = props.value;
+      data.growCardList[0].value = propContent?.visit;
+      data.growCardList[1].value = propContent?.articles;
+      data.growCardList[2].value = propContent?.comments;
+      data.growCardList[3].value = propContent?.user;
+      const propTotal = props.total;
+      data.growCardList[0].total = propTotal?.user;
+      data.growCardList[1].total = propTotal?.user;
+      data.growCardList[2].total = propTotal?.user;
+      data.growCardList[3].total = propTotal?.user;
+    });
     return {
       data,
+      props,
     };
   },
 });

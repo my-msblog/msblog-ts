@@ -2,7 +2,7 @@ import { StatisticsVO } from '@/api/model/admin/dashboard';
 import request from '@/utils/axios/request';
 
 enum Api {
-  getStatistic = '',
+  getStatistic = '/board/card/value',
 
 }
 export function getStatistic(){

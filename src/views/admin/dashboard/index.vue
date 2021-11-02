@@ -1,8 +1,8 @@
 <template>
   <div style="padding: 0.5rem">
-    <NavCards 
+    <NavCards
       :total="data.cardTotal"
-      :value="data.cardValue" />
+      :value="data.cardValue"  />
     <div class="pie-echart">
       <FlowAnalysis />
     </div>
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, reactive } from 'vue';
+import { defineComponent, toRefs, ref } from 'vue';
 import NavCards from './components/NavCards.vue';
 import FlowAnalysis from './components/FlowAnalysis.vue';
 import { CardValue } from './components/data';
@@ -21,21 +21,20 @@ export default defineComponent({
   props: {
   },
   setup(props) {
-    const data = reactive({
+    const data = ref({
       cardValue: {} as CardValue,
       cardTotal: {} as CardValue,
     });
     const handleCard = function () {
       getStatistic().then((res) => {
-        data.cardValue = res.value;
-        data.cardTotal = res.total;
+        data.value.cardValue = res.value;
+        data.value.cardTotal = res.total;
       });
     };
-    onMounted(() => {
-      // handleCard();
-    });
+    handleCard();
     return {
       data,
+      ...toRefs(data),
     };
   }
 });
