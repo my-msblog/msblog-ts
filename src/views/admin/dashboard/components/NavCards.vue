@@ -101,9 +101,9 @@ export default defineComponent({
       data.growCardList[2].value = propContent?.comments;
       data.growCardList[3].value = propContent?.user;
       const propTotal = props.total;
-      data.growCardList[0].total = propTotal?.user;
-      data.growCardList[1].total = propTotal?.user;
-      data.growCardList[2].total = propTotal?.user;
+      data.growCardList[0].total = propTotal?.visit;
+      data.growCardList[1].total = propTotal?.articles;
+      data.growCardList[2].total = propTotal?.comments;
       data.growCardList[3].total = propTotal?.user;
     });
     return {
