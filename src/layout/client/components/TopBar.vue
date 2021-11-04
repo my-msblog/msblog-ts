@@ -178,7 +178,7 @@ export default defineComponent({
       float: right;
       margin-right: 30px;
       text-align: center;
-
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Lato,Roboto,PingFang SC,Microsoft YaHei,sans-serif!important;
       .icon_h:hover{
         color: #49b1f5;
       }
