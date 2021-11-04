@@ -57,13 +57,15 @@ export default defineComponent({
   .c_header{
     background: rgba(255,255,255,0);
     width: 100%;
+    height: 56px;
     position: fixed;
     z-index: 999;
     padding: 0;
+    display: flex;
+    align-items: center;
     box-shadow: 0 0 ;
     .header_main{
       width: 100%;
-      margin-top: 15px;
     }
   }
   .c_main{

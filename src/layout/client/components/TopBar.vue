@@ -1,7 +1,7 @@
 <template>
   <div class="ly_top">
     <div class="center_container">
-      <div class="right_title">
+      <div class="left_title">
         <router-link
           to="/home"
           class="title"
@@ -64,7 +64,7 @@
             class="drop_down"
             style="margin-left: 15px"
             @command="handleCommand">
-            <el-avatar icon="el-icon-user-solid" size="small" />
+            <el-avatar :src="data.imgsrc" :size="23" />
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item command="changePwd">{{ $t('bar.change_password') }}</el-dropdown-item>
@@ -104,6 +104,7 @@ export default defineComponent({
       style: {},
       opacity: 0,
       iconColor: 'rgba(255, 255, 255,0.9)',
+      imgsrc: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
     });
     const handleWindowScroll = function () {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
@@ -161,15 +162,23 @@ export default defineComponent({
   .center_container{
     width: 100%;
     height: 30px;
-    margin: auto;
-    text-align: center;
+   
+     .left_title{
+      float: left;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 30px;
+    }
+
     .menu-title{
       height: 22px;
       display: flex;
+      font-size: 14px;
       align-items: center;
       float: right;
       margin-right: 30px;
       text-align: center;
+
       .icon_h:hover{
         color: #49b1f5;
       }
@@ -197,11 +206,7 @@ export default defineComponent({
     .router-link-active {
       text-decoration: none;
     }
-    .right_title{
-      float: left;
-      font-size: 18px;
-      font-weight: bold;
-    }
+  
     .change_text{
       margin-left: 20px;
       color: rgba(255,255,255,0.9);
