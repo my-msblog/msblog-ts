@@ -1,5 +1,5 @@
 import { ArticleCardVO } from '../../model/client/home';
-import { BaseDTO } from '@/api/model/core';
+import { BaseDTO, PageInfo } from '@/api/model/core';
 import requset from '@/utils/axios/request';
 
 enum Api {
@@ -7,7 +7,7 @@ enum Api {
 }
 
 export function getArticlePage(dto : BaseDTO){
-  return requset.post<ArticleCardVO>({
+  return requset.post<PageInfo<ArticleCardVO>>({
     url: Api.articlePages,
     data: dto,
   });

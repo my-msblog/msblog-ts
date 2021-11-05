@@ -36,6 +36,7 @@ export default {
     change_password: 'Change password',
     personal_center: 'Personal center',
     sign_out: 'Sign Out',
+    to_admin: 'Backstage control panel',
   },
   router: {
     ...module.route.en,

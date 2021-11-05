@@ -12,5 +12,6 @@ export default {
     state.user.user_phone = '';
     state.user.user_introduction = '';
     state.permission.permission_menu = [];
+    state.user.user_role = '';
   },
 };

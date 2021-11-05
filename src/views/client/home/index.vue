@@ -4,32 +4,61 @@
       <h3 class="title">欢迎来到我的个人网站</h3>
       <h3 class="titles">今天也要加油鸭</h3>
     </div>
-    <el-button @click="toAdmin" style="position: sticky"> to admin</el-button>
-    <SvgIcon name="test" :size="24" color="#777" />
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    yar<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    test
+    <div class="home_main">
+      <el-row class="el-row" :gutter="10">
+        <el-col :span="18">
+          <ArticleCards :article-list="data.articleList" />
+        </el-col>
+        <el-col :span="6">
+          <IdCard />
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import ArticleCards from './components/ArticleCards.vue';
+import IdCard from './components/IdCard.vue';
+import { getArticlePage } from '@/api/client/home';
+import { ArticleCardVO } from '@/api/model/client/home';
 
 export default defineComponent({
   name: 'Home',
-  components: { },
+  components: { ArticleCards, IdCard },
   setup() {
     const router = useRouter();
-    function toAdmin() {
-      router.push('/admin');
-    }
-    return { toAdmin };
+    const data = reactive({
+      pagination: {
+        size: 10,
+        page: 1,
+      },
+      articleList: [] as ArticleCardVO[],
+    });
+    const handleArticles = () => {
+      getArticlePage(data.pagination).then((res) => {
+        data.articleList = res.list;
+      });
+    };
+    onMounted(() => {
+      handleArticles();
+    });
+    return {
+      data,
+    };
   }
 });
 </script>
 
 <style lang="scss" scoped>
+.el-row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+}
 .home-banner {
   left: 0;
   right: 0;
@@ -38,6 +67,7 @@ export default defineComponent({
   text-align: center;
   color: #fff !important;
   animation: header-effect 1s;
+
   .title {
     position: absolute;
     display: flex;
@@ -65,5 +95,10 @@ export default defineComponent({
     font-size: 20px;
     font-weight: 500;
   }
+}
+
+.home_main {
+  max-width: 1100px;
+  margin: 48px auto 28px;
 }
 </style>
