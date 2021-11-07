@@ -117,6 +117,7 @@ export default defineComponent({
       authentication().then();
       getRole().then((res) => {
         data.roleName = Role[res];
+        store.commit('setUserRole', res);
       });
     };
     onMounted(() => {
