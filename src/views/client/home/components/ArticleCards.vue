@@ -5,10 +5,10 @@
       v-for="(item, index) in articleList"
       :key="item">
       <div class="article-cover" :class="isRight(index)">
-        <el-skeleton 
-          style="width: 100%" 
-          :loading="loading" 
-          animated 
+        <el-skeleton
+          style="width: 100%"
+          :loading="loading"
+          animated
           :count="3">
           <template #template>
             <el-skeleton-item variant="image" style="width: 100%; height: 100%" />
@@ -64,10 +64,10 @@ export default defineComponent({
   margin-bottom: 20px;
 }
 .el-card:hover{
-   box-shadow:0 4px 12px 12px rgba(7,17,27,.15)
+  box-shadow:0 4px 12px 12px rgba(7,17,27,.15)
 }
 .el-card {
-   &:deep(.el-card__body) {
+  &:deep(.el-card__body) {
     padding: 0;
     display: flex;
     height: 250px;
@@ -94,7 +94,6 @@ export default defineComponent({
   }
   .article-wrapper{
     width: 50%;
-    font-size: 14px;
     padding: 0 2.5rem;
     text-align: left;
     font-size: 1.5rem;
@@ -115,7 +114,7 @@ export default defineComponent({
   }
 }
 .card_main:hover .on-hover{
-   transform: scale(1.1);
+  transform: scale(1.1);
 }
 .left-radius {
   border-radius: 8px 0 0 8px !important;
