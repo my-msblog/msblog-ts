@@ -19,4 +19,7 @@ export default defineComponent({
   padding: 10px;
   height: auto;
 }
+.el-card:hover{
+   box-shadow:0 4px 12px 12px rgba(7,17,27,.15)
+}
 </style>

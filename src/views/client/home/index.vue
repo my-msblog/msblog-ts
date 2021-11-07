@@ -2,12 +2,12 @@
   <div>
     <div class="home-banner">
       <h3 class="title">欢迎来到我的个人网站</h3>
-      <h3 class="titles">今天也要加油鸭</h3>
+      <h3 class="titles">这个人很懒，什么都没有说明，试试往下滑动！</h3>
     </div>
     <div class="home_main">
       <el-row class="el-row" :gutter="10">
         <el-col :span="18">
-          <ArticleCards :article-list="data.articleList" />
+          <ArticleCards :article-list="data.articleList" :loading="data.loading" />
         </el-col>
         <el-col :span="6">
           <IdCard />
@@ -36,10 +36,12 @@ export default defineComponent({
         page: 1,
       },
       articleList: [] as ArticleCardVO[],
+      loading: true,
     });
     const handleArticles = () => {
       getArticlePage(data.pagination).then((res) => {
         data.articleList = res.list;
+        data.loading = false;
       });
     };
     onMounted(() => {

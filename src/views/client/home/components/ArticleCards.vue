@@ -5,10 +5,25 @@
       v-for="(item, index) in articleList"
       :key="item">
       <div class="article-cover" :class="isRight(index)">
-        <el-image fit="fill" :src="item.cover" />
+        <el-skeleton 
+          style="width: 100%" 
+          :loading="loading" 
+          animated 
+          :count="3">
+          <template #template>
+            <el-skeleton-item variant="image" style="width: 100%; height: 100%" />
+            <div style="padding: 14px">
+              <el-skeleton-item variant="h3" style="width: 100%" />
+              <div class="empty_div" />
+            </div>
+          </template>
+          <template #default>
+            <el-image class="on-hover" fit="fill" :src="item.cover" />
+          </template>
+        </el-skeleton>
       </div>
       <div class="article-wrapper">
-        <div>{{ item.content }}</div>
+        <router-link to="" class="article-title">{{ item.title }}</router-link>
       </div>
     </el-card>
   </div>
@@ -23,11 +38,15 @@ export default defineComponent({
     articleList: {
       type: [] as PropType<Array<ArticleCardVO>>,
       default: [],
+    },
+    loading: {
+      type: Boolean as PropType<boolean>,
+      default: true,
     }
   },
   setup(props, { emit }) {
     const data = reactive({
-
+      loading: true,
     });
     const isRight = (index: number) => {
       return index % 2 == 0 ? 'left-radius' : 'right-radius';
@@ -42,11 +61,18 @@ export default defineComponent({
 <style lang="scss" scoped>
 .el-card{
   border-radius: 8px;
+  margin-bottom: 20px;
 }
-.el-card ::v-deep .el-card__body{
-  padding: 0;
-  display: flex;
-  height: 280px;
+.el-card:hover{
+   box-shadow:0 4px 12px 12px rgba(7,17,27,.15)
+}
+.el-card {
+   &:deep(.el-card__body) {
+    padding: 0;
+    display: flex;
+    height: 250px;
+    align-items: center;
+  }
 }
 .card_main{
   padding: 0;
@@ -55,19 +81,41 @@ export default defineComponent({
     height: 100%;
     display: flex;
     width: 45%;
+    .empty_div{
+      display: flex;
+      align-items: center;
+      justify-items: space-between;
+      margin-top: auto;
+      height: 16px;
+    }
+    .on-hover{
+      transition: all .6s;
+    }
   }
   .article-wrapper{
     width: 50%;
     font-size: 14px;
     padding: 0 2.5rem;
+    text-align: left;
+    font-size: 1.5rem;
+    transition: all .3s;
+    .article-title{
+      text-decoration: none;
+      color: #000;
+    }
   }
   .article-wrapper a {
     font-size: 1.5rem;
     transition: all 0.3s;
   }
   .article-wrapper a:hover {
+    font-size: 1.5rem;
+    transition: all 0.3s;
     color: #8e8cd8;
   }
+}
+.card_main:hover .on-hover{
+   transform: scale(1.1);
 }
 .left-radius {
   border-radius: 8px 0 0 8px !important;
