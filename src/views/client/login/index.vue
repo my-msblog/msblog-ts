@@ -38,7 +38,7 @@
               <el-image :src="data.imgSrc" style="height: 40px"  @click="handleArithmetic">
                 <template #error>
                   <div style="font-size: 30px">
-                    <i class="el-icon-picture-outline" />
+                    <i class="el-icon-picture-outline" @click="handleArithmetic" />
                   </div>
                 </template>
               </el-image>
