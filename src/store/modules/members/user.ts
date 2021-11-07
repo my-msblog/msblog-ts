@@ -10,7 +10,6 @@ interface UserState {
   user_sex: number,
   user_introduction: string,
   user_createTime: string,
-  user_role: string,
 }
 const state: UserState = {
   user_id: 0,
@@ -21,7 +20,6 @@ const state: UserState = {
   user_sex: -1,
   user_introduction: '',
   user_createTime: '',
-  user_role: '',
 };
 const mutations = {
   setUserId(state: UserState, id: number) {
@@ -56,10 +54,6 @@ const mutations = {
     state.user_createTime = createTime;
     sessionStorage.setItem('createTime', createTime);
   },
-  setUserRole(state: UserState, role: string) {
-    state.user_role = role;
-    sessionStorage.setItem('role', role);
-  }
 };
 const actions: ActionTree<UserState, any> = {
   setUserInfo (context: any, res: UserVO) {
@@ -98,9 +92,6 @@ const getters: GetterTree<UserState, any> = {
   getUserIntroduction(state: UserState) {
     return state.user_introduction ? state.user_introduction : sessionStorage.getItem('introduction');
   },
-  getUserRole(state: UserState) {
-    return state.user_role ? state.user_role : sessionStorage.getItem('role');
-  }
 };
 
 export default {

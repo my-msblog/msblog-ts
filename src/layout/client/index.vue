@@ -71,8 +71,6 @@ export default defineComponent({
   .c_main{
     min-height: calc(100vh - 100px);
     padding: 0;
-    display: block !important;
-    overflow: hidden;
     text-align: center;
     background-position-x: initial;
     background-position-y: initial;
@@ -86,10 +84,6 @@ export default defineComponent({
         rgba(7,179,155,.1) 86%,rgba(109,186,130,.1));
   }
   .c_footer{
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
     margin: 0;
     padding: 0;
   }

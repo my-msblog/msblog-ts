@@ -69,7 +69,6 @@
               <el-dropdown-menu>
                 <el-dropdown-item command="changePwd">{{ $t('bar.change_password') }}</el-dropdown-item>
                 <el-dropdown-item command="pCenter">{{ $t('bar.personal_center') }}</el-dropdown-item>
-                <el-dropdown-item v-if="isAdmin" command="toAdmin">{{ $t('bar.to_admin') }}</el-dropdown-item>
                 <el-dropdown-item command="signOut">{{ $t('bar.sign_out') }}</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -93,7 +92,6 @@ import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { logout } from '@/api/sys';
 import { ElMessage } from 'element-plus';
-import { functionTypeBase } from '@/constant/Type';
 
 export default defineComponent({
   name: 'TopBar',
@@ -128,9 +126,6 @@ export default defineComponent({
       const username = store.getters.getUsername;
       return (username === '' || username === null);
     };
-    const isAdmin: functionTypeBase<boolean> = function(): boolean{
-      return store.getters.getUserRole == '';
-    };
     const handleCommand = async function(command: string) {
       switch (command) {
         case 'changePwd':
@@ -150,16 +145,12 @@ export default defineComponent({
           await router.push('/login');
           store.commit('clearUser');
           break;
-        case 'toAdmin':
-          await router.push('/admin');
-          break;
       }
     };
     return {
       handleWindowScroll,
       handleCommand,
       data,
-      isAdmin,
       online,
     };
   }
@@ -171,7 +162,7 @@ export default defineComponent({
   .center_container{
     width: 100%;
     height: 30px;
-
+   
      .left_title{
       float: left;
       font-size: 18px;
@@ -215,7 +206,7 @@ export default defineComponent({
     .router-link-active {
       text-decoration: none;
     }
-
+  
     .change_text{
       margin-left: 20px;
       color: rgba(255,255,255,0.9);

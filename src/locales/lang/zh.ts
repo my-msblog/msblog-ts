@@ -36,7 +36,6 @@ export default {
     change_password: '修改密码',
     personal_center: '个人中心',
     sign_out: '登出',
-    to_admin: '后台控制面板',
   },
   router: {
     ...module.route.zh,
