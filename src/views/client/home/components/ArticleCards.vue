@@ -23,7 +23,21 @@
         </el-skeleton>
       </div>
       <div class="article-wrapper">
-        <router-link to="" class="article-title">{{ item.title }}</router-link>
+        <div>
+          <router-link to="" class="article-title">{{ item.title }}</router-link>
+        </div>
+        <div class="article-info">
+          <el-icon :size="12"><Calendar /></el-icon>
+          {{ item.createTime }}
+          <span class="separator">|</span>
+          <el-icon :size="14"><SvgIcon name="type" size="13" color="#0000008a" /></el-icon>
+          {{ item.typeName }}
+          <div class="article-tag" v-for="( tag, index) in item.tagVOList" :key="index">
+            <span class="separator">|</span>
+            <el-icon><CollectionTag /></el-icon>
+            <span>{{ tag.nameZh }}</span>
+          </div>
+        </div>
       </div>
     </el-card>
   </div>
@@ -31,6 +45,7 @@
 <script lang="ts">
 import { defineComponent, PropType, reactive } from 'vue';
 import { ArticleCardVO } from '@/api/model/client/home';
+import { Calendar, Menu, CollectionTag } from '@element-plus/icons';
 
 export default defineComponent({
   name: 'ArticleCards',
@@ -44,6 +59,7 @@ export default defineComponent({
       default: true,
     }
   },
+  components: { Calendar, CollectionTag },
   setup(props, { emit }) {
     const data = reactive({
       loading: true,
@@ -84,11 +100,12 @@ export default defineComponent({
     .empty_div{
       display: flex;
       align-items: center;
-      justify-items: space-between;
+      justify-content: space-between;
       margin-top: auto;
       height: 16px;
     }
     .on-hover{
+      width: 100%;
       transition: all .6s;
     }
   }
@@ -96,11 +113,23 @@ export default defineComponent({
     width: 50%;
     padding: 0 2.5rem;
     text-align: left;
-    font-size: 1.5rem;
+    font-size: 14px;
     transition: all .3s;
     .article-title{
       text-decoration: none;
       color: #000;
+    }
+    .article-info{
+      display: flex;
+      align-items: center;
+      color: rgba(0,0,0,.54);
+      .separator{
+          margin: 0 6px;
+      }
+      .article-tag{
+        display: flex;
+        align-items: center;
+      }
     }
   }
   .article-wrapper a {
