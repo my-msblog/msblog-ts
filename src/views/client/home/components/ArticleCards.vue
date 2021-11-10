@@ -32,11 +32,22 @@
           <span class="separator">|</span>
           <el-icon :size="14"><SvgIcon name="type" size="13" color="#0000008a" /></el-icon>
           {{ item.typeName }}
-          <div class="article-tag" v-for="( tag, index) in item.tagVOList" :key="index">
-            <span class="separator">|</span>
-            <el-icon><CollectionTag /></el-icon>
-            <span>{{ tag.nameZh }}</span>
+          <div 
+            class="article-tag" 
+            v-for="( tag, index) in item.tagVOList" 
+            :key="index">
+            <span class="separator" v-if="tagsExceeds(index)">|</span>
+            <el-icon v-if="tagsExceeds(index)"><CollectionTag /></el-icon>
+            <span v-if="tagsExceeds(index)">{{ tag.nameZh }}</span>
+            
           </div>
+          <div class="article-tag" v-if="showMore(item.tagVOList.length)">
+            <span class="separator">|</span>
+            <el-icon><More /></el-icon>
+          </div>
+        </div>
+        <div class="article-context">
+          {{ item.content }}
         </div>
       </div>
     </el-card>
@@ -45,7 +56,7 @@
 <script lang="ts">
 import { defineComponent, PropType, reactive } from 'vue';
 import { ArticleCardVO } from '@/api/model/client/home';
-import { Calendar, Menu, CollectionTag } from '@element-plus/icons';
+import { Calendar, More, CollectionTag } from '@element-plus/icons';
 
 export default defineComponent({
   name: 'ArticleCards',
@@ -59,17 +70,26 @@ export default defineComponent({
       default: true,
     }
   },
-  components: { Calendar, CollectionTag },
+  components: { Calendar, CollectionTag, More },
   setup(props, { emit }) {
     const data = reactive({
       loading: true,
+      tagsLengths: 2,
     });
     const isRight = (index: number) => {
       return index % 2 == 0 ? 'left-radius' : 'right-radius';
     };
+    const tagsExceeds = function(index: number){
+      return index < data.tagsLengths;
+    };
+    const showMore = (index: number): boolean => {
+      return index > data.tagsLengths;
+    };
     return {
       data,
       isRight,
+      tagsExceeds,
+      showMore,
     };
   },
 });
@@ -115,6 +135,13 @@ export default defineComponent({
     text-align: left;
     font-size: 14px;
     transition: all .3s;
+    .article-context{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
     .article-title{
       text-decoration: none;
       color: #000;
@@ -122,6 +149,7 @@ export default defineComponent({
     .article-info{
       display: flex;
       align-items: center;
+      padding: 7px 0;
       color: rgba(0,0,0,.54);
       .separator{
           margin: 0 6px;
