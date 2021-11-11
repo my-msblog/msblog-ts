@@ -7,7 +7,7 @@
     <div class="home_main">
       <el-row class="el-row" :gutter="10">
         <el-col :span="18">
-          <ArticleCards :article-list="data.articleList" :loading="data.loading" />
+          <ArticleCards :article-list="data.articleList" v-loading="data.loading" :loading="data.loading" />
         </el-col>
         <el-col :span="6">
           <IdCard />
