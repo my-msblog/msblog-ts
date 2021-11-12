@@ -10,7 +10,10 @@
           <ArticleCards :article-list="data.articleList" v-loading="data.loading" :loading="data.loading" />
         </el-col>
         <el-col :span="6">
-          <IdCard />
+          <IdCard 
+            :article="data.idCardValue.article"
+            :category="data.idCardValue.categroy"
+            :tags="data.idCardValue.tags" />
         </el-col>
       </el-row>
     </div>
@@ -34,6 +37,11 @@ export default defineComponent({
       pagination: {
         size: 10,
         page: 1,
+      },
+      idCardValue:{
+        article: 3,
+        categroy: 4,
+        tags: 5,
       },
       articleList: [] as ArticleCardVO[],
       loading: true,
@@ -60,6 +68,7 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   height: auto;
+  min-width: 1100px !important;
 }
 .home-banner {
   left: 0;

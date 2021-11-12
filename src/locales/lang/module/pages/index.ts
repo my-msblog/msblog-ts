@@ -31,6 +31,9 @@ export default {
     user_num: '用户数量',
     articles_num: '文章数量',
     comments_num: '评论数量',
+    article: '文章',
+    categroy: '分类',
+    tags: '标签',
   },
   en: {
     back: 'Back',
@@ -64,5 +67,8 @@ export default {
     user_num: 'Number of user',
     articles_num: 'Number of articles',
     comments_num: 'Number of comments',
+    article: 'Article',
+    categroy: 'Categroy',
+    tags: 'Tags',
   }
 };
