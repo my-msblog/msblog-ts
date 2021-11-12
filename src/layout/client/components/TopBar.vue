@@ -177,6 +177,7 @@ export default defineComponent({
       font-size: 18px;
       font-weight: bold;
       line-height: 30px;
+      max-width: 434px;
     }
 
     .menu-title{

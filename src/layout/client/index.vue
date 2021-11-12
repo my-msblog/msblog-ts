@@ -9,7 +9,9 @@
     <el-main class="c_main">
       <el-backtop visibility-height="5" />
       <transition name="el-fade-in-linear" :duration="10000">
-        <router-view />
+        <el-scrollbar>
+          <router-view />
+        </el-scrollbar>
       </transition>
     </el-main>
     <el-footer class="c_footer">
@@ -72,7 +74,7 @@ export default defineComponent({
     min-height: calc(100vh - 100px);
     padding: 0;
     display: block !important;
-    overflow: hidden;
+    overflow: auto;
     text-align: center;
     background-position-x: initial;
     background-position-y: initial;
