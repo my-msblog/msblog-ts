@@ -17,13 +17,21 @@
         class="btn-add"
         type="success"
         size="medium"
-        round>等等</el-button>
+        plain
+        round
+        @click="handleClickLable"
+      >{{ $t('button.add_to_tag') }}</el-button>
     </div>
   </el-card>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, watchEffect } from 'vue';
+import { 
+  defineComponent,
+  PropType, 
+  reactive, 
+  watchEffect } from 'vue';
+import { ElMessage } from 'element-plus';
 import { useI18n } from 'vue-i18n';
 import { nullData } from '@/constant/Type';
 
@@ -61,6 +69,11 @@ export default defineComponent({
         },
       }
     });
+    const handleClickLable = function(){
+      ElMessage.warning({
+        message: t('message.add_to_lable'),
+      });
+    };
     watchEffect(() => {
       const watchProp = props;
       data.infoList.article.value = watchProp.article;
@@ -69,6 +82,7 @@ export default defineComponent({
     });
     return {
       data,
+      handleClickLable,
     };
   }
 });
@@ -116,6 +130,7 @@ export default defineComponent({
     height: 25px !important;
     margin: 15px 7px 0;
     padding: 3px;
+    border-color: #67c23a;
   }
 }
 </style>
