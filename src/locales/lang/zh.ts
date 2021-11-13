@@ -19,7 +19,8 @@ export default {
     introduce_yourself_briefly: '简单的介绍下自己吧',
     no_data_selected: '未选中任何数据',
     operation_success: '操作成功',
-    must_login: '请先登录！'
+    must_login: '请先登录！',
+    add_to_lable: '加入收藏失败，请使用Ctrl+D进行添加',
   },
   pages:{
     ...module.pages.zh,

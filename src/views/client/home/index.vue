@@ -8,6 +8,7 @@
       <el-row class="el-row" :gutter="10">
         <el-col :span="18">
           <ArticleCards :article-list="data.articleList" v-loading="data.loading" :loading="data.loading" />
+          <div v-if="data.showFailed" @click="handleArticles">Loading Failed</div>
         </el-col>
         <el-col :span="6">
           <IdCard 
@@ -45,11 +46,20 @@ export default defineComponent({
       },
       articleList: [] as ArticleCardVO[],
       loading: true,
+      showFailed: false,
     });
     const handleArticles = () => {
+      data.loading = true;
+      window.setTimeout(() =>{
+        if(data.loading){
+          data.showFailed = true;
+          data.loading = false;
+        }
+      }, 5000);  
       getArticlePage(data.pagination).then((res) => {
         data.articleList = res.list;
         data.loading = false;
+        data.showFailed = false;
       });
     };
     onMounted(() => {
@@ -57,6 +67,7 @@ export default defineComponent({
     });
     return {
       data,
+      handleArticles,
     };
   }
 });
