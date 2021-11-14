@@ -1,7 +1,7 @@
 <template>
   <el-card>
     <div class="wapper">
-      <el-avatar 
+      <el-avatar
         shape="square"
         :size="70"
         src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
@@ -13,23 +13,23 @@
           <div class="blog-info-item-value">{{ item.value }}</div>
         </div>
       </div>
-      <el-button 
+      <el-button
         class="btn-add"
         type="success"
         size="medium"
         plain
         round
-        @click="handleClickLable"
+        @click="handleClickLabel"
       >{{ $t('button.add_to_tag') }}</el-button>
     </div>
   </el-card>
 </template>
 
 <script lang="ts">
-import { 
+import {
   defineComponent,
-  PropType, 
-  reactive, 
+  PropType,
+  reactive,
   watchEffect } from 'vue';
 import { ElMessage } from 'element-plus';
 import { useI18n } from 'vue-i18n';
@@ -69,7 +69,7 @@ export default defineComponent({
         },
       }
     });
-    const handleClickLable = function(){
+    const handleClickLabel = function(){
       ElMessage.warning({
         message: t('message.add_to_lable'),
       });
@@ -82,7 +82,7 @@ export default defineComponent({
     });
     return {
       data,
-      handleClickLable,
+      handleClickLabel,
     };
   }
 });

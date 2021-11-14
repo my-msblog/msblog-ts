@@ -21,6 +21,7 @@ export default {
     operation_success: '操作成功',
     must_login: '请先登录！',
     add_to_lable: '加入收藏失败，请使用Ctrl+D进行添加',
+    ...module.message.zh,
   },
   pages:{
     ...module.pages.zh,

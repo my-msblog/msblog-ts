@@ -8,10 +8,14 @@
       <el-row class="el-row" :gutter="10">
         <el-col :span="18">
           <ArticleCards :article-list="data.articleList" v-loading="data.loading" :loading="data.loading" />
-          <div v-if="data.showFailed" @click="handleArticles">Loading Failed</div>
+          <RefreshRight
+            v-if="data.showFailed"
+            @click="handleArticles"
+            class="btn-reload"
+          />
         </el-col>
         <el-col :span="6">
-          <IdCard 
+          <IdCard
             :article="data.idCardValue.article"
             :category="data.idCardValue.categroy"
             :tags="data.idCardValue.tags" />
@@ -26,12 +30,13 @@ import { defineComponent, onMounted, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import ArticleCards from './components/ArticleCards.vue';
 import IdCard from './components/IdCard.vue';
+import RefreshRight from './components/RefreshRight.vue';
 import { getArticlePage } from '@/api/client/home';
 import { ArticleCardVO } from '@/api/model/client/home';
 
 export default defineComponent({
   name: 'Home',
-  components: { ArticleCards, IdCard },
+  components: { ArticleCards, IdCard, RefreshRight },
   setup() {
     const router = useRouter();
     const data = reactive({
@@ -50,12 +55,13 @@ export default defineComponent({
     });
     const handleArticles = () => {
       data.loading = true;
+      data.showFailed = false;
       window.setTimeout(() =>{
         if(data.loading){
           data.showFailed = true;
           data.loading = false;
         }
-      }, 5000);  
+      }, 5000);
       getArticlePage(data.pagination).then((res) => {
         data.articleList = res.list;
         data.loading = false;
@@ -68,6 +74,7 @@ export default defineComponent({
     return {
       data,
       handleArticles,
+      RefreshRight,
     };
   }
 });
@@ -80,6 +87,9 @@ export default defineComponent({
   flex-wrap: wrap;
   height: auto;
   min-width: 1100px !important;
+  .el-col {
+    align-items: center;
+  }
 }
 .home-banner {
   left: 0;
@@ -122,5 +132,8 @@ export default defineComponent({
 .home_main {
   max-width: 1100px;
   margin: 48px auto 28px;
+  .btn-reload{
+
+  }
 }
 </style>

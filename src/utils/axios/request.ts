@@ -2,12 +2,13 @@ import axios from 'axios';
 import { ElMessage } from 'element-plus';
 import store from '@/store';
 import router from '@/router';
+import { useI18n } from '@/hooks/useI18n';
 import { Delete, Get, Post, Put } from './type';
 const service = axios.create({
   baseURL: '/api',
   timeout: 5 * 1000,
 });
-
+const { t } = useI18n();
 service.interceptors.request.use(
   config => {
     // 获取后端传来的token
@@ -44,6 +45,9 @@ service.interceptors.response.use(
   }, error => {
     const response = error.response;
     let info = response.data;
+    if (response.status === 500){
+      info = t('message.server_error');
+    }
     if(response.data.msg) {
       info = response.data.msg;
     }
