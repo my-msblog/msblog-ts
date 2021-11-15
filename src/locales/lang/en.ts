@@ -20,7 +20,7 @@ export default {
     operation_success: 'Operation success',
     confirm_submit:'Confirm Submit',
     must_login: 'Please login first',
-    add_to_lable: 'Failed to add to collection, please use Ctrl+D to add',
+    add_to_label: 'Failed to add to collection, please use Ctrl+D to add',
     ...module.message.en,
   },
   pages: {

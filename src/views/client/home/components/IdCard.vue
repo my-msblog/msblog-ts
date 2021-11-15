@@ -21,6 +21,11 @@
         round
         @click="handleClickLabel"
       >{{ $t('button.add_to_tag') }}</el-button>
+      <div class="icon-list">
+        <SvgIcon name="qq-circle" size="28" @click="handleQQ" />
+        <SvgIcon name="github"  size="28" />
+        <SvgIcon name="gitee" size="28" />
+      </div>
     </div>
   </el-card>
 </template>
@@ -37,6 +42,7 @@ import { nullData } from '@/constant/Type';
 
 export default defineComponent({
   name: 'IdCard',
+  components: {},
   props: {
     article: {
       type: Number as PropType<number>,
@@ -59,8 +65,8 @@ export default defineComponent({
           title: t('pages.article'),
           value: 0,
         },
-        categroy: {
-          title: t('pages.categroy'),
+        category: {
+          title: t('pages.category'),
           value: 0,
         },
         tags: {
@@ -71,18 +77,22 @@ export default defineComponent({
     });
     const handleClickLabel = function(){
       ElMessage.warning({
-        message: t('message.add_to_lable'),
+        message: t('message.add_to_label'),
       });
+    };
+    const handleQQ =() =>{
+      window.open('https:www.baidu.com', '_blank');
     };
     watchEffect(() => {
       const watchProp = props;
       data.infoList.article.value = watchProp.article;
-      data.infoList.categroy.value = watchProp.category;
+      data.infoList.category.value = watchProp.category;
       data.infoList.tags.value = watchProp.tags;
     });
     return {
       data,
       handleClickLabel,
+      handleQQ,
     };
   }
 });
@@ -100,7 +110,8 @@ export default defineComponent({
    box-shadow:0 4px 12px 12px rgba(7,17,27,.15)
 }
 .wapper{
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Lato,Roboto,PingFang SC,Microsoft YaHei,sans-serif!important;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,
+  Helvetica Neue,Lato,Roboto,PingFang SC,Microsoft YaHei,sans-serif!important;
   .wapper-name{
     font-size: 1.375rem;
     margin-top: 7px;
@@ -131,6 +142,15 @@ export default defineComponent({
     margin: 15px 7px 0;
     padding: 3px;
     border-color: #67c23a;
+  }
+  .icon-list{
+    margin: 15px 0 0;
+    display:flex;
+    flex-direction:row;
+    .svg-icon{
+      margin: auto;
+      flex: 1;
+    }
   }
 }
 </style>

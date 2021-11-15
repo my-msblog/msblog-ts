@@ -20,7 +20,7 @@ export default {
     no_data_selected: '未选中任何数据',
     operation_success: '操作成功',
     must_login: '请先登录！',
-    add_to_lable: '加入收藏失败，请使用Ctrl+D进行添加',
+    add_to_label: '加入收藏失败，请使用Ctrl+D进行添加',
     ...module.message.zh,
   },
   pages:{

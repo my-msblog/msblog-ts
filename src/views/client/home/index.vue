@@ -17,8 +17,9 @@
         <el-col :span="6">
           <IdCard
             :article="data.idCardValue.article"
-            :category="data.idCardValue.categroy"
+            :category="data.idCardValue.category"
             :tags="data.idCardValue.tags" />
+          <Announcement class="announcement-card" :context="data.announcement" />
         </el-col>
       </el-row>
     </div>
@@ -31,13 +32,16 @@ import { useRouter } from 'vue-router';
 import ArticleCards from './components/ArticleCards.vue';
 import IdCard from './components/IdCard.vue';
 import RefreshRight from './components/RefreshRight.vue';
+import Announcement from './components/Announcement.vue';
 import { getArticlePage } from '@/api/client/home';
 import { ArticleCardVO } from '@/api/model/client/home';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'Home',
-  components: { ArticleCards, IdCard, RefreshRight },
+  components: { ArticleCards, IdCard, RefreshRight, Announcement },
   setup() {
+    const { t } = useI18n();
     const router = useRouter();
     const data = reactive({
       pagination: {
@@ -46,12 +50,13 @@ export default defineComponent({
       },
       idCardValue:{
         article: 3,
-        categroy: 4,
+        category: 4,
         tags: 5,
       },
       articleList: [] as ArticleCardVO[],
       loading: true,
       showFailed: false,
+      announcement: t('message.null_announcement'),
     });
     const handleArticles = () => {
       data.loading = true;
@@ -68,8 +73,12 @@ export default defineComponent({
         data.showFailed = false;
       });
     };
+    const handleAnnouncements = () => {
+
+    };
     onMounted(() => {
       handleArticles();
+      handleAnnouncements();
     });
     return {
       data,
@@ -134,6 +143,9 @@ export default defineComponent({
   margin: 48px auto 28px;
   .btn-reload{
 
+  }
+  .announcement-card{
+    margin-top: 15px;
   }
 }
 </style>

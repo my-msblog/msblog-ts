@@ -32,7 +32,7 @@ export default {
     articles_num: '文章数量',
     comments_num: '评论数量',
     article: '文章',
-    categroy: '分类',
+    category: '分类',
     tags: '标签',
   },
   en: {
@@ -68,7 +68,7 @@ export default {
     articles_num: 'Number of articles',
     comments_num: 'Number of comments',
     article: 'Article',
-    categroy: 'Categroy',
+    category: 'Categroy',
     tags: 'Tags',
   }
 };
