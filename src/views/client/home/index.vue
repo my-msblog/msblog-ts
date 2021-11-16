@@ -18,7 +18,7 @@
           <IdCard
             :article="data.idCardValue.article"
             :category="data.idCardValue.category"
-            :tags="data.idCardValue.tags" />
+            :tags="data.idCardValue.tag" />
           <Announcement class="announcement-card" :context="data.announcement" />
         </el-col>
       </el-row>
@@ -33,7 +33,7 @@ import ArticleCards from './components/ArticleCards.vue';
 import IdCard from './components/IdCard.vue';
 import RefreshRight from './components/RefreshRight.vue';
 import Announcement from './components/Announcement.vue';
-import { getArticlePage } from '@/api/client/home';
+import { getArticlePage, getMainInfo } from '@/api/client/home';
 import { ArticleCardVO } from '@/api/model/client/home';
 import { useI18n } from 'vue-i18n';
 
@@ -49,9 +49,9 @@ export default defineComponent({
         page: 1,
       },
       idCardValue:{
-        article: 3,
-        category: 4,
-        tags: 5,
+        article: 0,
+        category: 0,
+        tag: 0,
       },
       articleList: [] as ArticleCardVO[],
       loading: true,
@@ -74,7 +74,9 @@ export default defineComponent({
       });
     };
     const handleAnnouncements = () => {
-
+      getMainInfo().then(res => {
+        data.idCardValue = res;
+      });
     };
     onMounted(() => {
       handleArticles();
@@ -142,7 +144,7 @@ export default defineComponent({
   max-width: 1100px;
   margin: 48px auto 28px;
   .btn-reload{
-
+    margin: 5px;
   }
   .announcement-card{
     margin-top: 15px;

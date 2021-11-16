@@ -13,3 +13,9 @@ export interface TagVO{
   name: string,
   nameZh: string,
 }
+
+export interface HomeCardVO {
+  article: number,
+  category: number,
+  tag: number,
+}
