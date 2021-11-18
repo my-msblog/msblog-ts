@@ -7,6 +7,10 @@
     <div class="ann-context">
       {{ props.context }}
     </div>
+    <div class="ann-buttom">
+      <div class="ann-user"> {{ props.user }} </div>
+      <div class="ann-time"> {{ props.time }}</div>
+    </div>
   </el-card>
 </template>
 
@@ -24,9 +28,13 @@ import { BellFilled } from '@element-plus/icons';
 const { t } = useI18n();
 interface IAnnouncement{
   context: string;
+  user: string;
+  time: string;
 }
 const props = withDefaults(defineProps<IAnnouncement>(), {
-  context: 'null'
+  context: 'null',
+  user: '',
+  time: '',
 });
 </script>
 
@@ -35,8 +43,7 @@ const props = withDefaults(defineProps<IAnnouncement>(), {
   border-radius: 8px;
   font-size: 0.875rem;
   height: auto;
-  // font-family: -apple-system,BlinkMacSystemFont,Segoe UI,
-  // Helvetica Neue,Lato,Roboto,PingFang SC,Microsoft YaHei,sans-serif!important;
+
 }
 .el-card__body {
   padding: 10px;
@@ -59,5 +66,22 @@ const props = withDefaults(defineProps<IAnnouncement>(), {
   word-wrap: break-word;
   word-break: normal;
   text-align: left;
+}
+.ann-buttom{
+
+  color: #909399;
+  padding: 10px 0;
+  width: 100%;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,
+    Helvetica Neue,Lato,Roboto,PingFang SC,Microsoft YaHei,sans-serif!important;
+  font-size: var(--el-font-size-small);
+  .ann-user{
+   
+    float: right;
+  }
+  .ann-time{
+   
+    float: left;
+  }
 }
 </style>

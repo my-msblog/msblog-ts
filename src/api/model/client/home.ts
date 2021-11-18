@@ -19,3 +19,8 @@ export interface HomeCardVO {
   category: number,
   tag: number,
 }
+export interface AnnouncementVO{
+  announcement: string,
+  user: string,
+  time: string,
+}

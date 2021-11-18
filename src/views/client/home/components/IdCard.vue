@@ -9,7 +9,7 @@
       <div class="wapper-motto">这个人很懒，什么都没有留下</div>
       <div class="blog-info">
         <div class="blog-info-item" v-for="(item, index) in data.infoList" :key="index">
-          <div class="blog-info-item-title">{{ item.title }}</div>
+          <div class="blog-info-item-title">{{ t('pages.'+item.title) }}</div>
           <div class="blog-info-item-value">{{ item.value }}</div>
         </div>
       </div>
@@ -62,15 +62,15 @@ export default defineComponent({
     const data = reactive({
       infoList: {
         article: {
-          title: t('pages.article'),
+          title: 'article',
           value: 0,
         },
         category: {
-          title: t('pages.category'),
+          title: 'category',
           value: 0,
         },
         tags: {
-          title: t('pages.tags'),
+          title: 'tags',
           value: 0,
         },
       }
@@ -90,6 +90,7 @@ export default defineComponent({
       data.infoList.tags.value = watchProp.tags;
     });
     return {
+      t,
       data,
       handleClickLabel,
       handleQQ,

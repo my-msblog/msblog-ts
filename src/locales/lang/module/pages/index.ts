@@ -41,6 +41,7 @@ export default {
     password: 'Password',
     verificationCode: 'Verification Code',
     register: 'Register',
+    login: 'Login',
     logout: 'Logout',
     personal_center: 'Personal center',
     edit: 'Edit',

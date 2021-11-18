@@ -15,11 +15,19 @@
           />
         </el-col>
         <el-col :span="6">
-          <IdCard
-            :article="data.idCardValue.article"
-            :category="data.idCardValue.category"
-            :tags="data.idCardValue.tag" />
-          <Announcement class="announcement-card" :context="data.announcement" />
+          <Affix>
+            <div class="card-main">
+              <IdCard
+                :article="data.idCardValue.article"
+                :category="data.idCardValue.category"
+                :tags="data.idCardValue.tag" />
+              <Announcement
+                class="announcement-card"
+                :context="data.announcement"
+                :user="data.ann_user"
+                :time="data.ann_time" />
+            </div>
+          </Affix>
         </el-col>
       </el-row>
     </div>
@@ -32,14 +40,15 @@ import { useRouter } from 'vue-router';
 import ArticleCards from './components/ArticleCards.vue';
 import IdCard from './components/IdCard.vue';
 import RefreshRight from './components/RefreshRight.vue';
+import Affix from './components/Affix.vue';
 import Announcement from './components/Announcement.vue';
-import { getArticlePage, getMainInfo } from '@/api/client/home';
+import { getArticlePage, getMainInfo, getAnnouncement } from '@/api/client/home';
 import { ArticleCardVO } from '@/api/model/client/home';
 import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'Home',
-  components: { ArticleCards, IdCard, RefreshRight, Announcement },
+  components: { ArticleCards, IdCard, RefreshRight, Announcement, Affix },
   setup() {
     const { t } = useI18n();
     const router = useRouter();
@@ -57,6 +66,8 @@ export default defineComponent({
       loading: true,
       showFailed: false,
       announcement: t('message.null_announcement'),
+      ann_user: '',
+      ann_time: '',
     });
     const handleArticles = () => {
       data.loading = true;
@@ -73,14 +84,28 @@ export default defineComponent({
         data.showFailed = false;
       });
     };
-    const handleAnnouncements = () => {
+    const handleHomeCard = () => {
       getMainInfo().then(res => {
         data.idCardValue = res;
       });
     };
+    const handleAnnouncement = () => {
+      getAnnouncement().then(res => {
+        console.log(res);
+        console.log(res.announcement);
+
+        if(res.announcement !== undefined){
+          data.announcement = res.announcement;
+          data.ann_user = res.user;
+          data.ann_time = res.time;
+        }
+
+      });
+    };
     onMounted(() => {
       handleArticles();
-      handleAnnouncements();
+      handleHomeCard();
+      handleAnnouncement();
     });
     return {
       data,
@@ -92,6 +117,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.el-affix {
+  &:deep(div){}
+
+}
 .el-row {
   margin-bottom: 20px;
   display: flex;
@@ -99,7 +128,11 @@ export default defineComponent({
   height: auto;
   min-width: 1100px !important;
   .el-col {
-    align-items: center;
+    display: block;
+    .card-main{
+      position: static;
+      top: 56px;
+    }
   }
 }
 .home-banner {
