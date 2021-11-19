@@ -105,7 +105,7 @@ import { ElMessage } from 'element-plus';
 import { RefreshRight } from '@element-plus/icons';
 import AddUser from './AddUser.vue';
 import { deleteList, userStatusChange } from '@/api/admin/user-profile';
-import { nullArray } from '@/constant/Type';
+import { NullArray } from '@/constant/Type';
 import { useI18n } from 'vue-i18n';
 import { getSex } from '@/constant/enums/sex';
 import { StatusDTO, UserProfileVO } from '@/api/model/admin/user-profile';
@@ -117,7 +117,7 @@ export default defineComponent({
   props: {
     tableData: {
       type: Object as PropType<Array<UserProfileVO>>,
-      default: nullArray<UserProfileVO>(),
+      default: NullArray<UserProfileVO>(),
       request: true,
     },
     currentPage: { type: Number, default: 1 },

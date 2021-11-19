@@ -7,21 +7,21 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { dataArray } from '@/constant/Type';
+import { DataArray } from '@/constant/Type';
 export default defineComponent({
   name: 'FlowAnalysis',
   props: {
     xAxisProp: {
       type: Array as PropType<Array<string>>,
-      default: dataArray<string>(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']),
+      default: DataArray<string>(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']),
     },
     legendData: {
       type: Array as PropType<Array<string>>,
-      default: dataArray<string>(['人流量']),
+      default: DataArray<string>(['人流量']),
     },
     dataProp:{
       type: Array as PropType<Array<number>>,
-      default: dataArray<number>([50, 230, 224, 218, 135, 147, 260])
+      default: DataArray<number>([50, 230, 224, 218, 135, 147, 260])
     }
   },
   setup(props) {

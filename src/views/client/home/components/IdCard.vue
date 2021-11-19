@@ -38,7 +38,7 @@ import {
   watchEffect } from 'vue';
 import { ElMessage } from 'element-plus';
 import { useI18n } from 'vue-i18n';
-import { nullData } from '@/constant/Type';
+import { NullData } from '@/constant/Type';
 
 export default defineComponent({
   name: 'IdCard',
@@ -46,15 +46,15 @@ export default defineComponent({
   props: {
     article: {
       type: Number as PropType<number>,
-      default: nullData<number>(0),
+      default: NullData<number>(0),
     },
     category: {
       type: Number as PropType<number>,
-      default: nullData<number>(0),
+      default: NullData<number>(0),
     },
     tags: {
       type: Number as PropType<number>,
-      default: nullData<number>(0),
+      default: NullData<number>(0),
     }
   },
   setup(props) {

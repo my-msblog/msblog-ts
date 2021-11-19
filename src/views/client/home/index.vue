@@ -37,14 +37,14 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import ArticleCards from './components/ArticleCards.vue';
-import IdCard from './components/IdCard.vue';
-import RefreshRight from './components/RefreshRight.vue';
-import Affix from './components/Affix.vue';
-import Announcement from './components/Announcement.vue';
 import { getArticlePage, getMainInfo, getAnnouncement } from '@/api/client/home';
 import { ArticleCardVO } from '@/api/model/client/home';
 import { useI18n } from 'vue-i18n';
+import ArticleCards from './components/ArticleCards.vue';
+import IdCard from './components/IdCard.vue';
+import RefreshRight from './components/RefreshRight.vue';
+import Announcement from './components/Announcement.vue';
+import Affix from '@/views/client/home/components/Affix.vue';
 
 export default defineComponent({
   name: 'Home',

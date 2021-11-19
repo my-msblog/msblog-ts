@@ -37,7 +37,7 @@ import {
   watchEffect, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { GrowCardItem, CardValue } from './data';
-import { nullData } from '@/constant/Type';
+import { NullData } from '@/constant/Type';
 const defaultCardValue: CardValue = {
   visit: 0,
   user: 0,
@@ -49,11 +49,11 @@ export default defineComponent({
   props: {
     value: {
       type: Object as PropType<CardValue>,
-      default: nullData<CardValue>(defaultCardValue)
+      default: NullData<CardValue>(defaultCardValue)
     },
     total: {
       type: Object as PropType<CardValue>,
-      default: nullData<CardValue>(defaultCardValue)
+      default: NullData<CardValue>(defaultCardValue)
     }
   },
   setup(props) {

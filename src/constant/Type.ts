@@ -1,25 +1,25 @@
-export function nullArray<T> (): Array<T>{
+export function NullArray<T> (): Array<T>{
   return [];
 }
-export function dataArray<T> (data: Array<T>): Array<T>{
+export function DataArray<T> (data: Array<T>): Array<T>{
   return data;
 }
 interface obj{
   [key: string]: any;
 }
-export function nullData<T> ( t: T ): T{
+export function NullData<T> (t: T ): T{
   return t;
 }
-export interface functionType{
+export interface FunctionType {
   (): void;
 }
-export interface functionTypeOfString{
+export interface FunctionTypeOfString {
   (): string;
 }
-export interface functionTypeOfNumber{
+export interface FunctionTypeOfNumber {
   (): number;
 }
-export interface functionTypeOfArray<T>{
+export interface FunctionTypeOfArray<T>{
   (): Array<T>;
 }
 export interface functionTypeBase<T>{
