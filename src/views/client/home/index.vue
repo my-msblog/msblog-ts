@@ -4,7 +4,7 @@
       <h3 class="title">欢迎来到我的个人网站</h3>
       <h3 class="titles">这个人很懒，什么都没有说明，试试往下滑动！</h3>
     </div>
-    <div id="home_main" class="home_main">
+    <div class="home_main">
       <el-row class="el-row" :gutter="10">
         <el-col :span="18">
           <ArticleCards :article-list="data.articleList" v-loading="data.loading" :loading="data.loading" />
@@ -14,9 +14,8 @@
             class="btn-reload"
           />
         </el-col>
-        <el-col :span="6">
-          <Affix boundary="home_main" :offset="56">
-            <el-affix />
+        <el-col class="col-pd" id="affix-max" :span="6">
+          <Affix boundary="affix-max" :offset="56">
             <div class="card-main">
               <IdCard
                 :article="data.idCardValue.article"
@@ -27,10 +26,7 @@
                 :context="data.announcement"
                 :user="data.ann_user"
                 :time="data.ann_time" />
-              <IdCard
-                :article="data.idCardValue.article"
-                :category="data.idCardValue.category"
-                :tags="data.idCardValue.tag" />
+              <Analysis class="analysis-card" />
             </div>
           </Affix>
         </el-col>
@@ -49,11 +45,17 @@ import ArticleCards from './components/ArticleCards.vue';
 import IdCard from './components/IdCard.vue';
 import RefreshRight from './components/RefreshRight.vue';
 import Announcement from './components/Announcement.vue';
-import Affix from '@/components/affix';
+import Analysis from './components/Analysis.vue';
 
 export default defineComponent({
   name: 'Home',
-  components: { ArticleCards, IdCard, RefreshRight, Announcement, Affix },
+  components: {
+    ArticleCards,
+    IdCard,
+    RefreshRight,
+    Announcement,
+    Analysis,
+  },
   setup() {
     const { t } = useI18n();
     const router = useRouter();
@@ -96,10 +98,7 @@ export default defineComponent({
     };
     const handleAnnouncement = () => {
       getAnnouncement().then(res => {
-        console.log(res);
-        console.log(res.announcement);
-
-        if(res.announcement !== undefined){
+        if(res.announcement){
           data.announcement = res.announcement;
           data.ann_user = res.user;
           data.ann_time = res.time;
@@ -133,8 +132,14 @@ export default defineComponent({
     .card-main{
       position: static;
       top: 56px;
-      padding-bottom: 20px;
     }
+     .announcement-card{
+    margin-top: 15px;
+  }
+  .analysis-card{
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
   }
 }
 .home-banner {
@@ -181,8 +186,9 @@ export default defineComponent({
   .btn-reload{
     margin: 5px;
   }
-  .announcement-card{
-    margin-top: 15px;
-  }
+ 
+}
+.col-pd{
+  
 }
 </style>

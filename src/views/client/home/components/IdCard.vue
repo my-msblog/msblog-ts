@@ -100,16 +100,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.el-card{
-   border-radius: 8px;
-}
-.el-card__body {
-  padding: 10px;
-  height: auto;
-}
-.el-card:hover{
-   box-shadow:0 4px 12px 12px rgba(7,17,27,.15)
-}
+@import "@/styles/el-card.scss";
 .wapper{
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,
   Helvetica Neue,Lato,Roboto,PingFang SC,Microsoft YaHei,sans-serif!important;

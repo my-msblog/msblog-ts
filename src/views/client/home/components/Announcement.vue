@@ -39,19 +39,7 @@ const props = withDefaults(defineProps<IAnnouncement>(), {
 </script>
 
 <style lang="scss" scoped>
-.el-card{
-  border-radius: 8px;
-  font-size: 0.875rem;
-  height: auto;
-
-}
-.el-card__body {
-  padding: 10px;
-  height: auto;
-}
-.el-card:hover{
-  box-shadow:0 4px 12px 12px rgba(7,17,27,.15)
-}
+@import "src/styles/el-card.scss";
 .ann-title{
   display: flex;
   font-size: var(--el-font-size-medium);
@@ -76,11 +64,11 @@ const props = withDefaults(defineProps<IAnnouncement>(), {
     Helvetica Neue,Lato,Roboto,PingFang SC,Microsoft YaHei,sans-serif!important;
   font-size: var(--el-font-size-small);
   .ann-user{
-   
+
     float: right;
   }
   .ann-time{
-   
+
     float: left;
   }
 }
