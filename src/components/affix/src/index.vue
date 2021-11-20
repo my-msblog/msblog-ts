@@ -12,32 +12,13 @@ import {
   defineComponent,
   getCurrentInstance,
   onMounted,
-  PropType,
   reactive,
   onUnmounted } from 'vue';
-import { FunctionType, NullData } from '@/constant/Type';
-interface Styles{
-  top?: string | number,
-  left?: string | number,
-  width?: string | number,
-}
+import { Styles, affixProps } from './affixProps';
 
 export default defineComponent({
   name: 'Affix',
-  props: {
-    offset: {
-      type: Number as PropType<number>,
-      default: NullData<number>(0),
-    },
-    onAffix: {
-      type: Function as PropType<FunctionType>,
-      default() {}
-    },
-    boundary: {
-      type: String as PropType<string>,
-      default: NullData<string>(''),
-    }
-  },
+  props: affixProps,
   emits: [ 'onAffix' ],
   setup(props: any) {
     const data = reactive({
@@ -75,7 +56,7 @@ export default defineComponent({
       };
     };
     const offsets = computed(()=>{
-      if ((props as any).boundary) {
+      if (props.boundary) {
         return 0;
       }
       return props.offset;
@@ -94,7 +75,7 @@ export default defineComponent({
       }
       // if setting boundary
       if (props.boundary && scrollTop > elementOffset.top) {
-        const el = document.getElementById(props.boundary.slice(1));
+        const el = document.getElementById(props.boundary);
         if (el) {
           const boundaryOffset = getOffset(el);
           if ((scrollTop + offsets.value) > boundaryOffset.top) {

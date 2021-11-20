@@ -4,7 +4,7 @@
       <h3 class="title">欢迎来到我的个人网站</h3>
       <h3 class="titles">这个人很懒，什么都没有说明，试试往下滑动！</h3>
     </div>
-    <div class="home_main">
+    <div id="home_main" class="home_main">
       <el-row class="el-row" :gutter="10">
         <el-col :span="18">
           <ArticleCards :article-list="data.articleList" v-loading="data.loading" :loading="data.loading" />
@@ -15,7 +15,8 @@
           />
         </el-col>
         <el-col :span="6">
-          <Affix>
+          <Affix boundary="home_main" :offset="56">
+            <el-affix />
             <div class="card-main">
               <IdCard
                 :article="data.idCardValue.article"
@@ -26,6 +27,10 @@
                 :context="data.announcement"
                 :user="data.ann_user"
                 :time="data.ann_time" />
+              <IdCard
+                :article="data.idCardValue.article"
+                :category="data.idCardValue.category"
+                :tags="data.idCardValue.tag" />
             </div>
           </Affix>
         </el-col>
@@ -44,7 +49,7 @@ import ArticleCards from './components/ArticleCards.vue';
 import IdCard from './components/IdCard.vue';
 import RefreshRight from './components/RefreshRight.vue';
 import Announcement from './components/Announcement.vue';
-import Affix from '@/views/client/home/components/Affix.vue';
+import Affix from '@/components/affix';
 
 export default defineComponent({
   name: 'Home',
@@ -117,10 +122,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.el-affix {
-  &:deep(div){}
-
-}
 .el-row {
   margin-bottom: 20px;
   display: flex;
@@ -132,6 +133,7 @@ export default defineComponent({
     .card-main{
       position: static;
       top: 56px;
+      padding-bottom: 20px;
     }
   }
 }
