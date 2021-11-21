@@ -14,7 +14,11 @@
             class="btn-reload"
           />
         </el-col>
-        <el-col class="col-pd" id="affix-max" :span="6">
+        <el-col 
+          class="col-pd"
+          id="affix-max"
+          :style="data.max_flow_hight"
+          :span="6">
           <Affix boundary="affix-max" :offset="56">
             <div class="card-main">
               <IdCard
@@ -75,20 +79,23 @@ export default defineComponent({
       announcement: t('message.null_announcement'),
       ann_user: '',
       ann_time: '',
+      max_flow_hight: {},
     });
     const handleArticles = () => {
       data.loading = true;
       data.showFailed = false;
-      window.setTimeout(() =>{
-        if(data.loading){
-          data.showFailed = true;
-          data.loading = false;
-        }
-      }, 5000);
       getArticlePage(data.pagination).then((res) => {
         data.articleList = res.list;
+        setFlowHight();
         data.loading = false;
         data.showFailed = false;
+      }).catch(() => {
+        window.setTimeout(() =>{
+          if(data.loading){
+            data.showFailed = true;
+            data.loading = false;
+          }
+        }, 3000);
       });
     };
     const handleHomeCard = () => {
@@ -103,8 +110,14 @@ export default defineComponent({
           data.ann_user = res.user;
           data.ann_time = res.time;
         }
-
       });
+    };
+    const setFlowHight = () =>{
+      if(data.articleList.length !== 0 ){
+        data.max_flow_hight = { height:  `${data.articleList.length * 270}px` };
+        console.log(data.max_flow_hight);
+        
+      }
     };
     onMounted(() => {
       handleArticles();
@@ -129,17 +142,7 @@ export default defineComponent({
   min-width: 1100px !important;
   .el-col {
     display: block;
-    .card-main{
-      position: static;
-      top: 56px;
-    }
-     .announcement-card{
-    margin-top: 15px;
-  }
-  .analysis-card{
-    margin-top: 15px;
-    margin-bottom: 20px;
-  }
+    
   }
 }
 .home-banner {
@@ -182,13 +185,27 @@ export default defineComponent({
 
 .home_main {
   max-width: 1100px;
+  max-height: 1350px;
   margin: 48px auto 28px;
   .btn-reload{
     margin: 5px;
   }
- 
-}
-.col-pd{
-  
+  .col-pd{
+    .card-main{
+      position: static;
+      top: 56px;
+      .announcement-card{
+        margin-top: 15px;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+      }
+      .analysis-card{
+        margin-top: 15px;
+        margin-bottom: 20px;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+      }
+    } 
+  }
 }
 </style>

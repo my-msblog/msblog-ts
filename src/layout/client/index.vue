@@ -74,7 +74,7 @@ export default defineComponent({
     min-height: calc(100vh - 100px);
     padding: 0;
     display: block !important;
-    overflow: auto;
+    overflow: hidden;
     text-align: center;
     background-position-x: initial;
     background-position-y: initial;
