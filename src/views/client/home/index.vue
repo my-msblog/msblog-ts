@@ -6,33 +6,42 @@
     </div>
     <div class="home_main">
       <el-row class="el-row" :gutter="10">
-        <el-col :span="18">
+        <el-col 
+          :lg="{span:18, offset:0}"
+          :sm="{span:20, offset:2}"
+          :xs="24">
           <ArticleCards :article-list="data.articleList" v-loading="data.loading" :loading="data.loading" />
           <RefreshRight
             v-if="data.showFailed"
             @click="handleArticles"
             class="btn-reload"
           />
+          <el-pagination 
+            v-if="!data.showFailed && !data.loading"
+            background
+            layout="prev, pager, next" 
+            class="page"
+            :total="100" />
         </el-col>
         <el-col 
-          class="col-pd"
+          class="col-pd  hidden-md-and-down"
           id="affix-max"
           :style="data.max_flow_hight"
-          :span="6">
-          <Affix boundary="affix-max" :offset="56">
-            <div class="card-main">
-              <IdCard
-                :article="data.idCardValue.article"
-                :category="data.idCardValue.category"
-                :tags="data.idCardValue.tag" />
-              <Announcement
-                class="announcement-card"
-                :context="data.announcement"
-                :user="data.ann_user"
-                :time="data.ann_time" />
-              <Analysis class="analysis-card" />
-            </div>
-          </Affix>
+          :lg="6"
+          :sm="0"
+        >
+          <div class="card-main">
+            <IdCard
+              :article="data.idCardValue.article"
+              :category="data.idCardValue.category"
+              :tags="data.idCardValue.tag" />
+            <Announcement
+              class="announcement-card"
+              :context="data.announcement"
+              :user="data.ann_user"
+              :time="data.ann_time" />
+            <Analysis class="analysis-card" />
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -50,6 +59,7 @@ import IdCard from './components/IdCard.vue';
 import RefreshRight from './components/RefreshRight.vue';
 import Announcement from './components/Announcement.vue';
 import Analysis from './components/Analysis.vue';
+
 
 export default defineComponent({
   name: 'Home',
@@ -86,7 +96,6 @@ export default defineComponent({
       data.showFailed = false;
       getArticlePage(data.pagination).then((res) => {
         data.articleList = res.list;
-        setFlowHight();
         data.loading = false;
         data.showFailed = false;
       }).catch(() => {
@@ -139,7 +148,7 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   height: auto;
-  min-width: 1100px !important;
+  width: 100%;
   .el-col {
     display: block;
     
@@ -184,15 +193,38 @@ export default defineComponent({
 }
 
 .home_main {
-  max-width: 1100px;
-  max-height: 1350px;
+  max-width: 1200px;
   margin: 48px auto 28px;
+  display: flex;
+  .page{
+    &:deep(button){
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: 0 2px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    }
+    &:deep(.el-pager){
+     .number{
+       border-radius: 4px;
+       background-color: #fff;
+       box-shadow: 0 2px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+     }
+     .more{
+       border-radius: 4px;
+       box-shadow: 0 2px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+       background-color: #fff;
+     }
+     .active{
+       box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+     }
+    }
+  }
   .btn-reload{
     margin: 5px;
   }
   .col-pd{
     .card-main{
-      position: static;
+      position: -webkit-sticky;
+      position: sticky;
       top: 56px;
       .announcement-card{
         margin-top: 15px;
@@ -208,4 +240,5 @@ export default defineComponent({
     } 
   }
 }
+
 </style>

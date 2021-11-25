@@ -55,6 +55,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.el-scrollbar{
+  overflow: visible;
+}
+.el-scrollbar__wrap{
+  overflow: visible;
+}
 .container{
   .c_header{
     background: rgba(255,255,255,0);
@@ -74,7 +80,7 @@ export default defineComponent({
     min-height: calc(100vh - 100px);
     padding: 0;
     display: block !important;
-    overflow: hidden;
+    overflow: visible;
     text-align: center;
     background-position-x: initial;
     background-position-y: initial;
