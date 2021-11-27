@@ -20,11 +20,19 @@
         </el-form-item>
         <el-form-item>
           <el-input
-            type="password"
+            :type="data.pwd_type"
             v-model="data.form.password"
             autocomplete="off"
             :placeholder="$t('pages.password')"
-          />
+          >
+            <template #suffix>
+              <SvgIcon
+                :name="data.visible"
+                @click="handleVisible()"
+                color="#939393"
+                size="28" />
+            </template>
+          </el-input>
         </el-form-item>
         <el-form-item>
           <el-row justify="space-around">
@@ -78,6 +86,7 @@ import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { getArithmeticCode, loginByPwd } from '@/api/client/login';
 import { ElMessage } from 'element-plus';
+import { Encrypt } from '@/utils/Secret';
 
 export default defineComponent({
   name: 'Login',
@@ -102,9 +111,12 @@ export default defineComponent({
       },
       loading: false,
       imgSrc: '',
+      visible: 'invisible',
+      pwd_type: 'password',
     });
     const handleLogin = function () {
       data.form.key = store.getters.getCodeKey;
+      data.form.password = Encrypt(data.form.password);
       loginByPwd(data.form).then((res) => {
         store.dispatch('setUserInfo', res);
         ElMessage({
@@ -126,6 +138,15 @@ export default defineComponent({
     const toRegister = function () {
       router.push('/register');
     };
+    const handleVisible = () => {
+      if(data.visible === 'visible'){
+        data.visible = 'invisible';
+        data.pwd_type = 'password';
+        return;
+      }
+      data.visible = 'visible';
+      data.pwd_type = 'text';
+    };
     onMounted(() => {
       handleArithmetic();
     });
@@ -134,6 +155,7 @@ export default defineComponent({
       handleLogin,
       handleArithmetic,
       toRegister,
+      handleVisible,
     };
   }
 });
@@ -173,4 +195,13 @@ export default defineComponent({
   text-align: center;
   color: #505458;
 }
+.el-input{
+  &:deep(.el-input__suffix-inner){
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 </style>
