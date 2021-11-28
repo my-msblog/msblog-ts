@@ -22,7 +22,7 @@
 - [msblog-ts](https://github.com/my-msblog/msblog-ts) 前端GitHub预览地址
 - [msblog-server](https://github.com/my-msblog/msblog-server) 后端预览地址
 
-## 开始使用
+## 👀开始使用
 
 - 获取项目代码
 
