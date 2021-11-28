@@ -1,32 +1,44 @@
-# msblog-ts
+<div align="center"> 
+    <a href="https://github.com/my-msblog/msblog-ts"> 
+        <img alt="Logo" width="200" height="200" src="https://ms-1258904389.cos.ap-nanjing.myqcloud.com/202111272341359.png">
+    </a> 
+<br> <br>
+
+[![license](https://raster.shields.io/badge/LICENSE-MIT-green.svg)](LICENSE)
+<h1>MS BLOG</h1>
+</div>
 
 
-- Get the project code
+## 开始使用
+
+- 获取项目代码
 
 ```bash
 git clone https://github.com.cnpmjs.org/my-msblog/msblog-ts.git
 ```
-## Project setup
+- 安装依赖
 ```
+cd msblog-ts
+
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+- 运行
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+- 打包
 ```
 yarn build
 ```
 
-### Lints and fixes files
+- 格式化代码
 ```
 yarn lint
 ```
 
-### ⚡️core
+## ⚡️core
 
 |  说明 | 技术 |
 |  :----:  | :----: |
@@ -83,6 +95,13 @@ yarn lint
     - `wip` 开发中
 
 
+## ⌛后台整合
 
-### Customize configuration
+- [msblog-server](https://github.com/my-msblog/msblog-server) - 基于 SpringBoot，结合了shiro+jwt、mybatis-plue、redis、和swagger-ui等进行开发的后端整合。
+
+## 📄License
+
+[MIT © MS-2021](./LICENSE)
+
+## :nut_and_bolt: Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

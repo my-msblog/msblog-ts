@@ -13,7 +13,7 @@
           <ArticleCards :article-list="data.articleList" v-loading="data.loading" :loading="data.loading" />
           <RefreshRight
             v-if="data.showFailed"
-            @click="handleArticles"
+            @click="handleReload"
             class="btn-reload"
           />
           <el-pagination 
@@ -121,22 +121,18 @@ export default defineComponent({
         }
       });
     };
-    const setFlowHight = () =>{
-      if(data.articleList.length !== 0 ){
-        data.max_flow_hight = { height:  `${data.articleList.length * 270}px` };
-        console.log(data.max_flow_hight);
-        
-      }
-    };
-    onMounted(() => {
+    const handleReload = () =>{
       handleArticles();
       handleHomeCard();
       handleAnnouncement();
+    };
+    onMounted(() => {
+      handleReload();
     });
     return {
       data,
       handleArticles,
-      RefreshRight,
+      handleReload,
     };
   }
 });
@@ -193,7 +189,7 @@ export default defineComponent({
 }
 
 .home_main {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 48px auto 28px;
   display: flex;
   .page{
