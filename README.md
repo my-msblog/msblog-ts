@@ -8,6 +8,19 @@
 <h1>MS BLOG</h1>
 </div>
 
+## :book:简介
+基于SpringBoot+vue3+TypeScript开发的前后端分离的博客系统，是一个免费开源博客系统，使用了最新的`vue3`,`vue/cli5`,`TypeScript`
+等主流技术开发，覆盖了大多当前流行的技术包括`vuex`，`vue router`，`i18n`，`echarts`，`axios`
+等，适合初学者学习。
+
+## :white_circle:特性
+- **技术栈**：使用 Vue3和vue/cli 等前端前沿技术开发
+- **TypeScript**: 应用程序级 JavaScript 的语言
+- **国际化**：内置完善的国际化方案
+
+## :airplane: 预览
+- [msblog-ts](https://github.com/my-msblog/msblog-ts) 前端GitHub预览地址
+- [msblog-server](https://github.com/my-msblog/msblog-server) 后端预览地址
 
 ## 开始使用
 
