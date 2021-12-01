@@ -6,7 +6,7 @@
     </div>
     <div class="home_main">
       <el-row class="el-row" :gutter="10">
-        <el-col 
+        <el-col
           :lg="{span:18, offset:0}"
           :sm="{span:20, offset:2}"
           :xs="24">
@@ -16,17 +16,19 @@
             @click="handleReload"
             class="btn-reload"
           />
-          <el-pagination 
+          <el-pagination
             v-if="!data.showFailed && !data.loading"
             background
-            layout="prev, pager, next" 
+            layout="prev, pager, next"
             class="page"
-            :total="100" />
+            :page-size="data.pagination.size"
+            :pager-count="5"
+            :current-page="data.page.currentPage"
+            :total="data.page.total" />
         </el-col>
-        <el-col 
+        <el-col
           class="col-pd  hidden-md-and-down"
           id="affix-max"
-          :style="data.max_flow_hight"
           :lg="6"
           :sm="0"
         >
@@ -89,7 +91,11 @@ export default defineComponent({
       announcement: t('message.null_announcement'),
       ann_user: '',
       ann_time: '',
-      max_flow_hight: {},
+      page: {
+        total: 0,
+        currentPage: 1,
+
+      }
     });
     const handleArticles = () => {
       data.loading = true;
@@ -147,7 +153,7 @@ export default defineComponent({
   width: 100%;
   .el-col {
     display: block;
-    
+
   }
 }
 .home-banner {
@@ -233,7 +239,7 @@ export default defineComponent({
         animation-duration: 1s;
         animation-fill-mode: both;
       }
-    } 
+    }
   }
 }
 
