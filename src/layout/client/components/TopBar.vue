@@ -13,52 +13,13 @@
       <div class="menu-title">
         <div v-for="(item, index) in menuBarItem" :key="index">
           <router-link
-            :to="item"
+            :to="item.route"
             class="text"
             :style="data.style">
-            <i class="el-icon-s-home" />{{ $t('bar.homepage') }}
+            <i :class="item.icon" />{{ $t('bar.' + item.text) }}
           </router-link>
         </div>
-        <div>
-          <router-link
-            to="/"
-            class="text"
-            :style="data.style">
-            <i class="el-icon-s-home" />{{ $t('bar.homepage') }}
-          </router-link>
-        </div>
-        <div>
-          <router-link
-            to="/categories"
-            class="text"
-            :style="data.style">
-            <i class="el-icon-menu" />{{ $t('bar.categories') }}
-          </router-link>
-        </div>
-        <div>
-          <router-link
-            to="/tags"
-            class="text"
-            :style="data.style">
-            <i class="el-icon-s-management" />{{ $t('bar.tags') }}
-          </router-link>
-        </div>
-        <div>
-          <router-link
-            to="/links"
-            class="text"
-            :style="data.style">
-            <i class="el-icon-connection" />{{ $t('bar.links') }}
-          </router-link>
-        </div>
-        <div>
-          <router-link
-            to="/about"
-            class="text"
-            :style="data.style">
-            <i class="el-icon-s-promotion" />{{ $t('bar.about') }}
-          </router-link>
-        </div>
+
         <div>
           <router-link
             to="/login"
@@ -170,6 +131,7 @@ export default defineComponent({
       data,
       isAdmin,
       online,
+      menuBarItem,
     };
   }
 });
