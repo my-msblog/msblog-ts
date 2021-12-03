@@ -19,10 +19,13 @@
           <el-pagination
             v-if="!data.showFailed && !data.loading"
             background
-            layout="prev, pager, next"
             class="page"
-            :page-size="data.pagination.size"
+            layout="prev, pager, next"
+            @current-change="handleArticles"
             :pager-count="5"
+            :page-count="data.page.count"
+            :default-current-page="1"
+            :page-size="data.pagination.size"
             :current-page="data.page.currentPage"
             :total="data.page.total" />
         </el-col>
@@ -61,6 +64,7 @@ import IdCard from './components/IdCard.vue';
 import RefreshRight from './components/RefreshRight.vue';
 import Announcement from './components/Announcement.vue';
 import Analysis from './components/Analysis.vue';
+import { number } from 'echarts';
 
 
 export default defineComponent({
@@ -77,7 +81,7 @@ export default defineComponent({
     const router = useRouter();
     const data = reactive({
       pagination: {
-        size: 10,
+        size: 5,
         page: 1,
       },
       idCardValue:{
@@ -92,16 +96,22 @@ export default defineComponent({
       ann_user: '',
       ann_time: '',
       page: {
-        total: 0,
-        currentPage: 1,
-
+        total: 0 as number,
+        currentPage: 1 as number,
+        count: 0 as number,
       }
     });
-    const handleArticles = () => {
+    const handleArticles = (page?: number) => {
       data.loading = true;
       data.showFailed = false;
+      if (page){
+        data.pagination.page = page;
+      }
       getArticlePage(data.pagination).then((res) => {
         data.articleList = res.list;
+        data.page.total = res.total;
+        data.page.currentPage = res.pageNum;
+        data.page.count = res.pages;
         data.loading = false;
         data.showFailed = false;
       }).catch(() => {
