@@ -11,6 +11,14 @@
         </router-link>
       </div>
       <div class="menu-title">
+        <div v-for="(item, index) in menuBarItem" :key="index">
+          <router-link
+            :to="item"
+            class="text"
+            :style="data.style">
+            <i class="el-icon-s-home" />{{ $t('bar.homepage') }}
+          </router-link>
+        </div>
         <div>
           <router-link
             to="/"
@@ -94,6 +102,7 @@ import { useI18n } from 'vue-i18n';
 import { logout } from '@/api/sys';
 import { ElMessage } from 'element-plus';
 import { functionTypeBase } from '@/constant/Type';
+import { menuBarItem } from './data';
 
 export default defineComponent({
   name: 'TopBar',

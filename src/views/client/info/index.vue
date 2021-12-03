@@ -81,6 +81,11 @@
       v-model="data.dialogFormVisible"
       :form-data="data.formData"
       @close-form="data.dialogFormVisible = false" />
+    <el-pagination
+      background
+      layout="prev, pager, next" 
+      :current-page="2"
+      :total="1000" />
   </div>
 </template>
 
