@@ -64,7 +64,6 @@ import IdCard from './components/IdCard.vue';
 import RefreshRight from './components/RefreshRight.vue';
 import Announcement from './components/Announcement.vue';
 import Analysis from './components/Analysis.vue';
-import { number } from 'echarts';
 
 
 export default defineComponent({

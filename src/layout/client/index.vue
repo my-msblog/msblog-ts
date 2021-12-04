@@ -56,10 +56,10 @@ export default defineComponent({
 
 <style lang="scss">
 .el-scrollbar{
-  overflow: visible;
+  overflow: visible !important;
 }
 .el-scrollbar__wrap{
-  overflow: visible;
+  overflow: visible !important;
 }
 .container{
   .c_header{
