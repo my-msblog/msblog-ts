@@ -44,6 +44,11 @@ export const routes: Array<RouteRecordRaw> = [
         path: 'userInfo',
         name: 'UserInfo',
         component: () => import('@/views/client/info/index.vue'),
+      },
+      {
+        path: '/archive',
+        name: 'archive',
+        component: () => import('@/views/client/archive/index.vue'),
       }
     ]
   },

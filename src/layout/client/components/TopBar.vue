@@ -188,7 +188,7 @@ export default defineComponent({
       text-decoration: none;
     }
 
-    .change_text{
+    &:deep(.change_text){
       margin-left: 20px;
       color: rgba(255,255,255,0.9);
       text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3) !important;

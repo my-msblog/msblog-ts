@@ -143,6 +143,7 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   text-align: center;
+  animation: header-effect 1s;
   background: #fff url('../../../assets/background/info.jpeg') no-repeat fixed center center;
   .ui_title{
     color: #fff;

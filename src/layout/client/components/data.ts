@@ -10,6 +10,11 @@ export const menuBarItem: BarMenuItem[]= [
     text: 'homepage',
   },
   {
+    route: '/archive',
+    icon: 'el-icon-folder-opened',
+    text: 'archive',
+  },
+  {
     route: '/categories',
     icon: 'el-icon-menu',
     text: 'categories',
@@ -26,11 +31,6 @@ export const menuBarItem: BarMenuItem[]= [
   },
   {
     route: '/about',
-    icon: 'el-icon-s-promotion',
-    text: 'about',
-  },
-  {
-    route: '/',
     icon: 'el-icon-s-promotion',
     text: 'about',
   },

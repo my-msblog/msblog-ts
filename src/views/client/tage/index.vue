@@ -22,15 +22,16 @@ export default defineComponent({
 .a_banner{
   left: 0;
   right: 0;
-  height: 100vh;
+  height: 400px;
   overflow: hidden;
   text-align: center;
-  background: #fff url('~@/assets/background/tags.jpeg') no-repeat fixed center center;
+  animation: header-effect 1s;
+  background: #fff url('~@/assets/background/tags.jpeg') no-repeat center/100%;
   .a_title{
     color: #fff;
     display:block;
     justify-content: center;
-    margin-top: 350px;
+    margin-top: 200px;
     font-size: 24px;
     font-weight: bold;
   }

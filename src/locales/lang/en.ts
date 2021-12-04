@@ -35,6 +35,7 @@ export default {
     about: 'About',
     links: 'Links',
     login: 'Sign In',
+    archive: 'Archive',
     change_password: 'Change password',
     personal_center: 'Personal center',
     sign_out: 'Sign Out',

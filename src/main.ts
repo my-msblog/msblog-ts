@@ -1,16 +1,21 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import 'element-plus/theme-chalk/display.css';
-import 'element-plus/dist/index.css';
 import router from './router';
 import store from './store';
 import { loadAllPlugins } from './plugins';
 import { setupI18n } from '@/locales';
 import { registerGlobComp } from '@/components';
+// element plus style introduction
+import 'element-plus/theme-chalk/display.css';
+import 'element-plus/dist/index.css';
+// custom animations
+import '@/styles/ann.css';
+// svg global config
 import svgLoader from './plugins/svgIcon/svg-loader';
 
 (async() =>{
   const app = createApp(App);
+  // svg plugin
   app.use(svgLoader, {
     imports: []
   });

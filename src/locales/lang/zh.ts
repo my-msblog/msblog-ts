@@ -35,6 +35,7 @@ export default {
     about: '关于',
     links: '链接',
     login: '登录',
+    archive: '归档',
     change_password: '修改密码',
     personal_center: '个人中心',
     sign_out: '登出',

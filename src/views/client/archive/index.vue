@@ -1,32 +1,34 @@
 <template>
   <div>
-    <div class="a_banner">
+    <div class="banner">
       <p class="a_title">{{ $t('bar.about') }}</p>
     </div>
-    this is categories
     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
   </div>
+  
 </template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 export default defineComponent({
-  name: 'About',
+  name: 'Archive',
   setup() {
-    return {};
-  }
+        
+  },
 });
 </script>
-
 <style lang="scss" scoped>
-.a_banner{
-  left: 0;
-  right: 0;
-  height: 400px;
-  overflow: hidden;
-  text-align: center;
-  animation: header-effect 1s;
-  background: #fff url('~@/assets/background/links.jpeg') no-repeat center/100%;
+@media(min-width: 715px){
+  .banner {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    right: 0;
+    height: 400px;
+    background-color: #49b1f5 !important;
+    animation: header-effect 1s;
+    background: url("~@/assets/background/archive.jpg") center center / cover no-repeat
+  }
   .a_title{
     color: #fff;
     display:block;
@@ -36,4 +38,5 @@ export default defineComponent({
     font-weight: bold;
   }
 }
+
 </style>

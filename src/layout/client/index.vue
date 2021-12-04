@@ -188,24 +188,6 @@ export default defineComponent({
       background-color: rgba(48, 54, 54, 0.2);
     }
   }
-  // 自定义 square 动画；
-  @keyframes square {
-    0% {
-      opacity: 0.5;
-      transform: translateY(0px) rotate(45deg);
-    }
-    25% {
-      opacity: 0.75;
-      transform: translateY(-400px) rotate(90deg)
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(-600px) rotate(135deg);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(-1000px) rotate(180deg);
-    }
-  }
+  
 }
 </style>
