@@ -19,7 +19,7 @@ import { Styles, affixProps } from './affixProps';
 export default defineComponent({
   name: 'Affix',
   props: affixProps,
-  emits: [ 'onAffix' ],
+
   setup(props: any) {
     const data = reactive({
       affixed: false,
@@ -47,7 +47,6 @@ export default defineComponent({
       const body = document.body;
       const clientTop = element.clientTop || body.clientTop || 0;
       const clientLeft = element.clientLeft || body.clientLeft || 0;
-      // const clientHeight = element.clientHeight || 0;
       const scrollTop = getScroll(window, true);
       const scrollLeft = getScroll(window);
       return {

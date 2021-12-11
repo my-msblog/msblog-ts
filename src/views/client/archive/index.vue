@@ -3,7 +3,10 @@
     <div class="banner">
       <p class="a_title">{{ $t('bar.about') }}</p>
     </div>
-    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <div>
+      jo<br>jo<br>jo<br>jo<br>jo<br>jo<br>jo<br>jo<br>
+    </div>
+    
   </div>
   
 </template>
@@ -20,11 +23,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 @media(min-width: 715px){
   .banner {
-    position: absolute;
-    top: -60px;
-    left: 0;
-    right: 0;
-    height: 400px;
+    height: 350px;
+    overflow: hidden;
+    text-align: center;
     background-color: #49b1f5 !important;
     animation: header-effect 1s;
     background: url("~@/assets/background/archive.jpg") center center / cover no-repeat

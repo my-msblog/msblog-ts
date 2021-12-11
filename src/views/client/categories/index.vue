@@ -20,9 +20,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .a_banner{
-  left: 0;
-  right: 0;
-  height: 400px;
+  height: 350px;
   overflow: hidden;
   text-align: center;
   animation: header-effect 1s;

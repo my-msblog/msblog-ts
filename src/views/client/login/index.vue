@@ -163,8 +163,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 #paper {
-  left: 0;
-  right: 0;
   height: 100vh;
   text-align: center;
   color: #fff !important;

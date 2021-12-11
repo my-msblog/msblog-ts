@@ -1,5 +1,5 @@
 <template>
-  <router-view />
+  <router-view style="min-hight: 650px" />
 </template>
 
 <script lang="ts">
@@ -22,5 +22,6 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
+  min-height: 650px;
 }
 </style>

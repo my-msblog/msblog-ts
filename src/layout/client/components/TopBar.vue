@@ -19,7 +19,7 @@
             <i :class="item.icon" />{{ $t('bar.' + item.text) }}
           </router-link>
         </div>
-
+        <el-affix />
         <div>
           <router-link
             to="/login"
