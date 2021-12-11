@@ -1,5 +1,9 @@
 <template>
-  <el-card class="card">
+  <el-card
+    class="card"
+    :style="{ 'border-radius': props.radius + 'px',
+              'padding': props.padding + 'px',
+              'shadow': props.shadow}">
     <slot /> 
   </el-card>
 </template>
@@ -19,13 +23,6 @@ const props = withDefaults(defineProps<{
   radius: 8,
   shadow: '0 4px 8px 6px rgb(7 17 27 / 6%)'
 });
-const style = () =>{
-  return {
-    'border-radius': props.radius,
-    'padding': props.padding,
-    'box-shadow': props.shadow,
-  };
-};
 </script>
 <style lang="scss" scoped>
 .card{

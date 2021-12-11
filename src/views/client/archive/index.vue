@@ -3,9 +3,9 @@
     <div class="banner">
       <p class="a_title">{{ $t('bar.about') }}</p>
     </div>
-    <div>
-      jo<br>jo<br>jo<br>jo<br>jo<br>jo<br>jo<br>jo<br>
-    </div>
+    <FlowCard class="archive-card">
+      asddas
+    </FlowCard>
     
   </div>
   
@@ -39,5 +39,7 @@ export default defineComponent({
     font-weight: bold;
   }
 }
-
+.archive-card{
+  margin: 48px auto 28px auto;
+}
 </style>
