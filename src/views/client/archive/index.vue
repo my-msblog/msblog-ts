@@ -4,19 +4,31 @@
       <p class="a_title">{{ $t('bar.about') }}</p>
     </div>
     <FlowCard class="archive-card">
-      asddas
+      <el-timeline>
+        <el-timeline-item
+          v-for="(activity, index) in timeList"
+          :key="index"
+          :timestamp="activity.timestamp">
+          {{ activity.context }}
+        </el-timeline-item>
+      </el-timeline>
     </FlowCard>
     
   </div>
   
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive } from 'vue';
 
 export default defineComponent({
   name: 'Archive',
   setup() {
-        
+    const data = reactive({
+      pagination: {
+        size: 10,
+        page: 1,
+      },
+    });
   },
 });
 </script>
