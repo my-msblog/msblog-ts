@@ -115,9 +115,15 @@ export default defineComponent({
       pwd_type: 'password',
     });
     const handleLogin = function () {
-      data.form.key = store.getters.getCodeKey;
-      data.form.password = Encrypt(data.form.password);
-      loginByPwd(data.form).then((res) => {
+      // data.form.key = store.getters.getCodeKey;
+      // data.form.password = Encrypt(data.form.password);
+      const request = {
+        username: data.form.username,
+        password: Encrypt(data.form.password),
+        code: data.form.code,
+        key: store.getters.getCodeKey,
+      };
+      loginByPwd(request).then((res) => {
         store.dispatch('setUserInfo', res);
         ElMessage({
           message: t('message.login_success'),
