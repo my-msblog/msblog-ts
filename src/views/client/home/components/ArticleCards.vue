@@ -27,11 +27,11 @@
           <router-link to="" class="article-title">{{ item.title }}</router-link>
         </div>
         <div class="article-info">
-          <el-icon :size="12"><Calendar /></el-icon>
-          {{ item.createTime }}
+          <el-icon :size="13"><Calendar /></el-icon>
+          &nbsp;{{ +item.createTime }}
           <span class="separator">|</span>
-          <el-icon :size="14"><SvgIcon name="type" size="13" color="#0000008a" /></el-icon>
-          {{ item.typeName }}
+          <el-icon :size="14"><SvgIcon name="type" size="15" color="#0000008a" /></el-icon>
+          &nbsp;{{ item.typeName }}
           <div 
             class="article-tag" 
             v-for="( tag, index) in item.tagVOList" 
@@ -39,7 +39,6 @@
             <span class="separator" v-if="tagsExceeds(index)">|</span>
             <el-icon v-if="tagsExceeds(index)"><CollectionTag /></el-icon>
             <span v-if="tagsExceeds(index)">{{ tag.nameZh }}</span>
-            
           </div>
           <div class="article-tag" v-if="showMore(item.tagVOList.length)">
             <span class="separator">|</span>

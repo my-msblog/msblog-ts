@@ -6,7 +6,7 @@ interface BarMenuItem {
 export const menuBarItem: BarMenuItem[]= [
   {
     route: '/',
-    icon: 'el-icon-s-hom',
+    icon: 'el-icon-s-home',
     text: 'homepage',
   },
   {
