@@ -32,8 +32,13 @@ export const routes: Array<RouteRecordRaw> = [
       },
       {
         path: '/categories',
-        name: 'categories',
+        name: 'Categories',
         component: () => import('@/views/client/categories/index.vue'),
+      },
+      {
+        path: '/categories/:id',
+        name: 'CategoryList',
+        component: () => import('@/views/client/categories/list/index.vue'),
       },
       {
         path: '/login',
@@ -47,9 +52,14 @@ export const routes: Array<RouteRecordRaw> = [
       },
       {
         path: '/archive',
-        name: 'archive',
+        name: 'Archive',
         component: () => import('@/views/client/archive/index.vue'),
-      }
+      },
+      {
+        path: '/artticle/:id',
+        name: 'Article',
+        component: () => import('@/views/client/article/index.vue'),
+      },
     ]
   },
   {
