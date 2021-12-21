@@ -10,6 +10,9 @@ interface obj{
 export function NullData<T> (t: T ): T{
   return t;
 }
+export function NullObject<T> (): T{
+  return {} as T;
+}
 export interface FunctionType {
   (): void;
 }
