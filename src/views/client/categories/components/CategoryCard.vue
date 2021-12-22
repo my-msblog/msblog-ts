@@ -1,19 +1,21 @@
 <template>
-  <FlowCard>
-    <div class="article-item-cover">
-      <router-link :to="'/articles/' + item.id">
-        <el-image class="on-hover" fit="fill" :src="item.cover" />
-      </router-link>
-    </div>
-    <div class="article-item-info">
-      <div>
+  <div class="item-card">
+    <FlowCard>
+      <div class="article-item-cover">
         <router-link :to="'/articles/' + item.id">
-          {{ item.articleTitle }}
+          <el-image class="on-hover" fit="fill" :src="item.cover" />
         </router-link>
       </div>
-      <el-icon :size="14"><SvgIcon name="type" size="15" color="#0000008a" /></el-icon>
-    </div>
-  </FlowCard>
+      <div class="article-item-info">
+        <div>
+          <router-link :to="'/articles/' + item.id">
+            {{ item.articleTitle }}
+          </router-link>
+        </div>
+        <el-icon :size="14"><SvgIcon name="type" size="15" color="#0000008a" /></el-icon>
+      </div>
+    </FlowCard>
+  </div>
 </template>
 <script lang="ts">
 import { ArticleCategoryVO } from '@/api/model/client/category';
@@ -35,5 +37,21 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
+.item-card{
+  .el-card{
+    padding: 0 !important;
+    &:deep(.el-card__body){
+      padding: 0 !important;
+    }
+  }
+  .article-item-cover{
+    height: 220px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+     .on-hover{
+       width: 100%;
+       height: 100%;
+     }
+  }
+}
 </style>
