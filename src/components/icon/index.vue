@@ -38,3 +38,8 @@ export default defineComponent({
   }
 });
 </script>
+<style lang="scss" scoped>
+.svg-icon{
+  text-align: center;
+}
+</style>

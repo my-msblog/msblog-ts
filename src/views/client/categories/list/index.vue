@@ -17,7 +17,7 @@
           :md="{span: 10, offset:1,push:1}"
           :lg="{span: 8, offset: 0, push:0}"
         >
-          <CategoryCard :item="item" />
+          <CategoryCard :item="item" :loading="data.loading" />
         </el-col>
       </el-row>
     </div>
@@ -41,10 +41,12 @@ export default defineComponent({
     const data = reactive({
       titleType: '',
       articleList: [] as ArticleCategoryVO[],
+      loading: true,
     });
     const handleInitCategotyList = function() {
       getArticleByCategoryId(categoryId).then((res) =>{
         data.articleList = res;
+        data.loading = false;
       });
     };
     onMounted(() => {
@@ -84,7 +86,7 @@ export default defineComponent({
 }
 @media (min-width: 760px) {
   .card-list{
-    max-width: 1106px;
+    max-width: 996px;
     margin: 30px auto 1rem auto;
   }
 }
