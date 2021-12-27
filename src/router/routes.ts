@@ -21,6 +21,11 @@ export const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/client/tage/index.vue'),
       },
       {
+        path: '/tags/:id',
+        name: 'TagsList',
+        component: () => import('@/views/client/tage/list/index.vue'),
+      },
+      {
         path: '/links',
         name: 'Links',
         component: () => import('@/views/client/links/index.vue'),

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="a_banner">
-      <p class="a_title">{{ $t('bar.about') }}</p>
+      <p class="a_title">{{ $t('bar.tags') }}</p>
     </div>
     this is categories
     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
@@ -9,10 +9,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive } from 'vue';
 export default defineComponent({
   name: 'About',
   setup() {
+    const data = reactive({});
     return {};
   }
 });

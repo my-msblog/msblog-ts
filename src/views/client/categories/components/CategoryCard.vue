@@ -130,8 +130,8 @@ export default defineComponent({
       height: 22px;
       border-radius: 10px;
       padding: 0 12px !important;
-      // background: linear-gradient(to right, #bf4643 0%, #6c9d8f 100%);
-      background: linear-gradient(to right, #f8ffae,#bdfff3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */      
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+      background: linear-gradient(to right, #f8ffae,#bdfff3);     
       opacity: 0.6;
       margin-right: 0.5rem;
       .el-link.el-link--default{
